@@ -4,11 +4,17 @@
 char Car::nextID = 'a';
 
 Car::Car(int mE, int mS, int e, std::string b, std::string m)
-	:brand(b), model(m), id(nextID),
-	maxEnergy(mE), maxSpeed(mS),
-	driver(nullptr), speed(0),
-	time(0), movement(false),
-	emergencySignal(false)
+	:brand(b),
+	model(m),
+	id(nextID),
+	maxEnergy(mE),
+	maxSpeed(mS),
+	speed(0),
+	movement(false),
+	time(0),
+	emergencySignal(false),
+	isDamaged(false),
+	driver(nullptr)
 {
 	if (e > maxEnergy)
 		energy = maxEnergy;
@@ -21,17 +27,14 @@ Car::Car(int mE, int mS, int e, std::string b, std::string m)
 	}
 
 	if (nextID == 'z' || nextID == '?')
-	{
 		nextID = '?';
-	}
 	else
-	{
 		++nextID;
-	}
 }
 
 Car::~Car()
 {
+	std::cout << "Car crashed..." << std::endl;
 }
 
 char Car::getNextID() const
@@ -92,6 +95,11 @@ bool Car::getMovement() const
 bool Car::getEmergencySignal() const
 {
 	return emergencySignal;
+}
+
+bool Car::getDamage() const
+{
+	return isDamaged;
 }
 
 

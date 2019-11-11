@@ -15,13 +15,15 @@ class Car
 	const int maxSpeed;
 
 	//Car Stats
-	Pilot* driver;
-	double energy;
 	int speed;
-	int time;
+	double energy;
+
 	bool movement;
+	int time;
 	bool emergencySignal;
-		
+	bool isDamaged;
+	Pilot* driver;
+	
 public:
 	Car(int mE, int mS, int e, std::string b, std::string m = "Base");
 	~Car();
@@ -39,6 +41,8 @@ public:
 	int getTime() const;
 	bool getMovement() const;
 	bool getEmergencySignal() const;
+	bool getDamage() const;
+	
 	std::string getAsString() const;
 
 	//TODO: Car's actions
