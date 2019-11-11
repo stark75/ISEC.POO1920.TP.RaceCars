@@ -36,7 +36,7 @@ Car::Car(int mE, int mS, int e, std::string b, std::string m)
 
 Car::~Car()
 {
-	std::cout << "Car crashed..." << std::endl;
+	std::cout << "Car" << id << " crashed..." << std::endl;
 }
 
 char Car::getNextID() const
@@ -130,7 +130,7 @@ std::string Car::getAsString() const
 	return tmpString;
 }
 
-bool Car::accelerate(int times)
+bool Car::pressAccelerate(int times)
 {
 	if(driver!=nullptr && energy>0 && brakePedal==0)
 	{
@@ -140,7 +140,7 @@ bool Car::accelerate(int times)
 	return false;
 }
 
-bool Car::brake(int times)
+bool Car::pressBrake(int times)
 {
 	if(driver!=nullptr && accelerationPedal==0)
 	{

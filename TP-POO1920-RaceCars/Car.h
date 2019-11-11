@@ -51,8 +51,8 @@ public:
 	std::string getAsString() const;
 
 	//TODO: Car's actions
-	bool accelerate(int times = 1);
-	bool brake(int times = 1);
+	bool pressAccelerate(int times = 1);
+	bool pressBrake(int times = 1);
 	bool energyCharge(int n);
 	bool energyConsumption();
 
