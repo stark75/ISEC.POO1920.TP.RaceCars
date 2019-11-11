@@ -19,6 +19,9 @@ class Car
 	double energy;
 
 	bool movement;
+	int accelerationPedal;
+	int brakePedal;
+
 	int time;
 	bool emergencySignal;
 	bool isDamaged;
@@ -40,6 +43,8 @@ public:
 	int getSpeed() const;
 	int getTime() const;
 	bool getMovement() const;
+	int getAccelerationPedal() const;
+	int getBrakePedal() const;
 	bool getEmergencySignal() const;
 	bool getDamage() const;
 	

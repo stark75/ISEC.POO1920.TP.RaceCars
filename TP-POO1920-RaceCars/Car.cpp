@@ -11,6 +11,8 @@ Car::Car(int mE, int mS, int e, std::string b, std::string m)
 	maxSpeed(mS),
 	speed(0),
 	movement(false),
+	accelerationPedal(0),
+	brakePedal(0),
 	time(0),
 	emergencySignal(false),
 	isDamaged(false),
@@ -92,6 +94,16 @@ bool Car::getMovement() const
 	return movement;
 }
 
+int Car::getAccelerationPedal() const
+{
+	return accelerationPedal;
+}
+
+int Car::getBrakePedal() const
+{
+	return brakePedal;
+}
+
 bool Car::getEmergencySignal() const
 {
 	return emergencySignal;
@@ -120,11 +132,21 @@ std::string Car::getAsString() const
 
 bool Car::accelerate(int times)
 {
+	if(driver!=nullptr && energy>0 && brakePedal==0)
+	{
+		accelerationPedal+=times;
+		return true;
+	}
 	return false;
 }
 
 bool Car::brake(int times)
 {
+	if(driver!=nullptr && accelerationPedal==0)
+	{
+		brakePedal+=times;
+		return true;
+	}
 	return false;
 }
 
