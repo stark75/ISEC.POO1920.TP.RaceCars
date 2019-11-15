@@ -132,7 +132,7 @@ std::string Car::getAsString() const
 
 bool Car::pressAccelerate(int times)
 {
-	if(driver!=nullptr && energy>0 && brakePedal==0)
+	if(driver!=nullptr && energy>0 && brakePedal==0 && speed < maxSpeed)
 	{
 		accelerationPedal+=times;
 		return true;
