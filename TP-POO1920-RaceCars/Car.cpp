@@ -15,8 +15,8 @@ Car::Car(int mE, int mS, int e, std::string b, std::string m)
 	brakePedal(0),
 	time(0),
 	emergencySignal(false),
-	isDamaged(false),
-	driver(nullptr)
+	isDamaged(false)//,
+	//driver(nullptr)
 {
 	if (e > maxEnergy)
 		energy = maxEnergy;
@@ -36,7 +36,7 @@ Car::Car(int mE, int mS, int e, std::string b, std::string m)
 
 Car::~Car()
 {
-	std::cout << "Car" << id << " crashed..." << std::endl;
+	std::cout << "Car " << id << " crashed..." << std::endl;
 }
 
 char Car::getNextID() const
@@ -69,10 +69,10 @@ int Car::getMaxSpeed() const
 	return maxSpeed;
 }
 
-Pilot* Car::getDriver() const
-{
-	return driver;
-}
+//Pilot* Car::getDriver() const
+//{
+//	return driver;
+//}
 
 double Car::getEnergy() const
 {
@@ -132,7 +132,7 @@ std::string Car::getAsString() const
 
 bool Car::pressAccelerate(int times)
 {
-	if(driver!=nullptr && energy>0 && brakePedal==0 && speed < maxSpeed)
+	if(/*driver!=nullptr &&*/ energy>0 && brakePedal==0 && speed < maxSpeed)
 	{
 		accelerationPedal+=times;
 		return true;
@@ -142,7 +142,7 @@ bool Car::pressAccelerate(int times)
 
 bool Car::pressBrake(int times)
 {
-	if(driver!=nullptr && accelerationPedal==0)
+	if(/*driver!=nullptr &&*/ accelerationPedal==0)
 	{
 		brakePedal+=times;
 		return true;

@@ -23,7 +23,7 @@ class Car
 	int          time;
 	bool         emergencySignal;
 	bool         isDamaged;
-	Pilot*       driver;
+	//Pilot*       driver;
 	
 public:
 	Car(int mE, int mS, int e, std::string b, std::string m = "Base");
@@ -36,7 +36,7 @@ public:
 	char         getID()                const;
 	double       getMaxEnergy()         const;
 	int          getMaxSpeed()          const;
-	Pilot*       getDriver()            const;
+	//Pilot*       getDriver()            const;
 	double       getEnergy()            const;
 	int          getSpeed()             const;
 	int          getTime()              const;
