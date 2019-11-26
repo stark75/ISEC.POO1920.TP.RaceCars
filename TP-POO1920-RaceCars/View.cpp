@@ -15,3 +15,34 @@ void View::printTitle()
 	
 	
 }
+
+void View::printMessage(std::string message, MessageType type)
+{
+	std::string output;
+	
+	if (type == ErrorType)
+	{
+		output = "[ERROR]: ";
+		output += message;
+	}
+
+	if (type == WarningType)
+	{
+		output = "[WARNING]: ";
+		output += message;
+	}
+
+	if (type == SuccessType)
+	{
+		output = "[SUCCESS]: ";
+		output += message;
+	}
+
+	if (type == NullType)
+	{
+		output = message;
+	}
+
+	std::cout << output << std::endl;
+	
+}

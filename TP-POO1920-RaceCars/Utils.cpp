@@ -84,9 +84,3 @@ std::string Utils::tolower(std::string str)
 
 	return tmpString;
 }
-
-void Utils::printError(std::string errorMessage)
-{
-	std::cout << "Erro: " << errorMessage << "\nEncerrando o Programa." << std::endl;
-	exit(0);
-}

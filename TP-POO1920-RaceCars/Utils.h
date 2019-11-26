@@ -16,6 +16,4 @@ public:
 
 	static std::string toupper(std::string str);
 	static std::string tolower(std::string str);
-
-	static void printError(std::string errorMessage = "No message.");
 };
