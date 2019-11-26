@@ -6,16 +6,16 @@ class Utils
 public:
 	Utils() = delete;
 	
-	int argumentCount(std::string str);
+	static int argumentCount(std::string str);
 
-	bool isAlpha(char c);
-	bool isUpper(char c);
-	bool isLower(char c);
-	bool isDigit(char c);
-	bool isNumber(std::string s);
+	static bool isAlpha(char c);
+	static bool isUpper(char c);
+	static bool isLower(char c);
+	static bool isDigit(char c);
+	static bool isNumber(std::string s);
 
-	std::string toupper(std::string str);
-	std::string tolower(std::string str);
+	static std::string toupper(std::string str);
+	static std::string tolower(std::string str);
 
-	void printError(std::string errorMessage = "No message.");
+	static void printError(std::string errorMessage = "No message.");
 };

@@ -6,6 +6,5 @@ public:
 	View() = delete;
 	
 	static void printTitle();
-	static void printMenu();
 };
 

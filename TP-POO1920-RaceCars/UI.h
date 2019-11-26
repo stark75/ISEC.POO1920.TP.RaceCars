@@ -12,18 +12,19 @@ class UI
 		CHAMPIONSHIP
 	};
 
-	Menu mode;
+	Menu mode = CONFIG;
 
 public:
+	UI();
 	UI(Simulator s);
 	~UI() = default;
 
 	void switchMode();
 
-	void run(const int argc = 0, char* argv[] = nullptr);
+	void run(/*const int argc = 0, char* argv[] = nullptr*/);
 
-	int commandLine(std::string command);
-	std::string validateArgv(const int argc, char* argv[]);
+	//int commandLine(std::string command);
+	//std::string validateArgv(const int argc, char* argv[]);
 	
 	
 };
