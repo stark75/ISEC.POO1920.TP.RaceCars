@@ -21,10 +21,11 @@ public:
 
 	void switchMode();
 
-	void run(/*const int argc = 0, char* argv[] = nullptr*/);
+	std::string validateArgv(const int argc, char* argv[]);
+	void run(const int argc = 0, char* argv[] = nullptr);
 
 	//int commandLine(std::string command);
-	//std::string validateArgv(const int argc, char* argv[]);
+	
 	
 	
 };

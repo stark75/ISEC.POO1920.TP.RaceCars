@@ -7,9 +7,9 @@ int main(const int argc, char* argv[])
 
 	//std::cout << a << std::endl;
 
-	Simulator on;
-	UI ui(on);
-	ui.run(/*argc, argv*/);
+	//Simulator on;
+	UI ui/*(on)*/;
+	ui.run(argc, argv);
 
 	return 0;
 }
