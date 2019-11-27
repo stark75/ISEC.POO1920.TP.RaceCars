@@ -64,7 +64,8 @@ std::string Utils::toupper(std::string str)
 	{
 		if (isAlpha(str[i]))
 		{
-			if(isLower(str[i])) tmpString += std::to_string(::toupper(str[i]));
+			if(isLower(str[i])) tmpString += ::toupper(str[i]);
+			else tmpString += str[i];
 		}
 	}
 
@@ -78,7 +79,8 @@ std::string Utils::tolower(std::string str)
 	{
 		if (isAlpha(str[i]))
 		{
-			if (isUpper(str[i])) tmpString += std::to_string(::tolower(str[i]));
+			if (isUpper(str[i])) tmpString += ::tolower(str[i]);
+			else tmpString += str[i];
 		}
 	}
 
