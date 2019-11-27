@@ -16,33 +16,38 @@ void View::printTitle()
 	
 }
 
-void View::printMessage(std::string message, MessageType type)
+void View::printMessage(std::string message, int type)
 {
 	std::string output;
 	
-	if (type == ErrorType)
+	if (type == ErrorTypeMessage)
 	{
 		output = "[ERROR]: ";
 		output += message;
 	}
 
-	if (type == WarningType)
+	if (type == WarningTypeMessage)
 	{
 		output = "[WARNING]: ";
 		output += message;
 	}
 
-	if (type == SuccessType)
+	if (type == SuccessTypeMessage)
 	{
 		output = "[SUCCESS]: ";
 		output += message;
 	}
 
-	if (type == NullType)
+	if (type == NullTypeMessage)
 	{
 		output = message;
 	}
 
 	std::cout << output << std::endl;
 	
+}
+
+void View::printCommandLineMessage()
+{
+	std::cout << "Introduza um comando: ";
 }
