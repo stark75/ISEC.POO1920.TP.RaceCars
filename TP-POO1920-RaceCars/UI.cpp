@@ -57,9 +57,18 @@ void UI::run(const int argc, char* argv[])
 {
 	//TODO PRINTS
 
+	/*
+	 * run() will run the commandline, and receive the user's inputs and validates it.
+	 * the commands are divided according to the active mode (Configuration Mode and Championship Mode).
+	 * That means that if you try to use a command, that maybe valid in one mode, but not on the other one.
+	 * The only common command is "exit" or "sair" and it's the only command that's not case sensitive.
+	 */
+
 	View::printCommandLineMessage();
 	
 	std::string command = validateArgv(argc, argv);
+	
+
 	
 	for(;;)
 	{
@@ -69,6 +78,8 @@ void UI::run(const int argc, char* argv[])
 
 			std::getline(std::cin, command);
 		}
+
+		bool validCommand = false;
 			
 		if(Utils::tolower(command) == "exit" || Utils::tolower(command) == "sair")
 		{
@@ -83,6 +94,7 @@ void UI::run(const int argc, char* argv[])
 			{
 				//View::list(simulator);
 				View::printMessage("Lista Not implemented", View::WarningTypeMessage);
+				validCommand = true;
 			}
 
 			if(Utils::argumentCount(command)==2)
@@ -97,6 +109,8 @@ void UI::run(const int argc, char* argv[])
 					//TODO
 					//Ler Ficheiro
 					//Gerar vetor de autodromos no Simulator
+
+					validCommand = true;
 				}
 
 				if (argument == "carregaC")
@@ -106,6 +120,9 @@ void UI::run(const int argc, char* argv[])
 					//TODO
 					//Ler Ficheiro
 					//Gerar vetor de autodromos no Simulator
+
+					validCommand = true;
+					
 				}
 
 				if (argument == "carregaP")
@@ -115,6 +132,8 @@ void UI::run(const int argc, char* argv[])
 					//TODO
 					//Ler Ficheiro
 					//Gerar vetor de autodromos no Simulator
+					
+					validCommand = true;
 				}
 
 				if (argument == "deldgv") //TODO Meta2
@@ -124,6 +143,8 @@ void UI::run(const int argc, char* argv[])
 					//TODO
 					//Ler Ficheiro
 					//Gerar vetor de autodromos no Simulator
+					
+					validCommand = true;
 				}
 
 				if (argument == "loaddgv") //TODO Meta2
@@ -133,6 +154,8 @@ void UI::run(const int argc, char* argv[])
 					//TODO
 					//Ler Ficheiro
 					//Gerar vetor de autodromos no Simulator
+					
+					validCommand = true;
 				}
 
 				if (argument == "saidocarro")
@@ -141,6 +164,8 @@ void UI::run(const int argc, char* argv[])
 					View::printMessage("Sair do carro not implemented", View::WarningTypeMessage);
 					//TODO
 					//tirar do carro
+					
+					validCommand = true;
 				}
 
 				if (argument == "savedgv") //TODO Meta2
@@ -150,6 +175,8 @@ void UI::run(const int argc, char* argv[])
 					//TODO
 					//Ler Ficheiro
 					//Gerar vetor de autodromos no Simulator
+
+					validCommand = true;
 				}
 				
 			}
@@ -163,11 +190,15 @@ void UI::run(const int argc, char* argv[])
 				if(argument == "apaga")
 				{
 					View::printMessage("apaga not implemented", View::WarningTypeMessage);
+
+					validCommand = true;
 				}
 
 				if(argument == "entranocarro")
 				{
 					View::printMessage("entra no carro not implemented", View::WarningTypeMessage);
+
+					validCommand = true;
 				}
 			}
 
@@ -180,6 +211,8 @@ void UI::run(const int argc, char* argv[])
 				if(argument == "cria")
 				{
 					View::printMessage("criar objetos not implemented", View::WarningTypeMessage);
+
+					validCommand = true;
 				}
 			}
 
@@ -193,6 +226,8 @@ void UI::run(const int argc, char* argv[])
 				{
 					View::printMessage("Campeonato not implemented.\nMenu Mode has been switched to Championship Mode", View::WarningTypeMessage);
 					switchMode();
+
+					validCommand = true;
 				}
 			}
 		}
@@ -202,10 +237,99 @@ void UI::run(const int argc, char* argv[])
 			if(command == "voltar")
 			{
 				View::printMessage("Menu mode switched to Config Mode", View::SuccessTypeMessage);
+				switchMode();
+
+				validCommand = true;
+			}
+
+			if (command == "carregatudo")
+			{
+				View::printMessage("Carrega Tudo not implemented", View::WarningTypeMessage);
+
+				validCommand = true;
+			}
+
+			if (command == "corrida")
+			{
+				View::printMessage("Corrida not implemented", View::WarningTypeMessage);
+
+				validCommand = true;
+			}
+
+			if (command == "listacarros")
+			{
+				View::printMessage("Lista de Carros not implemented", View::WarningTypeMessage);
+
+				validCommand = true;
+			}
+
+			if (command == "log")
+			{
+				View::printMessage("log not implemented", View::WarningTypeMessage);
+
+				validCommand = true;
+			}
+
+			if(Utils::argumentCount(command) == 2)
+			{
+				std::istringstream separator(command);
+				std::string argument;
+				separator >> argument;
+
+				if (argument == "acidente")
+				{
+					View::printMessage("acidente not implemented", View::WarningTypeMessage);
+					validCommand = true;
+				}
+
+				if (argument == "destroi")
+				{
+					View::printMessage("destroi not implemented", View::WarningTypeMessage);
+					validCommand = true;
+				}
+
+				if (argument == "passatempo")
+				{
+					View::printMessage("passatempo not implemented", View::WarningTypeMessage);
+					validCommand = true;
+				}
+				
+			}
+
+			if(Utils::argumentCount(command)==3)
+			{
+				std::istringstream separator(command);
+				std::string argument;
+				separator >> argument;
+
+				if (argument == "carregabat")
+				{
+					View::printMessage("carregabat not implemented", View::WarningTypeMessage);
+					validCommand = true;
+				}
+			}
+
+			if(Utils::argumentCount(command)>=2)
+			{
+				std::istringstream separator(command);
+				std::string argument;
+				separator >> argument;
+
+				if (argument == "stop")
+				{
+					View::printMessage("stop not implemented", View::WarningTypeMessage);
+					validCommand = true;
+				}
 			}
 		}
 
-		View::printMessage("Comando Inválido", View::ErrorTypeMessage); //TODO create a check var
+		if(!validCommand)
+			View::printMessage("Comando Invalido", View::ErrorTypeMessage);
+		else
+		{
+			//TODO
+		}
+		
 		View::printCommandLineMessage();
 		std::getline(std::cin, command);
 	}
