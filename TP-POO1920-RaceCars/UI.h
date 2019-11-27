@@ -6,13 +6,13 @@ class UI
 {
 	Simulator simulator;
 
-	enum Menu
+	enum class MenuMode
 	{
 		CONFIG,
 		CHAMPIONSHIP
 	};
 
-	Menu mode = CONFIG;
+	MenuMode mode = MenuMode::CONFIG;
 
 public:
 	UI();
