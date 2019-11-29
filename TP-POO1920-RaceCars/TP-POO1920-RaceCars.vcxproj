@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="DGV.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pilot.cpp" />
     <ClCompile Include="Simulator.cpp" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
+    <ClInclude Include="DGV.h" />
     <ClInclude Include="Pilot.h" />
     <ClInclude Include="Simulator.h" />
     <ClInclude Include="UI.h" />

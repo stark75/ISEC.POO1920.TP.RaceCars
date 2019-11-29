@@ -234,7 +234,7 @@ void UI::run(const int argc, char* argv[])
 
 		if(mode == MenuMode::CHAMPIONSHIP)
 		{
-			if(command == "voltar")
+			if (command == "voltar")
 			{
 				View::printMessage("Menu mode switched to Config Mode", View::SuccessTypeMessage);
 				switchMode();
@@ -333,4 +333,15 @@ void UI::run(const int argc, char* argv[])
 		View::printCommandLineMessage();
 		std::getline(std::cin, command);
 	}
+}
+
+bool UI::loadCars(std::string filename)
+{
+	
+	return false;
+}
+
+bool UI::loadPilots(std::string filename)
+{
+	return false;
 }

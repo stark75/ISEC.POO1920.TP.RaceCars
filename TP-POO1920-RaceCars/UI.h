@@ -24,8 +24,9 @@ public:
 	std::string validateArgv(const int argc, char* argv[]);
 	void run(const int argc = 0, char* argv[] = nullptr);
 
-	//int commandLine(std::string command);
-	
+	bool loadCars(std::string filename);
+	bool loadPilots(std::string filename);
+	//bool loadRacetrack(std::string filename);
 	
 	
 };
