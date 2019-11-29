@@ -18,5 +18,6 @@ public:
 
 	static void printMessage(std::string message = "No message.", int type = NullTypeMessage);
 	static void printCommandLineMessage();
+	static void helpCommand();
 };
 

@@ -51,3 +51,19 @@ void View::printCommandLineMessage()
 {
 	std::cout << "Introduza um comando: ";
 }
+
+void View::helpCommand()
+{
+	std::cout << "Lista de comandos do modo 1:" << std::endl;
+	std::cout << "[1] carregaP <nomeFicheiro>" << std::endl;
+	std::cout << "[2] carregaC <nomeFicheiro>" << std::endl;
+	std::cout << "[3] carregaA <nomeFicheiro>" << std::endl;
+	std::cout << "[4] cria <letraTipo> <dados do objeto>";
+	std::cout << "\t\t\tLetras: p - piloto; c - carro; a - autodromo" << std::endl;
+	std::cout << "[5] apaga <letraTipo> identificador" << std::endl;
+	std::cout << "[6] entranocarro <letraCarro> <nomePiloto> " << std::endl;
+	std::cout << "[7] saidocarro <letraCarro>" << std::endl;
+	std::cout << "[8] lista" << std::endl;
+	std::cout << "[9] modo2" << std::endl;
+	std::cout << "[0] SAIR" << std::endl;
+}
