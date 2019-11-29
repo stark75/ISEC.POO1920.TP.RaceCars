@@ -3,20 +3,21 @@
 
 char Car::nextID = 'a';
 
-Car::Car(int mE, int mS, int e, std::string b, std::string m)
+Car::Car(int e, int mE, std::string b, std::string m)
 	:brand(b),
 	model(m),
 	id(nextID),
 	maxEnergy(mE),
-	maxSpeed(mS),
+	maxSpeed(150),
 	speed(0),
 	movement(false),
 	accelerationPedal(0),
 	brakePedal(0),
 	time(0),
+	pos(0),
 	emergencySignal(false),
-	isDamaged(false)//,
-	//driver(nullptr)
+	isDamaged(false),
+	driver(nullptr)
 {
 	if (e > maxEnergy)
 		energy = maxEnergy;
@@ -32,6 +33,25 @@ Car::Car(int mE, int mS, int e, std::string b, std::string m)
 		nextID = '?';
 	else
 		++nextID;
+}
+
+Car::Car(const Car& src)
+	:brand(src.brand),
+	model(src.model),
+	id(src.id),
+	maxEnergy(src.maxEnergy),
+	maxSpeed(src.maxSpeed),
+	speed(src.speed),
+	energy(src.energy),
+	movement(src.movement),
+	accelerationPedal(src.accelerationPedal),
+	brakePedal(src.brakePedal),
+	time(src.time),
+	pos(0),
+	emergencySignal(src.emergencySignal),
+	isDamaged(src.isDamaged),
+	driver(src.driver)
+{
 }
 
 Car::~Car()
@@ -69,10 +89,10 @@ int Car::getMaxSpeed() const
 	return maxSpeed;
 }
 
-//Pilot* Car::getDriver() const
-//{
-//	return driver;
-//}
+Pilot* Car::getDriver() const
+{
+	return driver;
+}
 
 double Car::getEnergy() const
 {
@@ -87,6 +107,11 @@ int Car::getSpeed() const
 int Car::getTime() const
 {
 	return time;
+}
+
+int Car::getPosition() const
+{
+	return position;
 }
 
 bool Car::getMovement() const
@@ -166,6 +191,72 @@ bool Car::energyConsumption()
 	if (energy < 0) energy = 0;
 	return true;
 }
+
+
+//Equality Operators
+
+//Car to Car
+bool operator==(Car const& lhs, Car const& rhs)
+{
+	return lhs.brand == rhs.brand
+		&& lhs.model == rhs.model
+		&& lhs.id == rhs.id
+		&& lhs.maxEnergy == rhs.maxEnergy
+		&& lhs.maxSpeed == rhs.maxSpeed
+		&& lhs.speed == rhs.speed
+		&& lhs.energy == rhs.energy
+		&& lhs.movement == rhs.movement
+		&& lhs.accelerationPedal == rhs.accelerationPedal
+		&& lhs.brakePedal == rhs.brakePedal
+		&& lhs.time == rhs.time
+		&& lhs.pos == rhs.pos
+		&& lhs.emergencySignal == rhs.emergencySignal
+		&& lhs.isDamaged == rhs.isDamaged
+		&& lhs.driver == rhs.driver;
+}
+
+bool operator!=(Car const& lhs, Car const& rhs)
+{
+	return !(lhs == rhs);
+}
+
+//Pointer Car to Car
+bool operator==(Car* const& lhs, Car const& rhs)
+{
+	return lhs->getBrand() == rhs.getBrand()
+		&& lhs->getModel() == rhs.getModel()
+		&& lhs->getID() == rhs.getID()
+		&& lhs->getMaxEnergy() == rhs.getMaxEnergy()
+		&& lhs->getMaxSpeed() == rhs.getMaxSpeed()
+		&& lhs->getSpeed() == rhs.getSpeed()
+		&& lhs->getEnergy() == rhs.getEnergy()
+		&& lhs->getMovement() == rhs.getMovement()
+		&& lhs->getAccelerationPedal() == rhs.getAccelerationPedal()
+		&& lhs->getBrakePedal() == rhs.getBrakePedal()
+		&& lhs->getTime() == rhs.getTime()
+		&& lhs->getPos() == rhs.getPos()
+		&& lhs->getEmergencySignal() == rhs.getEmergencySignal()
+		&& lhs->getDamage() == rhs.getDamage()
+		&& lhs->getDriver() == rhs.getDriver();
+}
+
+bool operator!=(Car* const& lhs, Car const& rhs)
+{
+	return !(lhs == rhs);
+}
+
+//Car to Pointer Car
+bool operator==(Car const& lhs, Car* const& rhs)
+{
+	return rhs == lhs;
+}
+
+bool operator!=(Car const& lhs, Car* const& rhs)
+{
+	return !(lhs == rhs);
+}
+
+
 
 std::ostream& operator<<(std::ostream& os, const Car& c)
 {

@@ -2,6 +2,8 @@
 #include <string>
 #include "Pilot.h"
 
+class Pilot;
+
 class Car
 {
 	//Car ID
@@ -21,12 +23,14 @@ class Car
 	int          accelerationPedal;
 	int          brakePedal;
 	int          time;
+	int          position;
 	bool         emergencySignal;
 	bool         isDamaged;
-	//Pilot*       driver;
+	Pilot*       driver;
 	
 public:
-	Car(int mE, int mS, int e, std::string b, std::string m = "Base");
+	Car(int e, int mE, std::string b, std::string m = "Base");
+	Car(const Car& src);
 	~Car();
 
 	//Getters
@@ -36,10 +40,11 @@ public:
 	char         getID()                const;
 	double       getMaxEnergy()         const;
 	int          getMaxSpeed()          const;
-	//Pilot*       getDriver()            const;
+	Pilot*       getDriver()            const;
 	double       getEnergy()            const;
 	int          getSpeed()             const;
 	int          getTime()              const;
+	int          getPosition()          const;
 	bool         getMovement()          const;
 	int          getAccelerationPedal() const;
 	int          getBrakePedal()        const;
@@ -54,6 +59,15 @@ public:
 	bool         energyConsumption();
 	//TODO: Car movement
 
+	friend bool  operator==(Car const& lhs, Car const& rhs);
+	friend bool  operator!=(Car const& lhs, Car const& rhs);
+
 };
+
+
+bool  operator==(Car* const& lhs, Car  const& rhs);
+bool  operator!=(Car* const& lhs, Car  const& rhs);
+bool  operator==(Car  const& lhs, Car* const& rhs);
+bool  operator!=(Car  const& lhs, Car* const& rhs);
 
 std::ostream&    operator<<(std::ostream& os, const Car& c);
