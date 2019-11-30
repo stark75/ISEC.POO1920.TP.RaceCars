@@ -449,8 +449,15 @@ bool UI::loadPilots(std::string filename)
 				if(storedValue == "generico")
 				{
 					std::string tmpName = "";
+					bool firstTime = true;
 					while (separator >> storedValue)
+					{
+						if (firstTime)
+							firstTime = false;
+						else
+							tmpName += " ";
 						tmpName += storedValue;
+					}
 					simulator.addPilot(tmpType,tmpName);
 				}
 				else
