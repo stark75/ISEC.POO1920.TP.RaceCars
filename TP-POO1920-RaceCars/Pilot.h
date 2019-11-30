@@ -20,9 +20,11 @@ public:
 
 
     std::string getName() const;
-    Car* getCurrentCar() const;
+    Car*        getCurrentCar() const;
 	std::string getAsString() const;
-	
+
+	bool        attach(Car* newCar);
+	bool        detach();
 
     friend bool operator==(const Pilot& lhs, const Pilot& rhs);
 

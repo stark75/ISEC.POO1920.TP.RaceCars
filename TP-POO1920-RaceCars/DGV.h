@@ -15,8 +15,14 @@ public:
 	bool addCar(const Car newCar);
 	bool addPilot(const Pilot newPilot);
 
+	void printCars();
 	void printPilots();
-	void printPosition();
+
+	Car* getCarById(char wantedID);
+	Pilot* getPilotByName(std::string wantedName);
+	bool attach(char id, std::string name);
+	bool detach(char id);
+	
 
 	//TODO apply this in Track Class
 	static bool sortFunc(Car* lhs, Car* rhs);

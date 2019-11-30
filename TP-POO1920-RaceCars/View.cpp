@@ -67,3 +67,9 @@ void View::helpCommand()
 	std::cout << "[9] modo2" << std::endl;
 	std::cout << "[0] SAIR" << std::endl;
 }
+
+void View::printInfoCommand(Simulator& s)
+{
+	s.getDGV()->printCars();
+	s.getDGV()->printPilots();
+}

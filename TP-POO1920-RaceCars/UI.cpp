@@ -93,8 +93,8 @@ void UI::run(const int argc, char* argv[])
 
 			if(command == "lista")
 			{
-				//View::list(simulator);
-				View::printMessage("Lista Not implemented", View::WarningTypeMessage);
+				//TODO falta print do Autodromo
+				View::printInfoCommand(simulator);
 				validCommand = true;
 			}
 
@@ -158,12 +158,17 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "saidocarro")
 				{
-					//separator >> argument;
-					View::printMessage("Sair do carro not implemented", View::WarningTypeMessage);
+					separator >> argument;
+					//View::printMessage("Sair do carro not implemented", View::WarningTypeMessage);
 					//TODO
 					//tirar do carro
 					
-					validCommand = true;
+					if (argument.size() == 1)
+					{
+						char tmpChar = argument[0];
+						simulator.detach(tmpChar);
+						validCommand = true;
+					}
 				}
 
 				if (argument == "savedgv") //TODO Meta2
@@ -185,6 +190,31 @@ void UI::run(const int argc, char* argv[])
 				std::string argument;
 				separator >> argument;
 
+				if (argument == "entranocarro")
+				{
+					separator >> argument;
+
+					if (!Utils::isNumber(argument))
+					{
+						if (argument.size() == 1)
+						{
+							char tmpChar = argument[0];
+							std::string tmpString = "";
+
+							while (separator >> argument)
+								tmpString += argument;
+
+							simulator.attach(tmpChar, tmpString);
+							
+							validCommand = true;
+						}
+					}
+					//View::printMessage("entra no carro not implemented", View::WarningTypeMessage);
+
+
+				}
+
+				
 				if(argument == "apaga")
 				{
 					View::printMessage("apaga not implemented", View::WarningTypeMessage);
@@ -192,12 +222,6 @@ void UI::run(const int argc, char* argv[])
 					validCommand = true;
 				}
 
-				if(argument == "entranocarro")
-				{
-					View::printMessage("entra no carro not implemented", View::WarningTypeMessage);
-
-					validCommand = true;
-				}
 			}
 
 			if(Utils::argumentCount(command)>=4)

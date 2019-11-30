@@ -17,11 +17,11 @@ int main(const int argc, char* argv[])
 	dgv.addCar(b);
 	dgv.addCar(c);
 
-	dgv.printPosition();
+	dgv.printCars();
 	std::cout << std::endl;
 	dgv.sortCarsByPosition();
 	std::cout << std::endl;
-	dgv.printPosition();*/
+	dgv.printCars();*/
 	
 
 	UI ui;

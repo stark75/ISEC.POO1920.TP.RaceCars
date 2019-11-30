@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Simulator.h"
 
 class View
 {
@@ -19,5 +20,6 @@ public:
 	static void printMessage(std::string message = "No message.", int type = NullTypeMessage);
 	static void printCommandLineMessage();
 	static void helpCommand();
+	static void printInfoCommand(Simulator& s);
 };
 

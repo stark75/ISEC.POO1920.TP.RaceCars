@@ -143,19 +143,47 @@ void Car::setPosition(int newPos)
 	position = newPos;
 }
 
+bool Car::attach(Pilot* newDriver)
+{
+	if (driver == nullptr)
+	{
+		driver = newDriver;
+		return true;
+	}
+	return false;
+}
+
+bool Car::detach()
+{
+	if(driver!=nullptr)
+	{
+		driver = nullptr;
+		return true;
+	}
+	return false;
+}
+
 
 std::string Car::getAsString() const
 {
 	std::string tmpString;
 
-	tmpString += "[";
+	tmpString += "[Carro ";
 	tmpString += getID();
-	tmpString += " - ";
+	tmpString += " | ";
 	tmpString += getBrand();
 	tmpString += " ";
 	tmpString += getModel();
-	tmpString += " - Position: ";
-	tmpString += std::to_string(getPosition());
+	tmpString += " | Condutor: ";
+	if (driver != nullptr)
+	{
+		std::string tmpDriver = driver->getName();
+		tmpString += tmpDriver;
+	}
+	else
+	{
+		tmpString += "Nenhum";
+	}
 	tmpString += "]";
 	
 	return tmpString;

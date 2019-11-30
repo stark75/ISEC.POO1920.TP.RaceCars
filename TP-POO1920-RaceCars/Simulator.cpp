@@ -5,6 +5,21 @@ Simulator::Simulator()
 {
 }
 
+DGV* Simulator::getDGV()
+{
+	return &currentDGV;
+}
+
+bool Simulator::attach(char carID, std::string pilotName)
+{
+	return currentDGV.attach(carID, pilotName);
+}
+
+bool Simulator::detach(char carID)
+{
+	return currentDGV.detach(carID);
+}
+
 bool Simulator::addCar(int e, int mE, int mS, std::string b, std::string m)
 {
     Car tmpCar(e,mE, mS,b,m);

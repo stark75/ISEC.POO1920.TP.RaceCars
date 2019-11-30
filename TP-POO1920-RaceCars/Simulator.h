@@ -14,6 +14,11 @@ public:
 	Simulator();
 	~Simulator() = default;
 
+	DGV* getDGV();
+
+	bool attach(char carID, std::string pilotName);
+	bool detach(char carID);
+	
 	bool addCar(int e, int mE, int mS, std::string b, std::string m = "Base");
 	bool addPilot(std::string type, std::string newName);
 };

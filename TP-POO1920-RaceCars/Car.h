@@ -52,6 +52,8 @@ public:
 	bool         getDamage()            const;
 
 	void         setPosition(int newPos);
+	bool         attach(Pilot* newDriver);
+	bool         detach();
 	
 	std::string  getAsString()          const;
 

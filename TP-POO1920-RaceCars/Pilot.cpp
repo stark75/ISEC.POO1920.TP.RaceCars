@@ -50,11 +50,46 @@ std::string Pilot::getAsString() const
 {
 	std::string tmpString;
 
-	tmpString += "[Pilot -";
+	tmpString += "[Pilot ";
 	tmpString += getName();
+	tmpString += " | Carro: ";
+	if(current != nullptr)
+	{
+		tmpString += "(";
+		std::string carID = std::to_string(current->getID());
+		tmpString += carID;
+		tmpString += ") - ";
+		tmpString += current->getBrand();
+		tmpString += " ";
+		tmpString += current->getModel();
+	}
+	else
+	{
+		tmpString += "Nenhum";
+	}
 	tmpString += "]";
 
 	return tmpString;
+}
+
+bool Pilot::attach(Car* newCar)
+{
+	if(current==nullptr)
+	{
+		current = newCar;
+		return true;
+	}
+	return false;
+}
+
+bool Pilot::detach()
+{
+	if(current!=nullptr)
+	{
+		current = nullptr;
+		return true;
+	}
+	return false;
 }
 
 bool operator==(const Pilot& lhs, const Pilot& rhs)
