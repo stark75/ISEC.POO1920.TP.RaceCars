@@ -6,36 +6,34 @@
 
 class Racetrack {
 
-	//Caracteristicas garagem
+	//Caracteristicas RaceTrack
 	
-	const int		    nMaxCars;
-	std::vector<Car*>	garage;
+	std::vector<Car*>	raceTrack;
 	std::vector<Car*>	carsInTrack;
 	std::vector<Car*>   carsInGarage;
+	const int		    nMaxCars;
+	int					rTLength const;
 
 	//Variáveis
 	bool				isCarMax;
 
-	int pCar;
-	int pPlace;
 };
 
 public:
 	Racetrack(std::string n, const int nmax, int ncars, int npil);
 
 	//Getters
-	std::string		  getgarage()           const;
+	std::string		  getraceTrack()        const;
 	int				  getnMaxcars()         const;
+	int				  getrTLength();	    const;
+
 	int				  getnCars();
 	bool			  getisCarMax()         const;
-	int			      getpCar();
-	int				  getpPlace();
-
-	std::vector<int>  getinRace();
+	int				  getcarsInTrack();
+	int				  getcarsInGarage();
 
 	int				  trackToGarage();
 	int	       	      garageToTrack();
 	int				  moveRaceTrack();
-
 
 };

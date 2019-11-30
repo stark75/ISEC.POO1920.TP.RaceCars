@@ -2,16 +2,38 @@
 #include "Racetrack.h"
 #include <vector>
 
-Racetrack::Racetrack(std::string n, const int nmax, int ncars, int npil)
-	garage(n),
-	nMaxCars(nmax),
-	nCars(ncars),
+Racetrack::Racetrack(std::string r, int cIT, int cIG, int nMC, int rTL)
+	raceTrack(r),
+	carsInTrack (cIT),
+	carsInGarage (CIG),
+	isMaxCars(nMC),
+	rTLength(rTL),
 	isCarMax(false);
 
-	std::string Racetrack::getgarage() const
+
+	std::string Racetrack::getraceTrack() const
 	{
-		return garage;
+		return raceTrack;
 	}
+
+
+	int Racetrack::getnMaxCars() const
+	{
+		int maxCars = 0;
+		int sizeInRT = getnCars;
+		if (maxCars <= sizeInRT) {
+
+			cout << "O número de carros não ultrapassa o limite (" << sizeInRT << "/" << maxCars << ")"
+		}
+
+		return nMaxCars;
+	}
+
+
+	int Racetrack::getrTLength() {
+		return rTLength;
+	}
+
 
 	int Racetrack::getncars()
 	{
@@ -24,46 +46,31 @@ Racetrack::Racetrack(std::string n, const int nmax, int ncars, int npil)
 		return sizeInRT;
 	}
 
-	int Racetrack::getnMaxCars() const
-	{
-		int maxCars = 0;
-		int sizeInRT = getnCars;
-		if (maxCars <= sizeInRT) {
 
-			cout << "O número de carros não ultrapassa o limite (" <<  sizeInRT << "/" << maxCars << ")"
-		}
-
-		return nMaxCars;
-	}
-
-	bool Racetrack::isCarMax() 
+	bool Racetrack::getisCarMax() 
 	{
 		if (nCars == nMaxCars)
 		{
 			return true;
 		}
-	}
-	
-	int Racetrack::getpCar()
-	{
-		return pCars;
+
+		else
+		{
+			return false;
+		}
 	}
 
-	int Racetrack::getpPlace()
+	int RaceTrack::getcarsInTrack()
 	{
-		return pPlace;
+		return carsInTrack;
 	}
 
 
-	int Racetrack::garageToTrack()
+	int RaceTrack::getcarsInGarage()
 	{
-		int times = 0;
-		auto it = std::next(carsInGarage(), getnCars()), times++;
-		std::move(carsInGarage<Car*>.begin(), it, std::back_inserter(carsInTrack<Car*>));
-		carsInGarage<Car*>.erase(carsInGarage.begin(), it);
-		cout << "Foram " << times << "carros para a track";
-		return times;
+		return carsInGarage;
 	}
+
 
 	int Racetrack::trackToGarage()
 	{
@@ -71,6 +78,17 @@ Racetrack::Racetrack(std::string n, const int nmax, int ncars, int npil)
 		auto it = std::next(carsInTrack<Car*>(), getnCars()), times++;
 		std::move(carsInTrack<Car*>.begin(), it, std::back_inserter(carsInGarage<Car*>));
 		carsInTrack<Car*>.erase(carsInTrack.begin(), it);
+		cout << "Foram " << times << "carros para a garagem";
+		return times;
+	}
+
+
+	int Racetrack::garageToTrack()
+	{
+		int times = 0;
+		auto it = std::next(carsInGarage(), getnCars()), times++;
+		std::move(carsInGarage.begin(), it, std::back_inserter(carsInTrack<Car*>));
+		carsInGarage.erase(carsInGarage.begin(), it);
 		cout << "Foram " << times << "carros para a track";
 		return times;
 	}
