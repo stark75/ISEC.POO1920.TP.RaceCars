@@ -56,7 +56,6 @@ Car::Car(const Car& src)
 
 Car::~Car()
 {
-	std::cout << "Car " << id << " crashed..." << std::endl;
 }
 
 char Car::getNextID() const

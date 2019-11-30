@@ -117,9 +117,6 @@ void UI::run(const int argc, char* argv[])
 				if (argument == "carregaC")
 				{
 					separator >> argument;
-					//View::printMessage("Carrega Carro not implemented", View::WarningTypeMessage);
-
-					std::cout << argument << std::endl;
 					
 					loadCars(argument);
 					
@@ -129,11 +126,10 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "carregaP")
 				{
-					//separator >> argument;
-					View::printMessage("Carrega Piloto not implemented", View::WarningTypeMessage);
-					//TODO
-					//Ler Ficheiro
-					//Gerar vetor de autodromos no Simulator
+					separator >> argument;
+					//View::printMessage("Carrega Piloto not implemented", View::WarningTypeMessage);
+
+					loadPilots(argument);
 					
 					validCommand = true;
 				}
@@ -433,5 +429,52 @@ bool UI::loadCars(const std::string filename)
 
 bool UI::loadPilots(std::string filename)
 {
+	std::ifstream pilotsFile;
+	std::string buffer;
+
+	pilotsFile.open(filename);
+
+	if (pilotsFile.is_open())
+	{
+		while (std::getline(pilotsFile, buffer))
+		{
+			if (Utils::argumentCount(buffer) >= 2)
+			{
+				std::istringstream separator(buffer);
+				std::string storedValue;
+				separator >> storedValue;
+
+				std::string tmpType = storedValue;
+
+				if(storedValue == "generico")
+				{
+					std::string tmpName = "";
+					while (separator >> storedValue)
+						tmpName += storedValue;
+					simulator.addPilot(tmpType,tmpName);
+				}
+				else
+				{
+					View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+					pilotsFile.close();
+					return false;
+				}
+				
+			}
+			else
+			{
+				View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+				pilotsFile.close();
+				return false;
+			}
+		}
+
+		pilotsFile.close();
+		View::printMessage("Ficheiro carregado.", View::SuccessTypeMessage);
+		return true;
+		
+	}
+
+	View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
 	return false;
 }

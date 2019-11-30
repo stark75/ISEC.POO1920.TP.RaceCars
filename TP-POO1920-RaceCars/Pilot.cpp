@@ -32,6 +32,10 @@ Pilot::Pilot(const Pilot& src)
 {
 }
 
+Pilot::~Pilot()
+{
+}
+
 std::string Pilot::getName() const
 {
 	return name;

@@ -11,49 +11,51 @@ DGV::~DGV()
 {
 	//todo libertar memoria dos vetores
 
-	int pilotVectorSize = pilotNames.size();
+	int pilotVectorSize = pilotList.size();
 
 	if (pilotVectorSize > 0)
-		for (int i = pilotVectorSize; i >= 0; i--)
-			delete pilotNames[i];
+		for (int i = pilotVectorSize - 1; i >= 0; i--)
+			delete pilotList[i];
 
-	pilotNames.clear();
+	pilotList.clear();
 
 
-	int carVectorSize = carNames.size();
+	int carVectorSize = carList.size();
 
 	if (carVectorSize > 0)
 		for(int i = carVectorSize - 1; i >= 0; i--)
-			delete carNames[i];
+			delete carList[i];
 
-	carNames.clear();
+	carList.clear();
 	
 	
 }
 
 bool DGV::addCar(const Car newCar)
 {
-	carNames.push_back(new Car(newCar));
-	Car* tmpCar = carNames.back();
-
-	
-	if(tmpCar==newCar)
-	{
-		return true;
-	}
-	return false;
+	carList.push_back(new Car(newCar));
+	return true;
 }
 
 
 bool DGV::addPilot(const Pilot newPilot)
 {
-	return false;
+	pilotList.push_back(new Pilot(newPilot));
+	return true;
+}
+
+void DGV::printPilots()
+{
+	int vectorSize = pilotList.size();
+	for (int i = 0; i < vectorSize; i++)
+		std::cout << *pilotList[i] << std::endl;
 }
 
 void DGV::printPosition()
 {
-	for (int i = 0; i < static_cast<int>(carNames.size()); i++)
-		std::cout << *carNames[i] << std::endl;
+	int vectorSize = carList.size();
+	for (int i = 0; i < vectorSize; i++)
+		std::cout << *carList[i] << std::endl;
 }
 
 bool DGV::sortFunc(Car *lhs, Car *rhs)
@@ -64,11 +66,11 @@ bool DGV::sortFunc(Car *lhs, Car *rhs)
 void DGV::sortCarsByPosition()
 {
 	printPosition();
-	std::vector<Car*> vectorCopy = carNames;
+	std::vector<Car*> vectorCopy = carList;
 
 	std::sort(vectorCopy.begin(),vectorCopy.end(), sortFunc);
 	View::printMessage("Vector Sorted.", View::SuccessTypeMessage);
 	
-	carNames = vectorCopy;
+	carList = vectorCopy;
 	printPosition();
 }

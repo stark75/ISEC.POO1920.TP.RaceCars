@@ -8,13 +8,31 @@ Simulator::Simulator()
 bool Simulator::addCar(int e, int mE, int mS, std::string b, std::string m)
 {
     Car tmpCar(e,mE, mS,b,m);
-	currentDGV.addCar(tmpCar);
-	
-	return false;
+	return currentDGV.addCar(tmpCar);
 }
 
-bool Simulator::addPilot(std::string newName)
+bool Simulator::addPilot(std::string type, std::string newName)
 {
-    Pilot tmpPilot(newName);
+	if (type == "generico")
+	{
+		Pilot tmpPilot(newName);
+		return currentDGV.addPilot(tmpPilot);
+	}
+	
+	if (type == "crazy")
+	{
+		//TODO
+	}
+
+	if (type == "rapido")
+	{
+		//TODO
+	}
+
+	if (type == "surpresa")
+	{
+		//TODO
+	}
+
 	return false;
 }
