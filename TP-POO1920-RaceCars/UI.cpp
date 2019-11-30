@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <iostream>
 #include <sstream>
+#include <fstream>
 #include "UI.h"
 #include "View.h"
 #include "Utils.h"
@@ -337,6 +338,19 @@ void UI::run(const int argc, char* argv[])
 
 bool UI::loadCars(std::string filename)
 {
+	std::ifstream carsFile;
+	std::string buffer;
+
+	carsFile.open(filename);
+
+	if(std::getline(carsFile, buffer))
+	{
+		if(Utils::argumentCount(buffer)>=4)
+		{
+			
+		}
+	}
+	
 	
 	return false;
 }
