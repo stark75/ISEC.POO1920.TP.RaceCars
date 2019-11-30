@@ -10,6 +10,25 @@ DGV::DGV()
 DGV::~DGV()
 {
 	//todo libertar memoria dos vetores
+
+	int pilotVectorSize = pilotNames.size();
+
+	if (pilotVectorSize > 0)
+		for (int i = pilotVectorSize; i >= 0; i--)
+			delete pilotNames[i];
+
+	pilotNames.clear();
+
+
+	int carVectorSize = carNames.size();
+
+	if (carVectorSize > 0)
+		for(int i = carVectorSize - 1; i >= 0; i--)
+			delete carNames[i];
+
+	carNames.clear();
+	
+	
 }
 
 bool DGV::addCar(const Car newCar)
@@ -20,7 +39,6 @@ bool DGV::addCar(const Car newCar)
 	
 	if(tmpCar==newCar)
 	{
-		View::printMessage("Car copied correctly", View::SuccessTypeMessage);
 		return true;
 	}
 	return false;
