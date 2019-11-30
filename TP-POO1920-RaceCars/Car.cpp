@@ -3,18 +3,18 @@
 
 char Car::nextID = 'a';
 
-Car::Car(int e, int mE, std::string b, std::string m)
+Car::Car(int e, int mE, int mS, std::string b, std::string m)
 	:brand(b),
 	model(m),
 	id(nextID),
 	maxEnergy(mE),
-	maxSpeed(150),
+	maxSpeed(mS),
 	speed(0),
 	movement(false),
 	accelerationPedal(0),
 	brakePedal(0),
 	time(0),
-	pos(0),
+	position(0),
 	emergencySignal(false),
 	isDamaged(false),
 	driver(nullptr)
@@ -47,7 +47,7 @@ Car::Car(const Car& src)
 	accelerationPedal(src.accelerationPedal),
 	brakePedal(src.brakePedal),
 	time(src.time),
-	pos(0),
+	position(src.position),
 	emergencySignal(src.emergencySignal),
 	isDamaged(src.isDamaged),
 	driver(src.driver)
@@ -139,6 +139,11 @@ bool Car::getDamage() const
 	return isDamaged;
 }
 
+void Car::setPosition(int newPos)
+{
+	position = newPos;
+}
+
 
 std::string Car::getAsString() const
 {
@@ -150,6 +155,8 @@ std::string Car::getAsString() const
 	tmpString += getBrand();
 	tmpString += " ";
 	tmpString += getModel();
+	tmpString += " - Position: ";
+	tmpString += std::to_string(getPosition());
 	tmpString += "]";
 	
 	return tmpString;
@@ -177,7 +184,25 @@ bool Car::pressBrake(int times)
 
 bool Car::energyCharge(int n)
 {
+	if(energy < maxEnergy)
+	{
+		energy += n;
+		if (energy >= maxEnergy)
+			energy = maxEnergy;
+		return true;
+	}
+
+	if (energy >= maxEnergy)
+		energy = maxEnergy;
 	return false;
+}
+
+bool Car::energyFullCharge()
+{
+	if(energy==maxEnergy)
+		return false;
+	energy = maxEnergy;
+	return true;
 }
 
 bool Car::energyConsumption()
@@ -209,7 +234,7 @@ bool operator==(Car const& lhs, Car const& rhs)
 		&& lhs.accelerationPedal == rhs.accelerationPedal
 		&& lhs.brakePedal == rhs.brakePedal
 		&& lhs.time == rhs.time
-		&& lhs.pos == rhs.pos
+		&& lhs.position == rhs.position
 		&& lhs.emergencySignal == rhs.emergencySignal
 		&& lhs.isDamaged == rhs.isDamaged
 		&& lhs.driver == rhs.driver;
@@ -219,6 +244,28 @@ bool operator!=(Car const& lhs, Car const& rhs)
 {
 	return !(lhs == rhs);
 }
+
+bool Car::operator<(const Car& other) const
+{
+	return position < other.position;
+}
+
+bool Car::operator>(const Car& other) const
+{
+	return position > other.position;
+}
+
+bool Car::operator<=(const Car& other) const
+{
+	return position <= other.position;
+}
+
+bool Car::operator>=(const Car& other) const
+{
+	return position >= other.position;
+}
+
+
 
 //Pointer Car to Car
 bool operator==(Car* const& lhs, Car const& rhs)
@@ -234,7 +281,7 @@ bool operator==(Car* const& lhs, Car const& rhs)
 		&& lhs->getAccelerationPedal() == rhs.getAccelerationPedal()
 		&& lhs->getBrakePedal() == rhs.getBrakePedal()
 		&& lhs->getTime() == rhs.getTime()
-		&& lhs->getPos() == rhs.getPos()
+		&& lhs->getPosition() == rhs.getPosition()
 		&& lhs->getEmergencySignal() == rhs.getEmergencySignal()
 		&& lhs->getDamage() == rhs.getDamage()
 		&& lhs->getDriver() == rhs.getDriver();
