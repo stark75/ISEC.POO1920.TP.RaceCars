@@ -14,7 +14,7 @@ public:
 	Simulator();
 	~Simulator() = default;
 
-	bool addCar(int e, int mE, std::string b, std::string m = "Base");
+	bool addCar(int e, int mE, int mS, std::string b, std::string m = "Base");
 	bool addPilot(std::string newName);
 };
 

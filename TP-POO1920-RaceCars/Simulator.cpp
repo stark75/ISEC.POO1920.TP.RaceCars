@@ -5,9 +5,9 @@ Simulator::Simulator()
 {
 }
 
-bool Simulator::addCar(int e, int mE, std::string b, std::string m)
+bool Simulator::addCar(int e, int mE, int mS, std::string b, std::string m)
 {
-    Car tmpCar(e,mE,b,m);
+    Car tmpCar(e,mE, mS,b,m);
 	return false;
 }
 
