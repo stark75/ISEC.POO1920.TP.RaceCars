@@ -116,12 +116,13 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "carregaC")
 				{
-					//separator >> argument;
-					View::printMessage("Carrega Carro not implemented", View::WarningTypeMessage);
-					//TODO
-					//Ler Ficheiro
-					//Gerar vetor de autodromos no Simulator
+					separator >> argument;
+					//View::printMessage("Carrega Carro not implemented", View::WarningTypeMessage);
 
+					std::cout << argument << std::endl;
+					
+					loadCars(argument);
+					
 					validCommand = true;
 					
 				}
@@ -336,23 +337,98 @@ void UI::run(const int argc, char* argv[])
 	}
 }
 
-bool UI::loadCars(std::string filename)
+bool UI::loadCars(const std::string filename)
 {
 	std::ifstream carsFile;
 	std::string buffer;
 
 	carsFile.open(filename);
-
-	if(std::getline(carsFile, buffer))
+	
+	if(carsFile.is_open())
 	{
-		if(Utils::argumentCount(buffer)>=4)
+		while (std::getline(carsFile, buffer))
 		{
-			
+			if (Utils::argumentCount(buffer) >= 4)
+			{
+				std::istringstream separator(buffer);
+				std::string storedValue;
+				separator >> storedValue;
+
+				//Check MaxSpeed
+
+				if (!Utils::isNumber(storedValue))
+				{
+					View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+					carsFile.close();
+					return false;
+				}
+
+				int tmpMaxSpeed = std::stoi(storedValue);
+
+				//Check Energy
+
+				separator >> storedValue;
+
+				if (!Utils::isNumber(storedValue))
+				{
+					View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+					carsFile.close();
+					return false;
+				}
+
+				int tmpEnergy = std::stoi(storedValue);
+
+				//Check Energy
+
+				separator >> storedValue;
+
+				if (!Utils::isNumber(storedValue))
+				{
+					View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+					carsFile.close();
+					return false;
+				}
+
+				int tmpMaxEnergy = std::stoi(storedValue);
+
+				//Save Brand
+
+				separator >> storedValue;
+
+				std::string tmpBrand = storedValue;
+
+
+				//Save Model
+				if (Utils::argumentCount(buffer) > 4)
+				{
+					std::string tmpModel = "";
+					while (separator >> storedValue)
+					{
+						tmpModel += storedValue;
+					}
+					simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand, tmpModel);
+				}
+				else
+				{
+					simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand);
+				}
+			}
+			else
+			{
+				View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+				carsFile.close();
+				return false;
+			}
 		}
+
+		carsFile.close();
+		View::printMessage("Ficheiro carregado.", View::SuccessTypeMessage);
+		return true;
 	}
-	
-	
+
+	View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
 	return false;
+	
 }
 
 bool UI::loadPilots(std::string filename)

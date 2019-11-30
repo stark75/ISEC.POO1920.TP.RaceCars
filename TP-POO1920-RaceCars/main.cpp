@@ -3,7 +3,7 @@
 
 int main(const int argc, char* argv[])
 {
-	DGV dgv;
+	/*DGV dgv;
 
 	Car a(2, 3, 2, "Ferrari", "Enzo");
 	Car b(2, 3456, 234, "Joao", "Joaquim");
@@ -21,15 +21,11 @@ int main(const int argc, char* argv[])
 	std::cout << std::endl;
 	dgv.sortCarsByPosition();
 	std::cout << std::endl;
-	dgv.printPosition();
+	dgv.printPosition();*/
 	
 
-	
-
-	
-	//Simulator on;
-	//UI ui/*(on)*/;
-	//ui.run(argc, argv);
+	UI ui;
+	ui.run(argc, argv);
 
 	return 0;
 }
