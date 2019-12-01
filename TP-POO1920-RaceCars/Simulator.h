@@ -7,12 +7,12 @@
 class Simulator
 {
 	DGV currentDGV;
-	std::vector<Racetrack> racetracks;
+	std::vector<Racetrack*> racetracks;
 	
 public:
 
 	Simulator();
-	~Simulator() = default;
+	~Simulator();
 
 	DGV* getDGV();
 

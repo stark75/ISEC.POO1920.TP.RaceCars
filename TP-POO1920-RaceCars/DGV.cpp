@@ -9,8 +9,6 @@ DGV::DGV()
 
 DGV::~DGV()
 {
-	//todo libertar memoria dos vetores
-
 	int pilotVectorSize = pilotList.size();
 
 	if (pilotVectorSize > 0)

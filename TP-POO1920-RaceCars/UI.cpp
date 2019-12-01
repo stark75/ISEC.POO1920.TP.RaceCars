@@ -56,7 +56,7 @@ std::string UI::validateArgv(const int argc, char* argv[])
 
 void UI::run(const int argc, char* argv[])
 {
-	//TODO PRINTS
+	View::printTitle();
 
 	/*
 	 * run() will run the commandline, and receive the user's inputs and validates it.
