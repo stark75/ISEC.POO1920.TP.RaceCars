@@ -107,7 +107,7 @@ void UI::run(const int argc, char* argv[])
 				{
 					separator >> argument;
 
-					loadRaceTrack(argument);
+					loadRacetrack(argument);
 
 					validCommand = true;
 				}
@@ -371,8 +371,53 @@ void UI::run(const int argc, char* argv[])
 
 bool UI::loadRacetrack(const std::string filename)
 {
+	std::ifstream racetrackFile;
+	std::string buffer;
 
+	racetrackFile.open(filename);
 
+	if (racetrackFile.is_open())
+	{
+		while (std::getline(racetrackFile, buffer))
+		{
+			if (Utils::argumentCount(buffer) >= 3)
+			{
+				std::istringstream separator(buffer);
+				std::string storedValue;
+
+				separator >> storedValue;
+
+				//Max Carros
+				if (!Utils::isNumber(storedValue))
+				{
+					View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+					racetrackFile.close();
+					return false;
+				}
+
+				int maxCars = std::stoi(storedValue);
+
+				separator >> storedValue;
+
+				//Length da Racetrack
+				if (!Utils::isNumber(storedValue))
+				{
+					View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
+					racetrackFile.close();
+					return false;
+				}
+
+				int trackLength = std::stoi(storedValue);
+
+				//Nome da Racetrack
+
+				separator >> storedValue;
+				std::string name = storedValue;
+							   
+			}
+		}
+	}
+	return false;
 }
 
 bool UI::loadCars(const std::string filename)
@@ -416,7 +461,7 @@ bool UI::loadCars(const std::string filename)
 
 				int tmpEnergy = std::stoi(storedValue);
 
-				//Check Energy
+				//Check Max Energy
 
 				separator >> storedValue;
 

@@ -56,7 +56,16 @@ bool Racetrack::getIsCarMax() const
 	return isCarMax;
 }
 
+std::string Racetrack::getAsString() const
+{
+	std::string tmpString
 
+
+
+	return tmpString;
+}
+
+/*
 int Racetrack::trackToGarage()
 {
 	int times = 0;
@@ -83,7 +92,7 @@ int Racetrack::moveRaceTrack() {
 
 	std::vector<int> Racetrack::getinRace()
 	{
-		return std::vector<string> inRace;
+		//return std::vector<string> inRace;
 		/*if(returned == car called){
 			cout << "Não pode mover o carro porque ele está neste momento a correr";
 		}
@@ -91,7 +100,7 @@ int Racetrack::moveRaceTrack() {
 		else{
 			//Mover o carro
 		}
-		*/
+		
 	}
 
-}
+}*/

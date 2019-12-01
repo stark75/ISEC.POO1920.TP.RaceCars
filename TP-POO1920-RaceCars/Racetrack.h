@@ -38,6 +38,8 @@ public:
 
 	bool getIsCarMax() const;
 
+	std::string getAsString() const;
+
 	int				  trackToGarage();
 	int	       	      garageToTrack();
 	int				  moveRaceTrack();

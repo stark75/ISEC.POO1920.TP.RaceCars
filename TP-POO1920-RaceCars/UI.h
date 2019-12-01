@@ -28,6 +28,5 @@ public:
 	bool loadPilots(std::string filename);
 	bool loadRacetrack(std::string filename);
 	
-	
 };
 
