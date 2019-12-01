@@ -60,7 +60,12 @@ std::string Racetrack::getAsString() const
 {
 	std::string tmpString;
 
-
+	tmpString += "[Autódromo ";
+	tmpString += getName();
+	tmpString += " | ";
+	tmpString += getTrackLength();
+	tmpString += " | ";
+	tmpString += getMaxCars();
 
 	return tmpString;
 }
