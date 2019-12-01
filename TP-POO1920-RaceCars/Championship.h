@@ -10,7 +10,6 @@ class Championship
 	std::vector<Race*> races;
 
 public:
-	Championship(DGV roster, std::vector<Racetrack*> raceLocations);
+	Championship(DGV* roster, std::vector<Racetrack*> raceLocations);
 	~Championship();
 };
-
