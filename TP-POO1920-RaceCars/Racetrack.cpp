@@ -58,7 +58,7 @@ bool Racetrack::getIsCarMax() const
 
 std::string Racetrack::getAsString() const
 {
-	std::string tmpString
+	std::string tmpString;
 
 
 

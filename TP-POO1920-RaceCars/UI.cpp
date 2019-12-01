@@ -125,7 +125,6 @@ void UI::run(const int argc, char* argv[])
 				if (argument == "carregaP")
 				{
 					separator >> argument;
-					//View::printMessage("Carrega Piloto not implemented", View::WarningTypeMessage);
 
 					loadPilots(argument);
 					
@@ -181,8 +180,6 @@ void UI::run(const int argc, char* argv[])
 				}
 				
 			}
-
-
 
 			if(Utils::argumentCount(command)>=3)
 			{
@@ -241,9 +238,144 @@ void UI::run(const int argc, char* argv[])
 
 				if(argument == "cria")
 				{
-					View::printMessage("criar objetos not implemented", View::WarningTypeMessage);
+					separator >> argument;
 
-					validCommand = true;
+					if(argument == "a") //autodromo
+					{
+						separator >> argument;
+
+						if(Utils::isNumber(argument))
+						{
+							int tmpMaxCars = std::stoi(argument);
+
+							separator >> argument;
+
+							if (Utils::isNumber(argument))
+							{
+								int tmpLength = std::stoi(argument);
+
+								std::string tmpString="";
+
+								bool firstTime = true;
+
+								while (separator >> argument)
+								{
+									if (firstTime)
+										firstTime = false;
+									else
+										tmpString += " ";
+
+									tmpString += argument;
+
+								}
+
+
+								simulator.addRacetrack(tmpMaxCars, tmpLength, tmpString);
+								validCommand = true;
+								
+							}
+						}
+					}
+
+					if(argument == "c") //carro
+					{
+						separator >> argument;
+
+						if(Utils::isNumber(argument))
+						{
+							int tmpMaxSpeed= std::stoi(argument);
+							
+							separator >> argument;
+
+							if(Utils::isNumber(argument))
+							{
+								int tmpEnergy = std::stoi(argument);
+
+								separator >> argument;
+
+								
+								if (Utils::isNumber(argument))
+								{
+									int tmpMaxEnergy = std::stoi(argument);
+
+									separator >> argument;
+
+									std::string tmpBrand = argument;
+
+									if (Utils::argumentCount(command) >= 7)
+									{
+										std::string tmpString = "";
+
+										bool firstTime = true;
+
+										while (separator >> argument)
+										{
+											if (firstTime)
+												firstTime = false;
+											else
+												tmpString += " ";
+
+											tmpString += argument;
+
+										}
+
+										simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand, tmpString);
+									}
+									else
+									{
+										simulator.addCar(tmpEnergy,tmpMaxEnergy, tmpMaxSpeed, tmpBrand);
+									}
+									validCommand = true;
+								}
+							}
+						}
+					}
+
+					if(argument == "p") //piloto
+					{
+						separator >> argument;
+
+						if(argument == "generico")
+						{
+							std::string tmpString = "";
+
+							bool firstTime = true;
+
+							while (separator >> argument)
+							{
+								if (firstTime)
+									firstTime = false;
+								else
+									tmpString += " ";
+
+								tmpString += argument;
+
+							}
+
+							simulator.addPilot("generico",tmpString);
+							validCommand = true;
+						}
+
+						if (argument == "rapido")
+						{
+							View::printMessage("Create Fast Pilot not implemented.", View::WarningTypeMessage);
+							validCommand = true;
+						}
+
+						if (argument == "crazy")
+						{
+							View::printMessage("Create Crazy Pilot not implemented.", View::WarningTypeMessage);
+							validCommand = true;
+						}
+
+						if (argument == "surpresa")
+						{
+							View::printMessage("Create Surprise Pilot not implemented.", View::WarningTypeMessage);
+							validCommand = true;
+						}
+						
+					}
+
 				}
 			}
 
