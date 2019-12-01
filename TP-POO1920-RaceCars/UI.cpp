@@ -97,6 +97,13 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 
+			if (command == "help")
+			{
+				View::helpCommand();
+				validCommand = true;
+			}
+				
+
 			if(Utils::argumentCount(command)==2)
 			{
 				std::istringstream separator(command);
