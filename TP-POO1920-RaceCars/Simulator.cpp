@@ -51,3 +51,10 @@ bool Simulator::addPilot(std::string type, std::string newName)
 
 	return false;
 }
+
+bool Simulator::addRacetrack(int maxCars, int length, std::string newName)
+{
+	Racetrack tmpRacetrack(maxCars,length,newName);
+	racetracks.push_back(tmpRacetrack);
+	return true;
+}
