@@ -47,18 +47,20 @@ bool DGV::addPilot(const Pilot newPilot)
 bool DGV::removeCar(const char wantedID)
 {
 	int vectorSize = carList.size();
-	
-	for(int i = 0; i < vectorSize; i++)
+
+	if (vectorSize > 0)
 	{
-		char tmpID = carList[i]->getID();
-		if(wantedID==tmpID)
+		for (int i = 0; i < vectorSize; i++)
 		{
-			delete carList[i];
-			carList.erase(carList.begin()+i);
-			return true;
+			char tmpID = carList[i]->getID();
+			if (wantedID == tmpID)
+			{
+				delete carList[i];
+				carList.erase(carList.begin() + i);
+				return true;
+			}
 		}
 	}
-
 	return false;
 }
 
@@ -66,17 +68,19 @@ bool DGV::removePilot(std::string wantedName)
 {
 	int vectorSize = pilotList.size();
 
-	for (int i = 0; i < vectorSize; i++)
+	if (vectorSize > 0)
 	{
-		std::string tmpID = pilotList[i]->getName();
-		if (wantedName == tmpID)
+		for (int i = 0; i < vectorSize; i++)
 		{
-			delete pilotList[i];
-			pilotList.erase(pilotList.begin() + i);
-			return true;
+			std::string tmpID = pilotList[i]->getName();
+			if (wantedName == tmpID)
+			{
+				delete pilotList[i];
+				pilotList.erase(pilotList.begin() + i);
+				return true;
+			}
 		}
 	}
-
 	return false;
 }
 

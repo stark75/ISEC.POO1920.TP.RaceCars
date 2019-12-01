@@ -200,7 +200,8 @@ void UI::run(const int argc, char* argv[])
 
 							bool firstTime = true;
 
-							while (separator >> argument) {
+							while (separator >> argument)
+							{
 								if (firstTime)
 									firstTime = false;
 								else 
@@ -215,9 +216,6 @@ void UI::run(const int argc, char* argv[])
 							validCommand = true;
 						}
 					}
-					//View::printMessage("entra no carro not implemented", View::WarningTypeMessage);
-
-
 				}
 
 				
@@ -488,13 +486,6 @@ void UI::run(const int argc, char* argv[])
 
 		if(!validCommand)
 			View::printMessage("Comando Invalido", View::ErrorTypeMessage);
-		else
-		{
-			//TODO
-		}
-		{
-			//TODO
-		}
 		
 		View::printCommandLineMessage();
 		std::getline(std::cin, command);
@@ -543,12 +534,27 @@ bool UI::loadRacetrack(const std::string filename)
 
 				//Nome da Racetrack
 
-				separator >> storedValue;
-				std::string name = storedValue;
+				std::string tmpName = "";
+				bool firstTime = true;
+				while (separator >> storedValue)
+				{
+					if (firstTime)
+						firstTime = false;
+					else
+						tmpName += " ";
+					tmpName += storedValue;
+				}
+
+				simulator.addRacetrack(maxCars, trackLength, tmpName);
 							   
 			}
 		}
+
+		racetrackFile.close();
+		View::printMessage("Ficheiro carregado.", View::SuccessTypeMessage);
+		return true;
 	}
+	View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
 	return false;
 }
 
@@ -617,8 +623,13 @@ bool UI::loadCars(const std::string filename)
 				if (Utils::argumentCount(buffer) > 4)
 				{
 					std::string tmpModel = "";
+					bool firstTime = true;
 					while (separator >> storedValue)
 					{
+						if (firstTime)
+							firstTime = false;
+						else
+							tmpModel += " ";
 						tmpModel += storedValue;
 					}
 					simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand, tmpModel);

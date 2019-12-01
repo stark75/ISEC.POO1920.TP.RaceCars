@@ -72,4 +72,5 @@ void View::printInfoCommand(Simulator& s)
 {
 	s.getDGV()->printCars();
 	s.getDGV()->printPilots();
+	s.printRacetracks();
 }

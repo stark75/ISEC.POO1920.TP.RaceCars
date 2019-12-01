@@ -1,4 +1,3 @@
-#include <iostream>
 #include <vector>
 #include "Racetrack.h"
 
@@ -60,12 +59,13 @@ std::string Racetrack::getAsString() const
 {
 	std::string tmpString;
 
-	tmpString += "[Autódromo ";
+	tmpString += "[Autodromo: ";
 	tmpString += getName();
 	tmpString += " | ";
-	tmpString += getTrackLength();
-	tmpString += " | ";
-	tmpString += getMaxCars();
+	tmpString += std::to_string(getTrackLength());
+	tmpString += "m | ";
+	tmpString += std::to_string(getMaxCars());
+	tmpString += "]";
 
 	return tmpString;
 }

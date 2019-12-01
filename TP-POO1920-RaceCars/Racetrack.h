@@ -22,6 +22,7 @@ class Racetrack {
 
 public:
 	Racetrack(int newMaxCars, int newLength, std::string newName);
+	Racetrack(const Racetrack& src) = default;
 	~Racetrack() = default;
 
 	//Getters
@@ -40,8 +41,8 @@ public:
 
 	std::string getAsString() const;
 
-	int				  trackToGarage();
-	int	       	      garageToTrack();
-	int				  moveRaceTrack();
+	//int				  trackToGarage();
+	//int	       	      garageToTrack();
+	//int				  moveRaceTrack();
 
 };

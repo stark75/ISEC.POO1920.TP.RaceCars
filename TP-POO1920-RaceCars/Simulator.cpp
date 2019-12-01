@@ -54,7 +54,50 @@ bool Simulator::addPilot(std::string type, std::string newName)
 
 bool Simulator::addRacetrack(int maxCars, int length, std::string newName)
 {
-	Racetrack tmpRacetrack(maxCars,length,newName);
+	Racetrack tmpRacetrack(maxCars, length, newName);
 	racetracks.push_back(tmpRacetrack);
 	return true;
+}
+
+bool Simulator::removeCar(char wantedID)
+{
+	return currentDGV.removeCar(wantedID);
+}
+
+bool Simulator::removePilot(std::string wantedName)
+{
+	return currentDGV.removePilot(wantedName);
+}
+
+bool Simulator::removeRacetrack(std::string wantedName)
+{
+	int vectorSize = racetracks.size();
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			std::string tmpID = racetracks[i].getName();
+			if (wantedName == tmpID)
+			{
+				//racetracks.erase(racetracks.begin() + i); //AQUI TÁ A DAR ERRO
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+
+
+
+void Simulator::printRacetracks()
+{
+	int vectorSize = racetracks.size();
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+			std::cout << racetracks[i].getAsString() << std::endl;
+	}
 }
