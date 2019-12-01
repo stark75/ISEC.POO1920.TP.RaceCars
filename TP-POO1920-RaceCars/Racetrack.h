@@ -25,14 +25,18 @@ public:
 	~Racetrack() = default;
 
 	//Getters
-	std::string		  getRaceTrack()        const;
-	int				  getMaxCars()          const;
-	int				  getTrackLength() 	    const;
 
-	int				  getnCars();
-	bool			  getisCarMax()         const;
-	int				  getcarsInTrack();
-	int				  getcarsInGarage();
+	int getMaxCars() const;
+
+	int getTrackLength() const;
+
+	std::string getName() const;
+
+	std::vector<Car*> getCarsInTrack() const;
+
+	std::vector<Car*> getCarsInGarage() const;
+
+	bool getIsCarMax() const;
 
 	int				  trackToGarage();
 	int	       	      garageToTrack();

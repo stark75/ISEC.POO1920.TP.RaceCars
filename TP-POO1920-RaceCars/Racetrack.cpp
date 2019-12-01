@@ -17,7 +17,7 @@ Racetrack::Racetrack(int newMaxCars, int newLength, std::string newName): maxCar
 		{
 			if (raceTrackNames[i] == newName)
 			{
-				newName += 1;
+				newName += "1";
 			}
 		}
 
@@ -26,63 +26,34 @@ Racetrack::Racetrack(int newMaxCars, int newLength, std::string newName): maxCar
 	}
 }
 
-std::string Racetrack::getRaceTrack() const
+int Racetrack::getMaxCars() const
 {
-	return raceTrack;
-}
-
-
-int Racetrack::getnMaxCars() const
-{
-	int maxCars = 0;
-	int sizeInRT = getnCars;
-	if (maxCars <= sizeInRT) {
-		std::cout << "O número de carros não ultrapassa o limite (" << sizeInRT << "/" << maxCars << ")"
-	}
-
 	return maxCars;
 }
 
-
-int Racetrack::getTrackLength() {
+int Racetrack::getTrackLength() const
+{
 	return trackLength;
 }
 
-
-int Racetrack::getncars()
+std::string Racetrack::getName() const
 {
-	int sizeGarage = static_cast<Car*>(carsInGarage.size());
-	int sizeInRace = static_cast<Car*>(carsInTrack.size());
-	int sizeInRT = sizeGarage + sizeInRace;
-
-	cout << "O número de carros na Racetrack é " << sizeInRT;
-
-	return sizeInRT;
+	return name;
 }
 
-
-bool Racetrack::getisCarMax()
-{
-	if (nCars == maxCars)
-	{
-		return true;
-	}
-
-	else
-	{
-		return false;
-	}
-}
-
-int Racetrack::getcarsInTrack()
+std::vector<Car*> Racetrack::getCarsInTrack() const
 {
 	return carsInTrack;
 }
 
-
-int Racetrack::getcarsInGarage()
+std::vector<Car*> Racetrack::getCarsInGarage() const
 {
 	return carsInGarage;
+}
+
+bool Racetrack::getIsCarMax() const
+{
+	return isCarMax;
 }
 
 
@@ -92,7 +63,7 @@ int Racetrack::trackToGarage()
 	auto it = std::next(carsInTrack<Car*>(), getnCars()), times++;
 	std::move(carsInTrack<Car*>.begin(), it, std::back_inserter(carsInGarage<Car*>));
 	carsInTrack<Car*>.erase(carsInTrack.begin(), it);
-	cout << "Foram " << times << "carros para a garagem";
+	std::cout << "Foram " << times << "carros para a garagem";
 	return times;
 }
 
@@ -103,7 +74,7 @@ int Racetrack::garageToTrack()
 	auto it = std::next(carsInGarage(), getnCars()), times++;
 	std::move(carsInGarage.begin(), it, std::back_inserter(carsInTrack<Car*>));
 	carsInGarage.erase(carsInGarage.begin(), it);
-	cout << "Foram " << times << "carros para a track";
+	std::cout << "Foram " << times << "carros para a track";
 	return times;
 }
 
