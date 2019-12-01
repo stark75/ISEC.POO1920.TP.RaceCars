@@ -201,8 +201,17 @@ void UI::run(const int argc, char* argv[])
 							char tmpChar = argument[0];
 							std::string tmpString = "";
 
-							while (separator >> argument)
-								tmpString += argument;
+							bool firstTime = true;
+
+							while (separator >> argument) {
+								if (firstTime)
+									firstTime = false;
+								else 
+									tmpString += " ";
+
+									tmpString += argument;
+								
+							}
 
 							simulator.attach(tmpChar, tmpString);
 							
