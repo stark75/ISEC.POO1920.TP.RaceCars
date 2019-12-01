@@ -64,7 +64,6 @@ void View::helpCommand()
 	std::cout << "[6] entranocarro <letraCarro> <nomePiloto> " << std::endl;
 	std::cout << "[7] saidocarro <letraCarro>" << std::endl;
 	std::cout << "[8] lista" << std::endl;
-	std::cout << "[9] modo2" << std::endl;
 	std::cout << "[0] SAIR" << std::endl;
 }
 
