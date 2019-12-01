@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Championship.cpp" />
+    <ClCompile Include="Consola\Consola.cpp" />
     <ClCompile Include="DGV.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pilot.cpp" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="Car.h" />
     <ClInclude Include="Championship.h" />
+    <ClInclude Include="Consola\Consola.h" />
     <ClInclude Include="DGV.h" />
     <ClInclude Include="Pilot.h" />
     <ClInclude Include="Racetrack.h" />

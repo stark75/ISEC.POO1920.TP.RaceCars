@@ -6,7 +6,6 @@ class View
 {
 	
 public:
-
 	
 	static const int ErrorTypeMessage = 0;
 	static const int WarningTypeMessage = 1;

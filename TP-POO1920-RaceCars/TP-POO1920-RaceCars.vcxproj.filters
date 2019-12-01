@@ -44,6 +44,9 @@
     <ClCompile Include="Championship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Consola\Consola.cpp">
+      <Filter>Consola</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pilot.h">
@@ -72,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="Championship.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Consola\Consola.h">
+      <Filter>Consola</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
