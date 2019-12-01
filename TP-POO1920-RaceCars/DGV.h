@@ -12,6 +12,8 @@ public:
 	DGV();
 	~DGV();
 
+	std::vector<Car*> getCarList();
+
 	bool addCar(const Car newCar);
 	bool addPilot(const Pilot newPilot);
 

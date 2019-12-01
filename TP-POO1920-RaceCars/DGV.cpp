@@ -29,6 +29,11 @@ DGV::~DGV()
 	
 }
 
+std::vector<Car*> DGV::getCarList()
+{
+	return carList;
+}
+
 bool DGV::addCar(const Car newCar)
 {
 	carList.push_back(new Car(newCar));
