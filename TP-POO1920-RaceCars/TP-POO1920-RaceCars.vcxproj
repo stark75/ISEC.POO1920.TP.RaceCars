@@ -125,9 +125,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Championship.cpp" />
     <ClCompile Include="DGV.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pilot.cpp" />
+    <ClCompile Include="Race.cpp" />
     <ClCompile Include="Racetrack.cpp" />
     <ClCompile Include="Simulator.cpp" />
     <ClCompile Include="UI.cpp" />
@@ -136,8 +138,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Championship.h" />
     <ClInclude Include="DGV.h" />
     <ClInclude Include="Pilot.h" />
+    <ClInclude Include="Race.h" />
     <ClInclude Include="Racetrack.h" />
     <ClInclude Include="Simulator.h" />
     <ClInclude Include="UI.h" />
