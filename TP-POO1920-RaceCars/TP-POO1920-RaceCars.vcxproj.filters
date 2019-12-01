@@ -41,9 +41,6 @@
     <ClCompile Include="Racetrack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Race.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Championship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -71,9 +68,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Racetrack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Race.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Championship.h">
