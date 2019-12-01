@@ -70,42 +70,7 @@ std::string Racetrack::getAsString() const
 	return tmpString;
 }
 
-/*
-int Racetrack::trackToGarage()
+void Racetrack::addCarToGarage(Car* newCar)
 {
-	int times = 0;
-	auto it = std::next(carsInTrack<Car*>(), getnCars()), times++;
-	std::move(carsInTrack<Car*>.begin(), it, std::back_inserter(carsInGarage<Car*>));
-	carsInTrack<Car*>.erase(carsInTrack.begin(), it);
-	std::cout << "Foram " << times << "carros para a garagem";
-	return times;
+	carsInGarage.push_back(newCar);
 }
-
-
-int Racetrack::garageToTrack()
-{
-	int times = 0;
-	auto it = std::next(carsInGarage(), getnCars()), times++;
-	std::move(carsInGarage.begin(), it, std::back_inserter(carsInTrack<Car*>));
-	carsInGarage.erase(carsInGarage.begin(), it);
-	std::cout << "Foram " << times << "carros para a track";
-	return times;
-}
-
-
-int Racetrack::moveRaceTrack() {
-
-	std::vector<int> Racetrack::getinRace()
-	{
-		//return std::vector<string> inRace;
-		/*if(returned == car called){
-			cout << "Não pode mover o carro porque ele está neste momento a correr";
-		}
-
-		else{
-			//Mover o carro
-		}
-		
-	}
-
-}*/

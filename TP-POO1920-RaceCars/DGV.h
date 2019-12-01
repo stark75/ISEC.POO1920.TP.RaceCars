@@ -27,6 +27,8 @@ public:
 	Pilot* getPilotByName(std::string wantedName);
 	bool attach(char id, std::string name);
 	bool detach(char id);
+
+	std::vector<Car*> getCarsWithPilots();
 	
 
 	//TODO apply this in Track Class

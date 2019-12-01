@@ -438,12 +438,27 @@ void UI::run(const int argc, char* argv[])
 				std::string argument;
 				separator >> argument;
 
-				if(argument == "campeonato")
+				if (argument == "campeonato")
 				{
-					View::printMessage("Campeonato not implemented.\nMenu Mode has been switched to Championship Mode", View::WarningTypeMessage);
-					switchMode();
+					std::string tmpString = "";
 
-					validCommand = true;
+					bool isFirstTime = true;
+
+					while(separator >> argument)
+					{
+						if (isFirstTime)
+							isFirstTime = false;
+						else
+							tmpString += " ";
+						tmpString += argument;
+					}
+
+					if(simulator.getRacetrackByName(tmpString)!=nullptr)
+					{
+						simulator.addChampionships(tmpString);
+						switchMode();
+						validCommand = true;
+					}
 				}
 			}
 		}

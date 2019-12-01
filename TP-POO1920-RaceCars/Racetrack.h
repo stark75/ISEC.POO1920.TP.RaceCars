@@ -41,8 +41,9 @@ public:
 
 	std::string getAsString() const;
 
-	//int				  trackToGarage();
-	//int	       	      garageToTrack();
-	//int				  moveRaceTrack();
+	void addCarToGarage(Car* newCar);
+
+	//bool				  trackToGarage();
+	//bool	       	      garageToTrack();
 
 };

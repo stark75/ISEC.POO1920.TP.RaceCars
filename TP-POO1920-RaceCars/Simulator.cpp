@@ -7,13 +7,21 @@ Simulator::Simulator()
 
 Simulator::~Simulator()
 {
-	int racetrackVectorSize = racetracks.size();
+	int vectorSize = racetracks.size();
 
-	if (racetrackVectorSize > 0)
-		for (int i = racetrackVectorSize - 1; i >= 0; i--)
+	if (vectorSize > 0)
+		for (int i = vectorSize - 1; i >= 0; i--)
 			delete racetracks[i];
 
 	racetracks.clear();
+
+	vectorSize = championships.size();
+
+	if (vectorSize > 0)
+		for (int i = vectorSize - 1; i >= 0; i--)
+			delete championships[i];
+
+	championships.clear();
 }
 
 DGV* Simulator::getDGV()
@@ -70,6 +78,17 @@ bool Simulator::addRacetrack(int maxCars, int length, std::string newName)
 	return true;
 }
 
+bool Simulator::addChampionships(std::string racetrack)
+{
+	std::vector<Car*> newList = currentDGV.getCarsWithPilots();
+
+	if (newList.empty())
+		return false;
+	
+	championships.push_back(new Championship(getRacetrackByName(racetrack),newList));
+	return true;
+}
+
 bool Simulator::removeCar(char wantedID)
 {
 	return currentDGV.removeCar(wantedID);
@@ -111,4 +130,16 @@ void Simulator::printRacetracks()
 		for (int i = 0; i < vectorSize; i++)
 			std::cout << racetracks[i]->getAsString() << std::endl;
 	}
+}
+
+Racetrack* Simulator::getRacetrackByName(std::string wantedName)
+{
+	int vectorSize = racetracks.size();
+	for (int i = 0; i < vectorSize; i++)
+	{
+		std::string tmpString = racetracks[i]->getName();
+		if (tmpString == wantedName)
+			return racetracks[i];
+	}
+	return nullptr;
 }

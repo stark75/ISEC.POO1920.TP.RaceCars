@@ -5,12 +5,10 @@ Championship::Championship(Racetrack* location, std::vector<Car* > newParticipan
 	int vectorSize = newParticipants.size();
 	
 	for (int i = 0; i < vectorSize; i++)
+	{
+		location->addCarToGarage(newParticipants[i]);
+	}
 
 	races.push_back(location);
-	
-}
-
-Championship::~Championship()
-{
 	
 }

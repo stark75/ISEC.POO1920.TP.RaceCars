@@ -166,6 +166,20 @@ bool DGV::detach(char id)
 	return false;
 }
 
+std::vector<Car*> DGV::getCarsWithPilots()
+{
+	std::vector<Car*> newList;
+	int vectorSize = carList.size();
+
+	for(int i = 0; i < vectorSize; i++)
+	{
+		if (carList[i]->getDriver() != nullptr)
+			newList.push_back(carList[i]);
+	}
+
+	return newList;
+}
+
 
 bool DGV::sortFunc(Car *lhs, Car *rhs)
 {
