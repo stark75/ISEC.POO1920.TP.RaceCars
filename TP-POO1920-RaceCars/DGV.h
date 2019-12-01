@@ -15,6 +15,9 @@ public:
 	bool addCar(const Car newCar);
 	bool addPilot(const Pilot newPilot);
 
+	bool removeCar(const char wantedID);
+	bool removePilot(std::string wantedName);
+
 	void printCars();
 	void printPilots();
 
