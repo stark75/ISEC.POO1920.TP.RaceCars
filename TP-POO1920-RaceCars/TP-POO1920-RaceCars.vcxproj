@@ -128,6 +128,7 @@
     <ClCompile Include="DGV.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pilot.cpp" />
+    <ClCompile Include="Racetrack.cpp" />
     <ClCompile Include="Simulator.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="Car.h" />
     <ClInclude Include="DGV.h" />
     <ClInclude Include="Pilot.h" />
+    <ClInclude Include="Racetrack.h" />
     <ClInclude Include="Simulator.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Utils.h" />
