@@ -105,11 +105,9 @@ void UI::run(const int argc, char* argv[])
 				separator >> argument;
 				if (argument == "carregaA")
 				{
-					//separator >> argument;
-					View::printMessage("Carrega Autodromo not implemented", View::WarningTypeMessage);
-					//TODO
-					//Ler Ficheiro
-					//Gerar vetor de autodromos no Simulator
+					separator >> argument;
+
+					loadRaceTrack(argument);
 
 					validCommand = true;
 				}
@@ -183,6 +181,8 @@ void UI::run(const int argc, char* argv[])
 				}
 				
 			}
+
+
 
 			if(Utils::argumentCount(command)>=3)
 			{
@@ -360,10 +360,19 @@ void UI::run(const int argc, char* argv[])
 		{
 			//TODO
 		}
+		{
+			//TODO
+		}
 		
 		View::printCommandLineMessage();
 		std::getline(std::cin, command);
 	}
+}
+
+bool UI::loadRacetrack(const std::string filename)
+{
+
+
 }
 
 bool UI::loadCars(const std::string filename)

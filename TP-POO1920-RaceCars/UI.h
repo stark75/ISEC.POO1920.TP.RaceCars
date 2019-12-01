@@ -26,7 +26,7 @@ public:
 
 	bool loadCars(const std::string filename);
 	bool loadPilots(std::string filename);
-	//bool loadRacetrack(std::string filename);
+	bool loadRacetrack(std::string filename);
 	
 	
 };
