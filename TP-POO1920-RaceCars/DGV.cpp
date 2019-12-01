@@ -112,7 +112,7 @@ bool DGV::detach(char id)
 	if (tmpCar != nullptr)
 	{
 		Pilot* tmpPilot = tmpCar->getDriver();
-		if (tmpPilot == nullptr)
+		if (tmpPilot != nullptr)
 		{
 			if(tmpPilot->detach())
 			{
