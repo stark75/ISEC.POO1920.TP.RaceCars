@@ -17,7 +17,7 @@ Pilot::Pilot(std::string newName)
 		{
 			if(pilotNames[i] == newName)
 			{
-				newName += 1;
+				newName += "1";
 			}
 		}
 
