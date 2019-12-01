@@ -1,18 +1,17 @@
 #pragma once
 #include <vector>
-#include "DGV.h"
 #include "Racetrack.h"
 
 class Championship
 {
-	int maxNumberOfParticipants;
-	std::vector<Car*> participants;
+	std::vector<Car*>        participants;
 	std::vector<std::string> leaderBoard;
-	std::vector<Racetrack*> races;
+	std::vector<Racetrack*>  races;
 
 public:
-	Championship();
+	Championship(Racetrack* location, std::vector<Car* > newParticipants);
+	//Championship(std::vector<Racetrack*> locations, std::vector<Car* > newParticipants);
 	~Championship();
 
-	void addRace();
+	void addParticipants(Car* newCar);
 };
