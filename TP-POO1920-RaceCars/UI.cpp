@@ -93,7 +93,6 @@ void UI::run(const int argc, char* argv[])
 
 			if(command == "lista")
 			{
-				//TODO falta print do Autodromo
 				View::printInfoCommand(simulator);
 				validCommand = true;
 			}
@@ -221,9 +220,58 @@ void UI::run(const int argc, char* argv[])
 				
 				if(argument == "apaga")
 				{
-					View::printMessage("apaga not implemented", View::WarningTypeMessage);
+					separator >> argument;
 
-					validCommand = true;
+					if(argument == "a")
+					{
+						std::string tmpName = "";
+						bool firstTime = true;
+						while (separator >> argument)
+						{
+							if (firstTime)
+								firstTime = false;
+							else
+								tmpName += " ";
+							tmpName += argument;
+						}
+
+						simulator.removeRacetrack(tmpName);
+
+						validCommand = true;
+						
+					}
+
+					if(argument == "c")
+					{
+						separator >> argument;
+
+						if(argument.size()==1)
+						{
+							simulator.removeCar(argument[0]);
+							validCommand = true;
+						}
+						
+					}
+
+					if (argument == "p")
+					{
+						std::string tmpName = "";
+						bool firstTime = true;
+						while (separator >> argument)
+						{
+							if (firstTime)
+								firstTime = false;
+							else
+								tmpName += " ";
+							tmpName += argument;
+						}
+
+						simulator.removePilot(tmpName);
+
+						validCommand = true;
+
+					}
+
 				}
 
 			}
