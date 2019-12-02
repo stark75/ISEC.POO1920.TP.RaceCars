@@ -244,6 +244,11 @@ bool Car::energyConsumption()
 	return true;
 }
 
+void Car::move(int n)
+{
+	position += n;
+}
+
 
 //Equality Operators
 

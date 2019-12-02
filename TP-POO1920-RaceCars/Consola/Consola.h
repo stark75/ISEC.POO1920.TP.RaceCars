@@ -96,7 +96,7 @@ public:
 	// - Pode falhar em determinadas situações
 	//   (falhar = não muda nada)
 	// - Ver também setSTextSizeXP
-	static void setTextSizeXP(int x, int y);  // ##### Mingw ->Sem efeito (Não disponivel) #####
+	//static void setTextSizeXP(int x, int y);  // ##### Mingw ->Sem efeito (Não disponivel) #####
 
 	// Lê um caracter sem precisar de "enter" no fim
 	// - Util para fazer pausas do tipo

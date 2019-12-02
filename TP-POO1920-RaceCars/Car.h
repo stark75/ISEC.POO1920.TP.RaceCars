@@ -62,6 +62,7 @@ public:
 	bool         energyCharge(int n);
 	bool         energyFullCharge();
 	bool         energyConsumption();
+	void         move(int n);
 	//TODO: Car movement
 
 	friend bool  operator==(Car const& lhs, Car const& rhs);

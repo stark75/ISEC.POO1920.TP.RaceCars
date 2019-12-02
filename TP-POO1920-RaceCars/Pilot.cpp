@@ -56,7 +56,7 @@ std::string Pilot::getAsString() const
 	if(current != nullptr)
 	{
 		tmpString += "(";
-		std::string carID = std::to_string(current->getID());
+		std::string carID = std::string(1,current->getID());
 		tmpString += carID;
 		tmpString += ") - ";
 		tmpString += current->getBrand();

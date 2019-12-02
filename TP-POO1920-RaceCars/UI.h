@@ -22,6 +22,8 @@ public:
 	void switchMode();
 
 	std::string validateArgv(const int argc, char* argv[]);
+	void passatempoCommand(int n);
+	void corridaCommand();
 	void run(const int argc = 0, char* argv[] = nullptr);
 
 	bool loadCars(const std::string filename);

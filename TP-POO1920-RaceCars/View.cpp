@@ -1,8 +1,10 @@
 #include "View.h"
 #include <iostream>
+#include "Consola/consola.h"
 
 void View::printTitle()
 {
+	Consola::setTextColor(Consola::VERDE);
 	std::cout << "________                  _________" << std::endl;
 	std::cout << "___  __ \\_____ _____________  ____/_____ _______________" << std::endl;
 	std::cout << "__  /_/ /  __ `/  ___/  _ \\  /    _  __ `/_  ___/_  ___/" << std::endl;
@@ -22,19 +24,25 @@ void View::printMessage(std::string message, int type)
 	
 	if (type == ErrorTypeMessage)
 	{
+		Consola::setTextColor(Consola::VERMELHO_CLARO);
 		output = "[ERROR]: ";
+		Consola::setTextColor(Consola::VERDE);
 		output += message;
 	}
 
 	if (type == WarningTypeMessage)
 	{
+		Consola::setTextColor(Consola::AMARELO_CLARO);
 		output = "[WARNING]: ";
+		Consola::setTextColor(Consola::VERDE);
 		output += message;
 	}
 
 	if (type == SuccessTypeMessage)
 	{
+		Consola::setTextColor(Consola::VERDE_CLARO);
 		output = "[SUCCESS]: ";
+		Consola::setTextColor(Consola::VERDE);
 		output += message;
 	}
 
@@ -55,16 +63,17 @@ void View::printCommandLineMessage()
 void View::helpCommand()
 {
 	std::cout << "Lista de comandos do modo 1:" << std::endl;
-	std::cout << "[1] carregaP <nomeFicheiro>" << std::endl;
-	std::cout << "[2] carregaC <nomeFicheiro>" << std::endl;
-	std::cout << "[3] carregaA <nomeFicheiro>" << std::endl;
-	std::cout << "[4] cria <letraTipo> <dados do objeto>";
-	std::cout << "\t\t\tLetras: p - piloto; c - carro; a - autodromo" << std::endl;
-	std::cout << "[5] apaga <letraTipo> identificador" << std::endl;
-	std::cout << "[6] entranocarro <letraCarro> <nomePiloto> " << std::endl;
-	std::cout << "[7] saidocarro <letraCarro>" << std::endl;
-	std::cout << "[8] lista" << std::endl;
-	std::cout << "[0] SAIR" << std::endl;
+	std::cout << "carregaP <nomeFicheiro>" << std::endl;
+	std::cout << "carregaC <nomeFicheiro>" << std::endl;
+	std::cout << "carregaA <nomeFicheiro>" << std::endl;
+	std::cout << "cria <letraTipo> <dados do objeto>";
+	std::cout << "          Letras: p - piloto; c - carro; a - autodromo" << std::endl;
+	std::cout << "apaga <letraTipo> identificador" << std::endl;
+	std::cout << "entranocarro <letraCarro> <nomePiloto> " << std::endl;
+	std::cout << "saidocarro <letraCarro>" << std::endl;
+	std::cout << "lista" << std::endl;
+	std::cout << "campeonato" << std::endl;
+	std::cout << "sair" << std::endl;
 }
 
 void View::printInfoCommand(Simulator& s)
@@ -72,4 +81,42 @@ void View::printInfoCommand(Simulator& s)
 	s.getDGV()->printCars();
 	s.getDGV()->printPilots();
 	s.printRacetracks();
+}
+
+void View::printRace(Racetrack* r)
+{
+	Consola::clrscr();
+	int length = r->getTrackLength();
+	std::vector<Car* > raceCars = r->getCarsInTrack();
+	int raceSize = raceCars.size();
+
+	if (raceSize == 0)
+		return;
+
+	
+	for (int i=0; i<raceSize;i++)
+	{
+		Consola::gotoxy(25, 3 + i);
+		Consola::gotoxy(4, 3+i);
+		char tmpChar = raceCars[i]->getID();
+		int  tmpPos = raceCars[i]->getPosition();
+
+		int num = ((tmpPos / length) * 20) + 1;
+
+		if (i % 2 == 0)
+		{
+			Consola::setTextColor(Consola::AZUL_CLARO);
+		}
+		
+		for(int y = 0; y< num; y++)
+		{
+			std::cout << tmpChar << std::endl;
+		}
+
+			
+		
+		Consola::setTextColor(Consola::VERDE);
+		
+	}
+	Consola::getch();
 }

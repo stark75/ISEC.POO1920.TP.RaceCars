@@ -74,3 +74,47 @@ void Racetrack::addCarToGarage(Car* newCar)
 {
 	carsInGarage.push_back(newCar);
 }
+
+void Racetrack::moveCarsToTrack()
+{
+	int garageSize = carsInGarage.size();
+	carsInTrack.clear();
+	if(garageSize <= maxCars)
+	{
+		for(int i=0; i < garageSize;i++)
+			carsInTrack.push_back(carsInGarage[i]);
+		
+		carsInGarage.clear();
+	}
+	else
+	{
+		for(int i=0; i < maxCars;i++)
+		{
+			carsInTrack.push_back(carsInGarage.front());
+			carsInGarage.erase(carsInGarage.begin());
+		}
+	}
+}
+
+void Racetrack::moveCarsToGarage()
+{
+	int trackSize = carsInTrack.size();
+
+	for(int i=0; i<trackSize;i++)
+	{
+		carsInGarage.push_back(carsInTrack[i]);
+	}
+	carsInTrack.clear();
+	
+}
+
+void Racetrack::carsMovement()
+{
+	int trackSize = carsInTrack.size();
+
+	for(int i = 0; i<trackSize;i++)
+	{
+		carsInTrack[i]->move(1);
+	}
+}
+

@@ -1,7 +1,7 @@
 #include "Simulator.h"
 
 
-Simulator::Simulator()
+Simulator::Simulator(): championship(nullptr)
 {
 }
 
@@ -15,18 +15,18 @@ Simulator::~Simulator()
 
 	racetracks.clear();
 
-	vectorSize = championships.size();
-
-	if (vectorSize > 0)
-		for (int i = vectorSize - 1; i >= 0; i--)
-			delete championships[i];
-
-	championships.clear();
+	if (championship != nullptr)
+		delete championship;
 }
 
 DGV* Simulator::getDGV()
 {
 	return &currentDGV;
+}
+
+Championship* Simulator::getChampionship()
+{
+	return championship;
 }
 
 bool Simulator::attach(char carID, std::string pilotName)
@@ -78,14 +78,14 @@ bool Simulator::addRacetrack(int maxCars, int length, std::string newName)
 	return true;
 }
 
-bool Simulator::addChampionships(std::string racetrack)
+bool Simulator::addChampionship(std::string racetrack)
 {
 	std::vector<Car*> newList = currentDGV.getCarsWithPilots();
 
 	if (newList.empty())
 		return false;
 	
-	championships.push_back(new Championship(getRacetrackByName(racetrack),newList));
+	championship=new Championship(getRacetrackByName(racetrack),newList);
 	return true;
 }
 

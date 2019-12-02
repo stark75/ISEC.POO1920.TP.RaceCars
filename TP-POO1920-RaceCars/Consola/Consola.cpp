@@ -151,43 +151,43 @@ typedef BOOL(WINAPI * GetConsoleFontInfo_)(HANDLE ConsoleOutput, BOOL Unknown1, 
 typedef DWORD(WINAPI * GetNumberOfConsoleFonts_)(); // kernel32!GetNumberOfConsoleFonts
 
 
-void Consola::setTextSizeXP(int x, int y){
-#ifdef _MSC_VER
-	// Obtém acesso às funções "secretas" do Windows
-	SetConsoleFont_ SetConsoleFont = reinterpret_cast<SetConsoleFont_>(GetProcAddress(GetModuleHandle(L"kernel32.dll"), "SetConsoleFont"));
-	GetConsoleFontInfo_ GetConsoleFontInfo = reinterpret_cast<GetConsoleFontInfo_>(GetProcAddress(GetModuleHandle(L"kernel32.dll"), "GetConsoleFontInfo"));
-	GetNumberOfConsoleFonts_ GetNumberOfConsoleFonts = reinterpret_cast<GetNumberOfConsoleFonts_>(GetProcAddress(GetModuleHandle(L"kernel32.dll"), "GetNumberOfConsoleFonts"));
-
-	// Num de fontes
-	DWORD NumFonts = GetNumberOfConsoleFonts();
-
-	// alloca matriz de cont infos
-	CONSOLE_FONT_INFO* ConsoleInfo = new CONSOLE_FONT_INFO[sizeof(CONSOLE_FONT_INFO) * NumFonts];
-
-	// obtem info das fontes todas
-	GetConsoleFontInfo(hconsola, FALSE, NumFonts, ConsoleInfo);
-
-	// percorre-as todas. O melhor é não chamar isto muitas vezes
-	for (size_t i = 0; i < NumFonts; ++i) {
-		// Indaga o tamanho (suportado) da fonte. Pode não haver nenhuma para esse tamanho
-		ConsoleInfo[i].dwFontSize = GetConsoleFontSize(GetStdHandle(STD_OUTPUT_HANDLE), ConsoleInfo[i].nFont);
-
-		// Encontrou uma. muda para essa e já está (mesmo que haja outras)
-		if (ConsoleInfo[i].dwFontSize.X == x && ConsoleInfo[i].dwFontSize.Y == y) {
-			// x,y = tamanho desejado (se houver)
-			// muda para essa fonte e sai
-			SetConsoleFont(GetStdHandle(STD_OUTPUT_HANDLE), ConsoleInfo[i].nFont);
-			break;
-		}
-		// isto é mesmo força bruta, mas no XP, é o que há (já ninguém usa isso)
-		//  - usar só se se estiver mesmo no XP
-		//  - reclamações:enviar mail para ->  weCareAboutYou@microsft.com
-	}
-
-	// devolve a matriz de INFO
-	delete[] ConsoleInfo;
-#endif
-}
+//void Consola::setTextSizeXP(int x, int y){
+//#ifdef _MSC_VER
+//	// Obtém acesso às funções "secretas" do Windows
+//	SetConsoleFont_ SetConsoleFont = reinterpret_cast<SetConsoleFont_>(GetProcAddress(GetModuleHandle(L"kernel32.dll"), "SetConsoleFont"));
+//	GetConsoleFontInfo_ GetConsoleFontInfo = reinterpret_cast<GetConsoleFontInfo_>(GetProcAddress(GetModuleHandle(L"kernel32.dll"), "GetConsoleFontInfo"));
+//	GetNumberOfConsoleFonts_ GetNumberOfConsoleFonts = reinterpret_cast<GetNumberOfConsoleFonts_>(GetProcAddress(GetModuleHandle(L"kernel32.dll"), "GetNumberOfConsoleFonts"));
+//
+//	// Num de fontes
+//	DWORD NumFonts = GetNumberOfConsoleFonts();
+//
+//	// alloca matriz de cont infos
+//	CONSOLE_FONT_INFO* ConsoleInfo = new CONSOLE_FONT_INFO[sizeof(CONSOLE_FONT_INFO) * NumFonts];
+//
+//	// obtem info das fontes todas
+//	GetConsoleFontInfo(hconsola, FALSE, NumFonts, ConsoleInfo);
+//
+//	// percorre-as todas. O melhor é não chamar isto muitas vezes
+//	for (size_t i = 0; i < NumFonts; ++i) {
+//		// Indaga o tamanho (suportado) da fonte. Pode não haver nenhuma para esse tamanho
+//		ConsoleInfo[i].dwFontSize = GetConsoleFontSize(GetStdHandle(STD_OUTPUT_HANDLE), ConsoleInfo[i].nFont);
+//
+//		// Encontrou uma. muda para essa e já está (mesmo que haja outras)
+//		if (ConsoleInfo[i].dwFontSize.X == x && ConsoleInfo[i].dwFontSize.Y == y) {
+//			// x,y = tamanho desejado (se houver)
+//			// muda para essa fonte e sai
+//			SetConsoleFont(GetStdHandle(STD_OUTPUT_HANDLE), ConsoleInfo[i].nFont);
+//			break;
+//		}
+//		// isto é mesmo força bruta, mas no XP, é o que há (já ninguém usa isso)
+//		//  - usar só se se estiver mesmo no XP
+//		//  - reclamações:enviar mail para ->  weCareAboutYou@microsft.com
+//	}
+//
+//	// devolve a matriz de INFO
+//	delete[] ConsoleInfo;
+//#endif
+//}
 
 
 // estas funcoes servem para pouco a nao ser que nao se tape/destape a janela

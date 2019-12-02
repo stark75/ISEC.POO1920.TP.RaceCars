@@ -1,6 +1,7 @@
 #include "Championship.h"
+#include "View.h"
 
-Championship::Championship(Racetrack* location, std::vector<Car* > newParticipants):participants(newParticipants)
+Championship::Championship(Racetrack* location, std::vector<Car* > newParticipants):participants(newParticipants),race(0)
 {
 	int vectorSize = newParticipants.size();
 	
@@ -11,4 +12,16 @@ Championship::Championship(Racetrack* location, std::vector<Car* > newParticipan
 
 	races.push_back(location);
 	
+}
+
+void Championship::startRace()
+{
+	races[race]->moveCarsToTrack();
+	//charge
+}
+
+void Championship::passOneSecond()
+{
+	races[race]->carsMovement();
+	View::printRace(races[race]);
 }

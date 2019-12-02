@@ -20,5 +20,6 @@ public:
 	static void printCommandLineMessage();
 	static void helpCommand();
 	static void printInfoCommand(Simulator& s);
+	static void printRace(Racetrack* r);
 };
 

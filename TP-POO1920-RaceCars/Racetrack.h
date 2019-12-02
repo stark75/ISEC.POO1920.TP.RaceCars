@@ -43,6 +43,10 @@ public:
 
 	void addCarToGarage(Car* newCar);
 
+	void moveCarsToTrack();
+	void moveCarsToGarage();
+	void carsMovement();
+
 	//bool				  trackToGarage();
 	//bool	       	      garageToTrack();
 

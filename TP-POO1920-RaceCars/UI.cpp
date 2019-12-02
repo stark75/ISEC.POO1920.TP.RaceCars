@@ -53,6 +53,22 @@ std::string UI::validateArgv(const int argc, char* argv[])
 	return command;
 }
 
+void UI::passatempoCommand(int n)
+{
+
+	for (int i = 0; i < n; i++)
+	{
+		Championship* c = simulator.getChampionship();
+		c->passOneSecond();
+	}
+}
+
+void UI::corridaCommand()
+{
+		Championship* c = simulator.getChampionship();
+		c->startRace();
+}
+
 
 void UI::run(const int argc, char* argv[])
 {
@@ -455,7 +471,7 @@ void UI::run(const int argc, char* argv[])
 
 					if(simulator.getRacetrackByName(tmpString)!=nullptr)
 					{
-						simulator.addChampionships(tmpString);
+						simulator.addChampionship(tmpString);
 						switchMode();
 						validCommand = true;
 					}
@@ -482,7 +498,7 @@ void UI::run(const int argc, char* argv[])
 
 			if (command == "corrida")
 			{
-				View::printMessage("Corrida not implemented", View::WarningTypeMessage);
+				corridaCommand();
 
 				validCommand = true;
 			}
@@ -521,8 +537,16 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "passatempo")
 				{
-					View::printMessage("passatempo not implemented", View::WarningTypeMessage);
-					validCommand = true;
+					separator >> argument;
+
+					if(Utils::isNumber(argument))
+					{
+						int time = std::stoi(argument);
+
+						passatempoCommand(time);
+						
+						validCommand = true;
+					}
 				}
 				
 			}
