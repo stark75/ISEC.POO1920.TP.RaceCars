@@ -180,6 +180,21 @@ std::vector<Car*> DGV::getCarsWithPilots()
 	return newList;
 }
 
+int DGV::getNumberOfCarsWithPilots()
+{
+	int numberOfCarsWithPilots = 0;
+
+	int vectorSize = carList.size();
+	
+	for(int i = 0; i < vectorSize;i++)
+	{
+		if (carList[i]->getDriver() != nullptr)
+			++numberOfCarsWithPilots;
+	}
+
+	return numberOfCarsWithPilots;
+}
+
 
 bool DGV::sortFunc(Car *lhs, Car *rhs)
 {

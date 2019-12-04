@@ -19,7 +19,7 @@ public:
 	static void printMessage(std::string message = "No message.", int type = NullTypeMessage);
 	static void printCommandLineMessage();
 	static void helpCommand();
-	static void printInfoCommand(Simulator& s);
+	static void printModelsInfoCommand(Simulator& s);
 	static void printRace(Racetrack* r);
 };
 

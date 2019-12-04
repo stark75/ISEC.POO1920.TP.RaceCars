@@ -53,13 +53,17 @@ std::string UI::validateArgv(const int argc, char* argv[])
 	return command;
 }
 
-void UI::passatempoCommand(int n)
+bool UI::passatempoCommand(int n)
 {
-
-	for (int i = 0; i < n; i++)
+	if (simulator.checkIfItsPossibleToStartARace())
 	{
-		simulator.passOneSecond();
+		for (int i = 0; i < n; i++)
+		{
+			simulator.passOneSecond();
+		}
+		return true;
 	}
+	return false;
 }
 
 void UI::corridaCommand()
@@ -105,9 +109,9 @@ void UI::run(const int argc, char* argv[])
 		if (mode == MenuMode::CONFIG)
 		{
 
-			if(command == "lista")
+			if (command == "lista")
 			{
-				View::printInfoCommand(simulator);
+				View::printModelsInfoCommand(simulator);
 				validCommand = true;
 			}
 
@@ -116,7 +120,17 @@ void UI::run(const int argc, char* argv[])
 				View::helpCommand();
 				validCommand = true;
 			}
-				
+
+			if (command == "campeonato")
+			{
+				if(simulator.getChampionship()!=nullptr)
+				{
+					switchMode();
+					View::printMessage("Modo Campeonato reativado.", View::SuccessTypeMessage);
+					validCommand=true;
+				}
+			}
+			
 			if (command == "loadACP")
 			{
 				loadRacetrack("racetracks.txt");
@@ -474,17 +488,38 @@ void UI::run(const int argc, char* argv[])
 						tmpString += argument;
 					}
 
-					if(simulator.getRacetrackByName(tmpString)!=nullptr)
+					int verifier = simulator.checkIfItsPossibleToStartAChampionship(tmpString);
+
+					if (verifier == 1)
 					{
-						simulator.addChampionship(tmpString);
-						switchMode();
-						validCommand = true;
+						if (simulator.addChampionship(tmpString))
+						{
+							View::printMessage("Campeonato Criado", View::SuccessTypeMessage);
+							switchMode();
+						}
+						else
+						{
+							View::printMessage("Erro ao criar o Campeonato");
+						}
 					}
+					else
+					{
+						if(verifier == 0)
+							View::printMessage("Campeonato Invalido: Numero de Carros Invalido", View::ErrorTypeMessage);
+						else if(verifier == -1)
+							View::printMessage("Campeonato Invalido: Autodromo Invalido", View::ErrorTypeMessage);
+						else if(verifier == -2)
+							View::printMessage("Campeonato Invalido: Autodromo e Numero de Carros Invalidos", View::ErrorTypeMessage);
+						else
+							View::printMessage("Campeonato Invalido: Erro Desconhecido", View::ErrorTypeMessage);
+						
+					}
+						validCommand = true;
 				}
 			}
 		}
 
-		if(mode == MenuMode::CHAMPIONSHIP)
+		if (mode == MenuMode::CHAMPIONSHIP)
 		{
 			if (command == "voltar")
 			{

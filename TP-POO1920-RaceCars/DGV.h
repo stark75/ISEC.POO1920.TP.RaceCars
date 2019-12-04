@@ -29,7 +29,8 @@ public:
 	bool detach(char id);
 
 	std::vector<Car*> getCarsWithPilots();
-	
+
+	int getNumberOfCarsWithPilots();
 
 	//TODO apply this in Track Class
 	static bool sortFunc(Car* lhs, Car* rhs);

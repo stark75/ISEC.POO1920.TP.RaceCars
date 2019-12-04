@@ -29,11 +29,17 @@ public:
 	bool removeCar(char wantedID);
 	bool removePilot(std::string wantedName);
 	bool removeRacetrack(std::string wantedName);
-	void printRacetracks();
+	int checkIfItsPossibleToStartAChampionship(std::string tmpString);
+
+	
+	
 	void startRace();
 	void passOneSecond();
 
+	void printRacetracks();
+	
 	Racetrack* getRacetrackByName(std::string wantedName);
+	bool checkIfItsPossibleToStartARace();
 };
 
 	

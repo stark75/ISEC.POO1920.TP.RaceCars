@@ -20,38 +20,28 @@ void View::printTitle()
 
 void View::printMessage(std::string message, int type)
 {
-	std::string output;
-	
 	if (type == ErrorTypeMessage)
 	{
 		Consola::setTextColor(Consola::VERMELHO_CLARO);
-		output = "[ERROR]: ";
+		std::cout << "[ERROR]: ";
 		Consola::setTextColor(Consola::VERDE);
-		output += message;
 	}
 
 	if (type == WarningTypeMessage)
 	{
-		Consola::setTextColor(Consola::AMARELO_CLARO);
-		output = "[WARNING]: ";
+		Consola::setTextColor(Consola::AMARELO);
+		std::cout << "[WARNING]: ";
 		Consola::setTextColor(Consola::VERDE);
-		output += message;
 	}
 
 	if (type == SuccessTypeMessage)
 	{
 		Consola::setTextColor(Consola::VERDE_CLARO);
-		output = "[SUCCESS]: ";
+		std::cout << "[SUCCESS]: ";
 		Consola::setTextColor(Consola::VERDE);
-		output += message;
 	}
 
-	if (type == NullTypeMessage)
-	{
-		output = message;
-	}
-
-	std::cout << output << std::endl;
+	std::cout << message << std::endl;
 	
 }
 
@@ -76,7 +66,7 @@ void View::helpCommand()
 	std::cout << "sair" << std::endl;
 }
 
-void View::printInfoCommand(Simulator& s)
+void View::printModelsInfoCommand(Simulator& s)
 {
 	s.getDGV()->printCars();
 	s.getDGV()->printPilots();
@@ -102,17 +92,25 @@ void View::printRace(Racetrack* r)
 		char tmpChar = raceCars[i]->getID();
 		int  tmpPos = raceCars[i]->getPosition();
 
-		int num = ((tmpPos / length) * 20) + 1;
+		int num = (tmpPos *20) / length + 1;
 
 		if (i % 2 == 0)
 		{
 			Consola::setTextColor(Consola::AZUL_CLARO);
 		}
+
+		int checker = 0;
+
+		if (num > length)
+			checker = length;
+		else
+			checker = num;
 		
-		for(int y = 0; y< num; y++)
+		for(int y = 0; y < checker; y++)
 		{
-			std::cout << tmpChar << std::endl;
+			std::cout << tmpChar;
 		}
+		std::cout << std::endl;
 
 			
 		

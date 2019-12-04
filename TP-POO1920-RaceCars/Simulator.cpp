@@ -83,9 +83,14 @@ bool Simulator::addChampionship(std::string racetrack)
 
 	if (newList.empty())
 		return false;
-	
-	championship=new Championship(getRacetrackByName(racetrack),newList);
-	return true;
+
+	if (championship == nullptr)
+	{
+		championship = new Championship(getRacetrackByName(racetrack), newList);
+		return true;
+	}
+
+	return false;
 }
 
 bool Simulator::removeCar(char wantedID)
@@ -118,7 +123,27 @@ bool Simulator::removeRacetrack(std::string wantedName)
 	return false;
 }
 
+int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
+{
+	/*
+	 * Returns 1 if it's Possible
+	 * Returns 0 if the number of valid cars is invalid
+	 * Returns -1 if the Racetrack is invalid
+	 * Returns -2 if the both are invalid
+	 */
+	
+	if (getRacetrackByName(tmpString) != nullptr && currentDGV.getNumberOfCarsWithPilots() >= 2)
+		return 1;
 
+	if (getRacetrackByName(tmpString) != nullptr && currentDGV.getNumberOfCarsWithPilots() < 2)
+		return 0;
+
+	if (getRacetrackByName(tmpString) == nullptr && currentDGV.getNumberOfCarsWithPilots() >= 2)
+		return -1;
+
+	return -2;
+	
+}
 
 
 void Simulator::printRacetracks()
@@ -151,4 +176,9 @@ Racetrack* Simulator::getRacetrackByName(std::string wantedName)
 			return racetracks[i];
 	}
 	return nullptr;
+}
+
+bool Simulator::checkIfItsPossibleToStartARace()
+{
+	return championship->getAreCarsInTrack();
 }
