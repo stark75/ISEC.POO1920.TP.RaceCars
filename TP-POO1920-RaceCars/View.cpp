@@ -97,6 +97,7 @@ void View::printRace(Racetrack* r)
 	for (int i=0; i<raceSize;i++)
 	{
 		Consola::gotoxy(25, 3 + i);
+		std::cout << "Finish Line" << std::endl;
 		Consola::gotoxy(4, 3+i);
 		char tmpChar = raceCars[i]->getID();
 		int  tmpPos = raceCars[i]->getPosition();
@@ -118,5 +119,5 @@ void View::printRace(Racetrack* r)
 		Consola::setTextColor(Consola::VERDE);
 		
 	}
-	Consola::getch();
+	Sleep(500);
 }

@@ -54,10 +54,6 @@ Car::Car(const Car& src)
 {
 }
 
-Car::~Car()
-{
-}
-
 char Car::getNextID() const
 {
 	return nextID;

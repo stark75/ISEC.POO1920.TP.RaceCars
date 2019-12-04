@@ -15,8 +15,7 @@ Simulator::~Simulator()
 
 	racetracks.clear();
 
-	if (championship != nullptr)
-		delete championship;
+	delete championship;
 }
 
 DGV* Simulator::getDGV()
@@ -130,6 +129,16 @@ void Simulator::printRacetracks()
 		for (int i = 0; i < vectorSize; i++)
 			std::cout << racetracks[i]->getAsString() << std::endl;
 	}
+}
+
+void Simulator::startRace()
+{
+	championship->startRace();
+}
+
+void Simulator::passOneSecond()
+{
+	championship->passOneSecond();
 }
 
 Racetrack* Simulator::getRacetrackByName(std::string wantedName)

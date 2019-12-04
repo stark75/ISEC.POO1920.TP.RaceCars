@@ -30,6 +30,8 @@ public:
 	bool removePilot(std::string wantedName);
 	bool removeRacetrack(std::string wantedName);
 	void printRacetracks();
+	void startRace();
+	void passOneSecond();
 
 	Racetrack* getRacetrackByName(std::string wantedName);
 };

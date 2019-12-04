@@ -58,15 +58,13 @@ void UI::passatempoCommand(int n)
 
 	for (int i = 0; i < n; i++)
 	{
-		Championship* c = simulator.getChampionship();
-		c->passOneSecond();
+		simulator.passOneSecond();
 	}
 }
 
 void UI::corridaCommand()
 {
-		Championship* c = simulator.getChampionship();
-		c->startRace();
+		simulator.startRace();	
 }
 
 
@@ -119,7 +117,14 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 				
-
+			if (command == "loadACP")
+			{
+				loadRacetrack("racetracks.txt");
+				loadCars("cars.txt");
+				loadPilots("pilots.txt");
+				validCommand = true;
+			}
+			
 			if(Utils::argumentCount(command)==2)
 			{
 				std::istringstream separator(command);
