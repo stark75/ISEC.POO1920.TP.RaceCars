@@ -1,6 +1,6 @@
 #include "View.h"
 #include <iostream>
-#include "Consola/consola.h"
+#include "Consola/Consola.h"
 
 void View::printTitle()
 {
@@ -99,7 +99,7 @@ void View::printRace(Racetrack* r)
 			Consola::setTextColor(Consola::AZUL_CLARO);
 		}
 
-		int checker = 0;
+		int checker;
 
 		if (num > length)
 			checker = length;

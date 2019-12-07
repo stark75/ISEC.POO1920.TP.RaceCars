@@ -16,19 +16,18 @@ class UI
 
 public:
 	UI();
-	UI(Simulator s);
 	~UI() = default;
 
 	void switchMode();
 
 	std::string validateArgv(const int argc, char* argv[]);
-	bool passatempoCommand(int n);
-	void corridaCommand();
-	void run(const int argc = 0, char* argv[] = nullptr);
+	bool timePassCommand(int n);
+	void raceCommand();
 
 	bool loadCars(const std::string filename);
-	bool loadPilots(std::string filename);
-	bool loadRacetrack(std::string filename);
-	
+	bool loadPilots(const std::string filename);
+	bool loadRacetrack(const std::string filename);
+
+	void run(const int argc = 0, char* argv[] = nullptr);
 };
 

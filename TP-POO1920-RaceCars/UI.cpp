@@ -10,11 +10,6 @@ UI::UI()
 {
 }
 
-UI::UI(Simulator s)
-	:simulator(s)
-{
-}
-
 void UI::switchMode()
 {
 	if (mode == MenuMode::CONFIG)
@@ -53,7 +48,7 @@ std::string UI::validateArgv(const int argc, char* argv[])
 	return command;
 }
 
-bool UI::passatempoCommand(int n)
+bool UI::timePassCommand(int n)
 {
 	if (simulator.checkIfItsPossibleToStartARace())
 	{
@@ -66,7 +61,7 @@ bool UI::passatempoCommand(int n)
 	return false;
 }
 
-void UI::corridaCommand()
+void UI::raceCommand()
 {
 		simulator.startRace();	
 }
@@ -538,7 +533,7 @@ void UI::run(const int argc, char* argv[])
 
 			if (command == "corrida")
 			{
-				corridaCommand();
+				raceCommand();
 
 				validCommand = true;
 			}
@@ -583,7 +578,7 @@ void UI::run(const int argc, char* argv[])
 					{
 						int time = std::stoi(argument);
 
-						passatempoCommand(time);
+						timePassCommand(time);
 						
 						validCommand = true;
 					}
@@ -791,7 +786,7 @@ bool UI::loadCars(const std::string filename)
 	
 }
 
-bool UI::loadPilots(std::string filename)
+bool UI::loadPilots(const std::string filename)
 {
 	std::ifstream pilotsFile;
 	std::string buffer;
