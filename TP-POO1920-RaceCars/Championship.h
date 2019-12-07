@@ -12,7 +12,7 @@ class Championship
 	
 public:
 	Championship(Racetrack* location, std::vector<Car* > newParticipants);
-	//Championship(std::vector<Racetrack*> locations, std::vector<Car* > newParticipants);
+	Championship(std::vector<Racetrack*> locations, std::vector<Car* > newParticipants);
 	~Championship() = default;
 
 	bool getAreCarsInTrack();

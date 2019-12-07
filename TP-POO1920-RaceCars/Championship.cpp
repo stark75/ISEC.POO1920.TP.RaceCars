@@ -14,6 +14,23 @@ Championship::Championship(Racetrack* location, std::vector<Car* > newParticipan
 	
 }
 
+Championship::Championship(std::vector<Racetrack*> locations, std::vector<Car*> newParticipants)
+	:participants(newParticipants), race(0), areCarsInTrack(false)
+{
+	int lVectorSize = locations.size();
+
+	for(int i=0; i < lVectorSize; i++)
+	{
+		races.push_back(locations[i]);
+	}
+
+	int pVectorSize = newParticipants.size();
+
+	for (int i = 0; i < pVectorSize; i++)
+		races[0]->addCarToGarage(newParticipants[i]);
+
+}
+
 bool Championship::getAreCarsInTrack()
 {
 	return areCarsInTrack;
