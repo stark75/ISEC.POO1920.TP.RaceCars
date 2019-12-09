@@ -17,7 +17,6 @@ DGV::~DGV()
 
 	pilotList.clear();
 
-
 	int carVectorSize = carList.size();
 
 	if (carVectorSize > 0)
@@ -39,7 +38,6 @@ bool DGV::addCar(const Car newCar)
 	carList.push_back(new Car(newCar));
 	return true;
 }
-
 
 bool DGV::addPilot(const Pilot newPilot)
 {
@@ -194,7 +192,6 @@ int DGV::getNumberOfCarsWithPilots()
 
 	return numberOfCarsWithPilots;
 }
-
 
 bool DGV::sortFunc(Car *lhs, Car *rhs)
 {

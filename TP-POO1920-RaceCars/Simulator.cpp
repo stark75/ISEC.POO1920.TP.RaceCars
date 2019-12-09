@@ -1,6 +1,5 @@
 #include "Simulator.h"
 
-
 Simulator::Simulator(): championship(nullptr)
 {
 }
@@ -46,7 +45,7 @@ bool Simulator::addCar(int e, int mE, int mS, std::string b, std::string m)
 
 bool Simulator::addPilot(std::string type, std::string newName)
 {
-	if (type == "generico")
+	if (type == "generico") //remover para a próxima meta
 	{
 		Pilot tmpPilot(newName);
 		return currentDGV.addPilot(tmpPilot);
@@ -55,16 +54,19 @@ bool Simulator::addPilot(std::string type, std::string newName)
 	if (type == "crazy")
 	{
 		//TODO
+		return false;
 	}
 
 	if (type == "rapido")
 	{
 		//TODO
+		return false;
 	}
 
 	if (type == "surpresa")
 	{
 		//TODO
+		return false;
 	}
 
 	return false;
@@ -77,7 +79,7 @@ bool Simulator::addRacetrack(int maxCars, int length, std::string newName)
 	return true;
 }
 
-bool Simulator::addChampionship(std::string racetrack)
+bool Simulator::addChampionship(std::string racetrack) //Alterar para a próxima meta
 {
 	std::vector<Car*> newList = currentDGV.getCarsWithPilots();
 
@@ -114,7 +116,8 @@ bool Simulator::removeRacetrack(std::string wantedName)
 			std::string tmpID = racetracks[i]->getName();
 			if (wantedName == tmpID)
 			{
-				racetracks.erase(racetracks.begin() + i); //AQUI TÁ A DAR ERRO
+				delete racetracks[i];
+				racetracks.erase(racetracks.begin() + i);
 				return true;
 			}
 		}
@@ -144,7 +147,6 @@ int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 	return -2;
 	
 }
-
 
 void Simulator::printRacetracks()
 {

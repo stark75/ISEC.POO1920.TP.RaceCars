@@ -66,7 +66,6 @@ void UI::raceCommand()
 		simulator.startRace();	
 }
 
-
 void UI::run(const int argc, char* argv[])
 {
 	View::printTitle();
@@ -104,19 +103,19 @@ void UI::run(const int argc, char* argv[])
 		if (mode == MenuMode::CONFIG)
 		{
 
-			if (command == "lista")
+			if (command == "lista" || command == "list")
 			{
 				View::printModelsInfoCommand(simulator);
 				validCommand = true;
 			}
 
-			if (command == "help")
+			if (command == "ajuda" || command == "help")
 			{
 				View::helpCommand();
 				validCommand = true;
 			}
 
-			if (command == "campeonato")
+			if (command == "campeonato" || command == "championship")
 			{
 				if(simulator.getChampionship()!=nullptr)
 				{
@@ -126,7 +125,7 @@ void UI::run(const int argc, char* argv[])
 				}
 			}
 			
-			if (command == "loadACP")
+			if (command == "loadACP") //DEBUG COMMAND
 			{
 				loadRacetrack("racetracks.txt");
 				loadCars("cars.txt");
@@ -155,7 +154,6 @@ void UI::run(const int argc, char* argv[])
 					loadCars(argument);
 					
 					validCommand = true;
-					
 				}
 
 				if (argument == "carregaP")
@@ -172,9 +170,6 @@ void UI::run(const int argc, char* argv[])
 					//separator >> argument;
 					View::printMessage("Delete DGV not implemented", View::WarningTypeMessage);
 					//TODO
-					//Ler Ficheiro
-					//Gerar vetor de autodromos no Simulator
-					
 					validCommand = true;
 				}
 
@@ -183,18 +178,12 @@ void UI::run(const int argc, char* argv[])
 					//separator >> argument;
 					View::printMessage("Load DGV not implemented", View::WarningTypeMessage);
 					//TODO
-					//Ler Ficheiro
-					//Gerar vetor de autodromos no Simulator
-					
 					validCommand = true;
 				}
 
 				if (argument == "saidocarro")
 				{
 					separator >> argument;
-					//View::printMessage("Sair do carro not implemented", View::WarningTypeMessage);
-					//TODO
-					//tirar do carro
 					
 					if (argument.size() == 1)
 					{
@@ -209,9 +198,6 @@ void UI::run(const int argc, char* argv[])
 					//separator >> argument;
 					View::printMessage("Save DGV not implemented", View::WarningTypeMessage);
 					//TODO
-					//Ler Ficheiro
-					//Gerar vetor de autodromos no Simulator
-
 					validCommand = true;
 				}
 				
@@ -418,8 +404,9 @@ void UI::run(const int argc, char* argv[])
 					{
 						separator >> argument;
 
-						if(argument == "generico")
+						if(argument == "rapido" || argument == "crazy" || argument == "surpresa" || argument == "generico"/*remover para a próxima meta*/)
 						{
+							std::string tmpType = argument;
 							std::string tmpString = "";
 
 							bool firstTime = true;
@@ -435,25 +422,8 @@ void UI::run(const int argc, char* argv[])
 
 							}
 
-							simulator.addPilot("generico",tmpString);
-							validCommand = true;
-						}
-
-						if (argument == "rapido")
-						{
-							View::printMessage("Create Fast Pilot not implemented.", View::WarningTypeMessage);
-							validCommand = true;
-						}
-
-						if (argument == "crazy")
-						{
-							View::printMessage("Create Crazy Pilot not implemented.", View::WarningTypeMessage);
-							validCommand = true;
-						}
-
-						if (argument == "surpresa")
-						{
-							View::printMessage("Create Surprise Pilot not implemented.", View::WarningTypeMessage);
+							//TODO Create a new method
+							simulator.addPilot(tmpType,tmpString);
 							validCommand = true;
 						}
 						
@@ -524,7 +494,7 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 
-			if (command == "carregatudo")
+			if (command == "carregatudo") //TODO
 			{
 				View::printMessage("Carrega Tudo not implemented", View::WarningTypeMessage);
 
@@ -538,14 +508,14 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 
-			if (command == "listacarros")
+			if (command == "listacarros") //TODO
 			{
 				View::printMessage("Lista de Carros not implemented", View::WarningTypeMessage);
 
 				validCommand = true;
 			}
 
-			if (command == "log")
+			if (command == "log") //TODO
 			{
 				View::printMessage("log not implemented", View::WarningTypeMessage);
 
@@ -558,13 +528,13 @@ void UI::run(const int argc, char* argv[])
 				std::string argument;
 				separator >> argument;
 
-				if (argument == "acidente")
+				if (argument == "acidente") //TODO
 				{
 					View::printMessage("acidente not implemented", View::WarningTypeMessage);
 					validCommand = true;
 				}
 
-				if (argument == "destroi")
+				if (argument == "destroi") //TODO
 				{
 					View::printMessage("destroi not implemented", View::WarningTypeMessage);
 					validCommand = true;
@@ -578,6 +548,7 @@ void UI::run(const int argc, char* argv[])
 					{
 						int time = std::stoi(argument);
 
+						//DO A PRINT MESSAGE IN CASE OF FAILURE OR SUCESS
 						timePassCommand(time);
 						
 						validCommand = true;
@@ -592,14 +563,14 @@ void UI::run(const int argc, char* argv[])
 				std::string argument;
 				separator >> argument;
 
-				if (argument == "carregabat")
+				if (argument == "carregabat") //TODO
 				{
 					View::printMessage("carregabat not implemented", View::WarningTypeMessage);
 					validCommand = true;
 				}
 			}
 
-			if(Utils::argumentCount(command)>=2)
+			if(Utils::argumentCount(command)>=2) //TODO
 			{
 				std::istringstream separator(command);
 				std::string argument;
