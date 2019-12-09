@@ -47,6 +47,15 @@
     <ClCompile Include="Consola\Consola.cpp">
       <Filter>Consola</Filter>
     </ClCompile>
+    <ClCompile Include="FastPilot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CrazyPilot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SurprisePilot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pilot.h">
@@ -78,6 +87,15 @@
     </ClInclude>
     <ClInclude Include="Consola\Consola.h">
       <Filter>Consola</Filter>
+    </ClInclude>
+    <ClInclude Include="FastPilot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CrazyPilot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SurprisePilot.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
