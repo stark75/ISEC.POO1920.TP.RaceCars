@@ -1,101 +1,129 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Consola">
       <UniqueIdentifier>{00fcb1c8-7cee-4e57-8675-e16b610ac686}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{ceb9bd7c-2c8b-444b-b7d0-286f1c484e1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{886437b3-5458-4f8a-ac07-ff8dcb7587b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{0f31e6d5-39ea-478d-888d-aec24e5ae306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{c52c9096-f5f6-4099-8471-8ab2b228aee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\DGV">
+      <UniqueIdentifier>{aab9bec5-fd6e-47b9-ba3f-e8082a906372}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Racetracks">
+      <UniqueIdentifier>{9532f4ff-f962-4f10-9adb-e754e0df3548}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\DGV\Car">
+      <UniqueIdentifier>{c652d0df-2958-45aa-870a-4d5fe246cf7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\DGV\Pilot">
+      <UniqueIdentifier>{cc860527-50f1-4690-bb2e-0bcbfb7577f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\Championship">
+      <UniqueIdentifier>{f1e71a13-7c8e-4227-8e0d-183a60054677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\DGV\Pilot\CrazyPilot">
+      <UniqueIdentifier>{b65f995e-cd33-47cf-a89c-be76cea8954c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\DGV\Pilot\FastPilot">
+      <UniqueIdentifier>{cfa7e08a-be06-473f-b2fd-e168a0f748a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model\DGV\Pilot\SurprisePilot">
+      <UniqueIdentifier>{5fd14532-4d37-4867-a14b-89339d3f4171}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pilot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Car.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Simulator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="View.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DGV.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Racetrack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Championship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Consola\Consola.cpp">
       <Filter>Consola</Filter>
     </ClCompile>
-    <ClCompile Include="FastPilot.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Simulator.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="View.cpp">
+      <Filter>View</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Model\DGV\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="Pilot.cpp">
+      <Filter>Model\DGV\Pilot</Filter>
+    </ClCompile>
+    <ClCompile Include="DGV.cpp">
+      <Filter>Model\DGV</Filter>
+    </ClCompile>
+    <ClCompile Include="Racetrack.cpp">
+      <Filter>Model\Racetracks</Filter>
+    </ClCompile>
+    <ClCompile Include="Championship.cpp">
+      <Filter>Model\Championship</Filter>
     </ClCompile>
     <ClCompile Include="CrazyPilot.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Model\DGV\Pilot\CrazyPilot</Filter>
+    </ClCompile>
+    <ClCompile Include="FastPilot.cpp">
+      <Filter>Model\DGV\Pilot\FastPilot</Filter>
     </ClCompile>
     <ClCompile Include="SurprisePilot.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Model\DGV\Pilot\SurprisePilot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Pilot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Car.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="View.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DGV.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Racetrack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Championship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Consola\Consola.h">
       <Filter>Consola</Filter>
     </ClInclude>
-    <ClInclude Include="FastPilot.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Simulator.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>View</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Car.h">
+      <Filter>Model\DGV\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="Pilot.h">
+      <Filter>Model\DGV\Pilot</Filter>
+    </ClInclude>
+    <ClInclude Include="DGV.h">
+      <Filter>Model\DGV</Filter>
+    </ClInclude>
+    <ClInclude Include="Racetrack.h">
+      <Filter>Model\Racetracks</Filter>
+    </ClInclude>
+    <ClInclude Include="Championship.h">
+      <Filter>Model\Championship</Filter>
     </ClInclude>
     <ClInclude Include="CrazyPilot.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model\DGV\Pilot\CrazyPilot</Filter>
+    </ClInclude>
+    <ClInclude Include="FastPilot.h">
+      <Filter>Model\DGV\Pilot\FastPilot</Filter>
     </ClInclude>
     <ClInclude Include="SurprisePilot.h">
-      <Filter>Header Files</Filter>
+      <Filter>Model\DGV\Pilot\SurprisePilot</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

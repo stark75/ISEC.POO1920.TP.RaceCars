@@ -24,6 +24,9 @@ public:
 	bool timePassCommand(int n);
 	void raceCommand();
 
+
+	void startChampionship(const std::string racetracks);
+	
 	bool loadCars(const std::string filename);
 	bool loadPilots(const std::string filename);
 	bool loadRacetrack(const std::string filename);
