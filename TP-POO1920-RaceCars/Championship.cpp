@@ -15,7 +15,7 @@ Championship::Championship(Racetrack* location, std::vector<Car* > newParticipan
 }
 
 Championship::Championship(std::vector<Racetrack*> locations, std::vector<Car*> newParticipants)
-	:participants(newParticipants), race(0), areCarsInTrack(false)
+	:participants(newParticipants), race(0), areCarsInTrack(false), time(0)
 {
 	int lVectorSize = locations.size();
 
@@ -36,8 +36,20 @@ bool Championship::getAreCarsInTrack()
 	return areCarsInTrack;
 }
 
+bool Championship::nextRace()
+{
+	int maxRaces = races.size();
+	if(race < (maxRaces-1))
+	{
+		++race;
+		return true;
+	}
+	return false;
+}
+
 void Championship::startRace()
 {
+	time = 0;
 	races[race]->moveCarsToTrack();
 	areCarsInTrack = true;
 	//charge

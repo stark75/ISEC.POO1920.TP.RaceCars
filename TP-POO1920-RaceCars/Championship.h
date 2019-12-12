@@ -9,6 +9,7 @@ class Championship
 	std::vector<Racetrack*>  races;
 	int race;
 	bool areCarsInTrack;
+	int time;
 	
 public:
 	Championship(Racetrack* location, std::vector<Car* > newParticipants);
@@ -16,7 +17,8 @@ public:
 	~Championship() = default;
 
 	bool getAreCarsInTrack();
-	
+
+	bool nextRace();
 	void startRace();
 	void passOneSecond();
 };
