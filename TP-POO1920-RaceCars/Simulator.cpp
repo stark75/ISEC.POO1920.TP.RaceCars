@@ -45,7 +45,7 @@ bool Simulator::addCar(int e, int mE, int mS, std::string b, std::string m)
 
 bool Simulator::addPilot(std::string type, std::string newName)
 {
-	if (type == "generico") //remover para a próxima meta
+	if (type == "generico") //remover para a prï¿½xima meta
 	{
 		Pilot tmpPilot(newName);
 		return currentDGV.addPilot(tmpPilot);
@@ -79,7 +79,7 @@ bool Simulator::addRacetrack(int maxCars, int length, std::string newName)
 	return true;
 }
 
-bool Simulator::addChampionship(std::string racetrack) //Alterar para a próxima meta
+bool Simulator::addChampionship(std::string racetrack)
 {
 	std::vector<Car*> newList = currentDGV.getCarsWithPilots();
 
@@ -92,6 +92,29 @@ bool Simulator::addChampionship(std::string racetrack) //Alterar para a próxima 
 		return true;
 	}
 
+	return false;
+}
+
+bool Simulator::addChampionship(std::vector<std::string> racetrackList)
+{
+	std::vector<Car*> newList = currentDGV.getCarsWithPilots();
+
+	if(newList.empty())
+		return false;
+
+	if(championship == nullptr)
+	{
+		int vectorSize = racetrackList.size();
+		std::vector<Racetrack*> championshipRacetracks;
+		
+		for(int i=0;i<vectorSize;i++)
+		{
+			championshipRacetracks.push_back(getRacetrackByName(racetrackList[i]));
+		}
+
+		championship = new Championship(championshipRacetracks, newList);
+		return true;
+	}
 	return false;
 }
 
@@ -155,6 +178,14 @@ void Simulator::printRacetracks()
 	{
 		for (int i = 0; i < vectorSize; i++)
 			std::cout << racetracks[i]->getAsString() << std::endl;
+	}
+}
+
+void Simulator::chargeAllCars()
+{
+	if (championship != nullptr)
+	{
+		championship->chargeAllCars();
 	}
 }
 

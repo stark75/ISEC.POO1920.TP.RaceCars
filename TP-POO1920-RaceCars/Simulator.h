@@ -26,13 +26,14 @@ public:
 	bool addPilot(std::string type, std::string newName);
 	bool addRacetrack(int maxCars, int length, std::string newName);
 	bool addChampionship(std::string racetrack);
+	bool addChampionship(std::vector<std::string> racetrackList);
 	bool removeCar(char wantedID);
 	bool removePilot(std::string wantedName);
 	bool removeRacetrack(std::string wantedName);
-	int checkIfItsPossibleToStartAChampionship(std::string tmpString);
+	int  checkIfItsPossibleToStartAChampionship(std::string tmpString);
 
 	
-	
+	void chargeAllCars();
 	void startRace();
 	void passOneSecond();
 

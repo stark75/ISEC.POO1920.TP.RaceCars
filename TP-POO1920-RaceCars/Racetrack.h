@@ -17,8 +17,9 @@ class Racetrack {
 	std::vector<Car*>	carsInTrack;
 	std::vector<Car*>   carsInGarage;
 
-	//Variáveis
+	//Variaveis
 	bool				isCarMax;
+	int                 time;
 
 public:
 	Racetrack(int newMaxCars, int newLength, std::string newName);
@@ -27,27 +28,22 @@ public:
 
 	//Getters
 
-	int getMaxCars() const;
+	int                 getMaxCars() const;
+	int                 getTrackLength() const;
+	std::string         getName() const;
+	std::vector<Car*>   getCarsInTrack() const;
+	std::vector<Car*>   getCarsInGarage() const;
+	bool                getIsCarMax() const;
+	std::string         getAsString() const;
+	int                 getTime() const;
 
-	int getTrackLength() const;
+	void                addCarToGarage(Car* newCar);
+	
+	void                moveCarsToTrack();
+	void                moveCarsToGarage();
+	void                chargeAllCars();
+	void                carsMovement();
 
-	std::string getName() const;
-
-	std::vector<Car*> getCarsInTrack() const;
-
-	std::vector<Car*> getCarsInGarage() const;
-
-	bool getIsCarMax() const;
-
-	std::string getAsString() const;
-
-	void addCarToGarage(Car* newCar);
-
-	void moveCarsToTrack();
-	void moveCarsToGarage();
-	void carsMovement();
-
-	//bool				  trackToGarage();
-	//bool	       	      garageToTrack();
-
+	bool                printCarsInGarage();
+	bool                printCarsInTrack();
 };

@@ -1,6 +1,7 @@
 #include "View.h"
 #include <iostream>
 #include "Consola/Consola.h"
+#include "Utils.h"
 
 void View::printTitle()
 {
@@ -14,8 +15,6 @@ void View::printTitle()
 	std::cout << " _.-.___\\__         _.-.___\\__         _.-.___\\__" << std::endl;
 	std::cout << "|  _      _`-.     |  _      _`-.     |  _      _`-." << std::endl;
 	std::cout << "'-(_)----(_)--`    '-(_)----(_)--`    '-(_)----(_)--`" << std::endl;
-	
-	
 }
 
 void View::printMessage(std::string message, int type)
@@ -23,22 +22,25 @@ void View::printMessage(std::string message, int type)
 	if (type == ErrorTypeMessage)
 	{
 		Consola::setTextColor(Consola::VERMELHO_CLARO);
-		std::cout << "[ERROR]: ";
+		std::cout << "[ERROR]";
 		Consola::setTextColor(Consola::VERDE);
+		std::cout << ": ";
 	}
 
 	if (type == WarningTypeMessage)
 	{
 		Consola::setTextColor(Consola::AMARELO);
-		std::cout << "[WARNING]: ";
+		std::cout << "[WARNING]";
 		Consola::setTextColor(Consola::VERDE);
+		std::cout << ": ";
 	}
 
 	if (type == SuccessTypeMessage)
 	{
-		Consola::setTextColor(Consola::VERDE_CLARO);
-		std::cout << "[SUCCESS]: ";
+		Consola::setTextColor(Consola::BRANCO);
+		std::cout << "[SUCCESS]";
 		Consola::setTextColor(Consola::VERDE);
+		std::cout << ": ";
 	}
 
 	std::cout << message << std::endl;
@@ -73,49 +75,116 @@ void View::printModelsInfoCommand(Simulator& s)
 	s.printRacetracks();
 }
 
+void View::printCarsOnChampionship(Simulator& s)
+{
+	Championship* c = s.getChampionship();
+
+	Consola::setTextColor(Consola::BRANCO);
+	std::cout << "--------Carros na garagem-----------" << std::endl;
+	Consola::setTextColor(Consola::VERDE);
+	if (!c->printCarsInGarage())
+	{
+		Consola::setTextColor(Consola::AMARELO);
+		std::cout << "Garagem Vazia" << std::endl;
+	}
+	Consola::setTextColor(Consola::BRANCO);
+	std::cout << "---------Carros na pista------------" << std::endl;
+	Consola::setTextColor(Consola::VERDE);
+	if (!c->printCarsInTrack())
+	{
+		Consola::setTextColor(Consola::AMARELO);
+		std::cout << "Pista Vazia" << std::endl;
+		Consola::setTextColor(Consola::VERDE);
+	}
+}
+
 void View::printRace(Racetrack* r)
 {
 	Consola::clrscr();
 	int length = r->getTrackLength();
 	std::vector<Car* > raceCars = r->getCarsInTrack();
 	int raceSize = raceCars.size();
+	int raceTime = r->getTime();
+	std::string location = r->getName();
 
 	if (raceSize == 0)
 		return;
 
+	//Print Track Name
+	Consola::gotoxy(4, 2);
+	Consola::setTextColor(Consola::AZUL_CLARO);
+	std::cout << "Track: ";
+	Consola::setTextColor(Consola::BRANCO);
+	std::cout << location << std::endl;
+
+
+	//Print Time Elapsed
+	Consola::gotoxy(4, 3);
+	Consola::setTextColor(Consola::AZUL_CLARO);
+	std::cout << "Time Elapsed: ";
+	Consola::setTextColor(Consola::BRANCO);
+	std::cout << Utils::getTimeAsString(raceTime) << std::endl;
+
+	Consola::gotoxy(3, 5);
+	std::cout << "----------------------" << std::endl;
 	
-	for (int i=0; i<raceSize;i++)
+	for (int i = 0; i < raceSize; i++)
 	{
-		Consola::gotoxy(25, 3 + i);
-		std::cout << "Finish Line" << std::endl;
-		Consola::gotoxy(4, 3+i);
-		char tmpChar = raceCars[i]->getID();
-		int  tmpPos = raceCars[i]->getPosition();
-
-		int num = (tmpPos *20) / length + 1;
-
-		if (i % 2 == 0)
+		for (int j = 0; j < 2; j++)
 		{
-			Consola::setTextColor(Consola::AZUL_CLARO);
+			if (j == 0)
+			{
+				Consola::gotoxy(25, 6 + i * 2);
+				Consola::setTextColor(Consola::BRANCO);
+				std::cout << "Finish Line" << std::endl;
+				Consola::setTextColor(Consola::VERDE);
+
+				char tmpChar = raceCars[i]->getID();
+				int  tmpPos = raceCars[i]->getPosition();
+
+				Consola::gotoxy(4, 6 + i * 2);
+				int num = (tmpPos * 20) / length + 1;
+
+				if (i % 2 == 0)
+				{
+					Consola::setTextColor(Consola::AZUL_CLARO);
+				}
+
+				int checker;
+
+				if (num > length)
+					checker = length;
+				else
+					checker = num;
+
+				for (int y = 0; y < checker; y++)
+				{
+					std::cout << tmpChar;
+				}
+				std::cout << std::endl;
+			}
+
+			if (j == 1)
+			{
+				Consola::setTextColor(Consola::BRANCO);
+				Consola::gotoxy(3, 7 + i * 2);
+				std::cout << "----------------------" << std::endl;
+				Consola::setTextColor(Consola::VERDE);
+			}
 		}
-
-		int checker;
-
-		if (num > length)
-			checker = length;
-		else
-			checker = num;
-		
-		for(int y = 0; y < checker; y++)
-		{
-			std::cout << tmpChar;
-		}
-		std::cout << std::endl;
-
-			
-		
-		Consola::setTextColor(Consola::VERDE);
-		
 	}
-	Sleep(500);
+
+	std::cout << std::endl;
+	
+	Sleep(100);
+
+	Consola::setTextColor(Consola::VERDE);
+
+}
+
+void View::printInvalidRacetracks(int invalidRacetracks)
+{
+	std::string message = "Ficheiro Carregado. Numero de Autodromos Invalidos: ";
+	message += std::to_string(invalidRacetracks);
+	printMessage(message, WarningTypeMessage);
 }

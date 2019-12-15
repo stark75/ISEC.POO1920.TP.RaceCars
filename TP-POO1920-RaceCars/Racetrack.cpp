@@ -3,7 +3,7 @@
 
 std::vector<std::string> Racetrack::raceTrackNames;
 
-Racetrack::Racetrack(int newMaxCars, int newLength, std::string newName): maxCars(newMaxCars), trackLength(newLength)
+Racetrack::Racetrack(int newMaxCars, int newLength, std::string newName): maxCars(newMaxCars), trackLength(newLength), isCarMax(false), time(0)
 {
 	if (raceTrackNames.empty())
 	{
@@ -70,6 +70,11 @@ std::string Racetrack::getAsString() const
 	return tmpString;
 }
 
+int Racetrack::getTime() const
+{
+	return time;
+}
+
 void Racetrack::addCarToGarage(Car* newCar)
 {
 	carsInGarage.push_back(newCar);
@@ -108,13 +113,58 @@ void Racetrack::moveCarsToGarage()
 	
 }
 
+void Racetrack::chargeAllCars()
+{
+	int vectorSize = carsInGarage.size();
+
+	if (vectorSize > 0)
+		for(int i=0;i<vectorSize;i++)
+			carsInGarage[i]->energyFullCharge();
+
+	vectorSize = carsInTrack.size();
+	if (vectorSize > 0)
+		for(int i=0;i<vectorSize;i++)
+			carsInTrack[i]->energyFullCharge();
+	
+}
+
 void Racetrack::carsMovement()
 {
 	int trackSize = carsInTrack.size();
 
+	++time;
+	
 	for(int i = 0; i<trackSize;i++)
 	{
 		carsInTrack[i]->move(1);
 	}
 }
+
+bool Racetrack::printCarsInGarage()
+{
+	int vectorSize = carsInGarage.size();
+
+	if (vectorSize == 0)
+		return false;
+	for(int i = 0; i < vectorSize; i++)
+	{
+		std::cout << *carsInGarage[i] << std::endl;
+	}
+	return true;
+}
+
+bool Racetrack::printCarsInTrack()
+{
+	int vectorSize = carsInTrack.size();
+
+	if(vectorSize == 0)
+		return false;
+	
+	for (int i = 0; i < vectorSize; i++)
+	{
+		std::cout << *carsInTrack[i] << std::endl;
+	}
+	return true;
+}
+
 

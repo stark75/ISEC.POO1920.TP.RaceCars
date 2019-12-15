@@ -6,10 +6,9 @@ class Championship
 {
 	std::vector<Car*>        participants;
 	std::vector<std::string> leaderBoard;
-	std::vector<Racetrack*>  races;
-	int race;
-	bool areCarsInTrack;
-	int time;
+	std::vector<Racetrack*>  raceLocations;
+	int                      race;
+	bool                     areCarsInTrack;
 	
 public:
 	Championship(Racetrack* location, std::vector<Car* > newParticipants);
@@ -20,5 +19,10 @@ public:
 
 	bool nextRace();
 	void startRace();
+
 	void passOneSecond();
+	void chargeAllCars();
+
+	bool printCarsInGarage();
+	bool printCarsInTrack();
 };

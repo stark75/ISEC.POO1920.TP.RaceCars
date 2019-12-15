@@ -6,9 +6,7 @@
 #include "View.h"
 #include "Utils.h"
 
-UI::UI()
-{
-}
+UI::UI() = default;
 
 void UI::switchMode()
 {
@@ -63,43 +61,117 @@ bool UI::timePassCommand(int n)
 
 void UI::raceCommand()
 {
-		simulator.startRace();	
+	//NEED TO CHECK IF IT CAN START A RACE
+	simulator.startRace();	
 }
 
 void UI::startChampionship(const std::string racetracks)
 {
-	//Include iss and check multiple racetracks
-
-	//check if string begins with a "-" to identify one or multiple racetracks
-
-	int numberOfRacetracks = 0; //Count how many Racetracks are
-	
-	
-	int verifier = simulator.checkIfItsPossibleToStartAChampionship(racetracks);
-
-	if (verifier == 1)
+	if (racetracks[0] == '-')
 	{
-		if (simulator.addChampionship(racetracks))
+		std::istringstream separator(racetracks);
+
+		std::string argument;
+
+		std::string tmpString;
+
+		std::vector<std::string> racetracksNameList;
+
+		bool firstRacetrack = true;
+		
+		while (separator >> argument)
 		{
+			if (argument[0] == '-')
+			{
+				if (!firstRacetrack)
+				{
+					if (!tmpString.empty())
+						racetracksNameList.push_back(tmpString);
+					else
+					{
+						View::printMessage("Autodromo Invalido.", View::ErrorTypeMessage);
+						return;
+					}
+					tmpString = "";
+				}
+				else
+					firstRacetrack = false;
+				argument.erase(argument.begin());
+			}
+			else
+				tmpString += " ";
+
+			tmpString += argument;
+		}
+
+		if(!tmpString.empty())
+		{
+			racetracksNameList.push_back(tmpString);
+		}
+		else
+		{
+			View::printMessage("Autodromo Invalido.", View::ErrorTypeMessage);
+			return;
+		}
+
+		int vectorSize = racetracksNameList.size();
+
+		for(int i=0; i<vectorSize;i++)
+		{
+			int verifier = simulator.checkIfItsPossibleToStartAChampionship(racetracksNameList[i]);
+
+			if (verifier != 1)
+			{
+				if (verifier == 0)
+					View::printMessage("Campeonato Invalido: Numero de Carros Invalido.", View::ErrorTypeMessage);
+				else if (verifier == -1)
+					View::printMessage("Campeonato Invalido: Autodromo Invalido.", View::ErrorTypeMessage);
+				else if (verifier == -2)
+					View::printMessage("Campeonato Invalido: Autodromo e Numero de Carros Invalidos.", View::ErrorTypeMessage);
+				else
+					View::printMessage("Campeonato Invalido: Erro Desconhecido.", View::ErrorTypeMessage);
+
+				return;
+			}
+		}
+
+		if (simulator.addChampionship(racetracksNameList))
+		{
+			simulator.chargeAllCars();
 			View::printMessage("Campeonato Criado", View::SuccessTypeMessage);
 			switchMode();
 		}
 		else
-		{
 			View::printMessage("Erro ao criar o Campeonato", View::ErrorTypeMessage);
-		}
+		
 	}
 	else
 	{
-		if (verifier == 0)
-			View::printMessage("Campeonato Invalido: Numero de Carros Invalido", View::ErrorTypeMessage);
-		else if (verifier == -1)
-			View::printMessage("Campeonato Invalido: Autodromo Invalido", View::ErrorTypeMessage);
-		else if (verifier == -2)
-			View::printMessage("Campeonato Invalido: Autodromo e Numero de Carros Invalidos", View::ErrorTypeMessage);
-		else
-			View::printMessage("Campeonato Invalido: Erro Desconhecido", View::ErrorTypeMessage);
 
+		int verifier = simulator.checkIfItsPossibleToStartAChampionship(racetracks);
+
+		if (verifier == 1)
+		{
+			if (simulator.addChampionship(racetracks))
+			{
+				View::printMessage("Campeonato Criado", View::SuccessTypeMessage);
+				switchMode();
+			}
+			else
+				View::printMessage("Erro ao criar o Campeonato", View::ErrorTypeMessage);
+		}
+		else
+		{
+			if (verifier == 0)
+				View::printMessage("Campeonato Invalido: Numero de Carros Invalido.", View::ErrorTypeMessage);
+			else if (verifier == -1)
+				View::printMessage("Campeonato Invalido: Autodromo Invalido.", View::ErrorTypeMessage);
+			else if (verifier == -2)
+				View::printMessage("Campeonato Invalido: Autodromo e Numero de Carros Invalidos.", View::ErrorTypeMessage);
+			else
+				View::printMessage("Campeonato Invalido: Erro Desconhecido.", View::ErrorTypeMessage);
+
+		}
 	}
 }
 
@@ -372,15 +444,21 @@ void UI::run(const int argc, char* argv[])
 										tmpString += " ";
 
 									tmpString += argument;
-
 								}
 
-
-								simulator.addRacetrack(tmpMaxCars, tmpLength, tmpString);
-								validCommand = true;
+								if (tmpString[0] != '-')
+								{
+									simulator.addRacetrack(tmpMaxCars, tmpLength, tmpString);
+									validCommand = true;
+								}
+								else
+								{
+									View::printMessage("Nome de Autodromo invalido.", View::ErrorTypeMessage);
+								}
 								
 							}
 						}
+						
 					}
 
 					if(argument == "c") //carro
@@ -467,6 +545,7 @@ void UI::run(const int argc, char* argv[])
 					}
 
 				}
+				
 			}
 
 			if(Utils::argumentCount(command)>=2)
@@ -509,7 +588,7 @@ void UI::run(const int argc, char* argv[])
 
 			if (command == "carregatudo") //TODO
 			{
-				View::printMessage("Carrega Tudo not implemented", View::WarningTypeMessage);
+				simulator.chargeAllCars();
 
 				validCommand = true;
 			}
@@ -523,8 +602,7 @@ void UI::run(const int argc, char* argv[])
 
 			if (command == "listacarros") //TODO
 			{
-				View::printMessage("Lista de Carros not implemented", View::WarningTypeMessage);
-
+				View::printCarsOnChampionship(simulator);
 				validCommand = true;
 			}
 
@@ -549,8 +627,13 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "destroi") //TODO
 				{
-					View::printMessage("destroi not implemented", View::WarningTypeMessage);
-					validCommand = true;
+					separator >> argument;
+
+					if (argument.size() == 1)
+					{
+						if(simulator.removeCar(argument[0]))
+							validCommand = true;
+					}
 				}
 
 				if (argument == "passatempo")
@@ -609,6 +692,7 @@ bool UI::loadRacetrack(const std::string filename)
 {
 	std::ifstream racetrackFile;
 	std::string buffer;
+	int invalidRacetracks = 0;
 
 	racetrackFile.open(filename);
 
@@ -649,22 +733,40 @@ bool UI::loadRacetrack(const std::string filename)
 
 				std::string tmpName = "";
 				bool firstTime = true;
+				bool valid = true;
 				while (separator >> storedValue)
 				{
 					if (firstTime)
+					{
+						if (storedValue[0] == '-')
+						{
+							invalidRacetracks++;
+							valid = false;
+							break;
+						}
+
 						firstTime = false;
+					}
 					else
 						tmpName += " ";
 					tmpName += storedValue;
 				}
 
-				simulator.addRacetrack(maxCars, trackLength, tmpName);
+				if(valid)
+					simulator.addRacetrack(maxCars, trackLength, tmpName);
 							   
 			}
 		}
 
 		racetrackFile.close();
-		View::printMessage("Ficheiro carregado.", View::SuccessTypeMessage);
+		if (invalidRacetracks == 0)
+		{
+			View::printMessage("Ficheiro carregado na totalidade.", View::SuccessTypeMessage);
+		}
+		else
+		{
+			View::printInvalidRacetracks(invalidRacetracks);
+		}
 		return true;
 	}
 	View::printMessage("Ficheiro Invalido.", View::ErrorTypeMessage);
