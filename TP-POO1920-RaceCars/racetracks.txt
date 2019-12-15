@@ -1,1 +1,4 @@
-30 100 Golden Experience
+10 300 Estoril
+30 700 Monaco
+20 500 London
+20 500 Manhattan
