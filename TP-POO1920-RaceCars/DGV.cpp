@@ -56,6 +56,11 @@ bool DGV::removeCar(const char wantedID)
 			char tmpID = carList[i]->getID();
 			if (wantedID == tmpID)
 			{
+				Pilot* driver = carList[i]->getDriver();
+
+				if(driver!=nullptr)
+					driver->detach();
+
 				delete carList[i];
 				carList.erase(carList.begin() + i);
 				return true;
@@ -76,6 +81,11 @@ bool DGV::removePilot(std::string wantedName)
 			std::string tmpID = pilotList[i]->getName();
 			if (wantedName == tmpID)
 			{
+				Car* currentCar = pilotList[i]->getCurrentCar();
+
+				if(currentCar!=nullptr)
+					currentCar->detach();
+				
 				delete pilotList[i];
 				pilotList.erase(pilotList.begin() + i);
 				return true;
