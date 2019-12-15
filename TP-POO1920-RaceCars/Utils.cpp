@@ -86,3 +86,82 @@ std::string Utils::tolower(std::string str)
 
 	return tmpString;
 }
+
+std::string Utils::getTimeAsString(int t)
+{
+	std::string time;
+	if (t < 0)
+		return "Invalid Time";
+	if (t < 60)
+	{
+		time += std::to_string(t);
+		time += "s";
+	}
+	if(t >= 60)
+	{
+		int integer = t;
+		int seconds = 0;
+		int minutes = 0;
+		int hours = 0;
+		int days = 0;
+		
+		for (minutes; integer > 59; minutes++)
+		{
+			integer -= 60;
+		}
+
+		seconds = integer;
+
+		if(minutes >= 60)
+		{
+			integer = minutes;
+		
+			for(; integer > 59; hours++)
+			{
+				integer -= 60;
+			}
+
+			minutes = integer;
+
+			if(hours > 23)
+			{
+				integer = hours;
+
+				for(;integer > 23; days++)
+				{
+					integer -= 24;
+				}
+
+				hours = integer;
+			}
+			
+		}
+
+		if (days > 0)
+		{
+			time += std::to_string(days);
+			time += ":";
+		}
+
+		if (hours > 0)
+		{
+			if (hours < 10)
+				time += "0";
+			time += std::to_string(hours);
+			time += ":";
+		}
+
+		if (minutes < 10)
+			time += "0";
+
+		time += std::to_string(minutes);
+		time += ":";
+		
+		if (seconds < 10)
+			time += "0";
+
+		time += std::to_string(seconds);
+	}
+
+	return time;
+}
