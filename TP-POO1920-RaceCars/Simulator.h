@@ -18,6 +18,7 @@ public:
 
 	DGV* getDGV();
 	Championship* getChampionship();
+	Racetrack* getCurrentRace();
 
 	bool attach(char carID, std::string pilotName);
 	bool detach(char carID);

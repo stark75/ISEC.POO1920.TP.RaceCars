@@ -53,9 +53,12 @@ bool UI::timePassCommand(int n)
 		for (int i = 0; i < n; i++)
 		{
 			simulator.passOneSecond();
+			
+			View::printRace(simulator);
 		}
 		return true;
 	}
+	View::printMessage("Nao ha carros na pista.", View::ErrorTypeMessage);
 	return false;
 }
 
@@ -317,7 +320,7 @@ void UI::run(const int argc, char* argv[])
 				std::istringstream separator(command);
 				std::string argument;
 				separator >> argument;
-
+				//TODO MESSAGES
 				if (argument == "entranocarro")
 				{
 					separator >> argument;
@@ -586,10 +589,10 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 
-			if (command == "carregatudo") //TODO
+			if (command == "carregatudo")
 			{
 				simulator.chargeAllCars();
-
+				View::printMessage("Todos os carros foram carregados.", View::SuccessTypeMessage);
 				validCommand = true;
 			}
 
@@ -600,7 +603,7 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 
-			if (command == "listacarros") //TODO
+			if (command == "listacarros")
 			{
 				View::printCarsOnChampionship(simulator);
 				validCommand = true;

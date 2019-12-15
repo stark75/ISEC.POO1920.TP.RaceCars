@@ -98,9 +98,12 @@ void View::printCarsOnChampionship(Simulator& s)
 	}
 }
 
-void View::printRace(Racetrack* r)
+void View::printRace(Simulator& s)
 {
+	Racetrack* r = s.getCurrentRace();
+	
 	Consola::clrscr();
+
 	int length = r->getTrackLength();
 	std::vector<Car* > raceCars = r->getCarsInTrack();
 	int raceSize = raceCars.size();
@@ -126,7 +129,7 @@ void View::printRace(Racetrack* r)
 	std::cout << Utils::getTimeAsString(raceTime) << std::endl;
 
 	Consola::gotoxy(3, 5);
-	std::cout << "----------------------" << std::endl;
+	std::cout << "-----------------------" << std::endl;
 	
 	for (int i = 0; i < raceSize; i++)
 	{
@@ -168,7 +171,7 @@ void View::printRace(Racetrack* r)
 			{
 				Consola::setTextColor(Consola::BRANCO);
 				Consola::gotoxy(3, 7 + i * 2);
-				std::cout << "----------------------" << std::endl;
+				std::cout << "-----------------------" << std::endl;
 				Consola::setTextColor(Consola::VERDE);
 			}
 		}

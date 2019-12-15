@@ -16,7 +16,8 @@ public:
 	~Championship() = default;
 
 	bool getAreCarsInTrack();
-
+	Racetrack* getCurrentRace();
+	
 	bool nextRace();
 	void startRace();
 

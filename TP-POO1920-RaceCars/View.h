@@ -21,7 +21,7 @@ public:
 	static void helpCommand();
 	static void printModelsInfoCommand(Simulator& s);
 	static void printCarsOnChampionship(Simulator& s);
-	static void printRace(Racetrack* r);
+	static void printRace(Simulator& s);
 	static void printInvalidRacetracks(int invalidRacetracks);
 };
 

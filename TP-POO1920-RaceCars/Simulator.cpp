@@ -27,6 +27,11 @@ Championship* Simulator::getChampionship()
 	return championship;
 }
 
+Racetrack* Simulator::getCurrentRace()
+{
+	return championship->getCurrentRace();
+}
+
 bool Simulator::attach(char carID, std::string pilotName)
 {
 	return currentDGV.attach(carID, pilotName);

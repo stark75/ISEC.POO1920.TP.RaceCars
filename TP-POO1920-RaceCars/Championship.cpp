@@ -36,6 +36,11 @@ bool Championship::getAreCarsInTrack()
 	return areCarsInTrack;
 }
 
+Racetrack* Championship::getCurrentRace()
+{
+	return raceLocations[race];
+}
+
 bool Championship::nextRace()
 {
 	int maxRaces = raceLocations.size();
@@ -57,8 +62,6 @@ void Championship::startRace()
 void Championship::passOneSecond()
 {
 	raceLocations[race]->carsMovement();
-	
-	View::printRace(raceLocations[race]);
 }
 
 void Championship::chargeAllCars()
