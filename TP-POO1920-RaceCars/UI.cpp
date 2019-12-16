@@ -320,7 +320,7 @@ void UI::run(const int argc, char* argv[])
 				std::istringstream separator(command);
 				std::string argument;
 				separator >> argument;
-				//TODO MESSAGES
+				
 				if (argument == "entranocarro")
 				{
 					separator >> argument;
@@ -345,13 +345,17 @@ void UI::run(const int argc, char* argv[])
 								
 							}
 
-							simulator.attach(tmpChar, tmpString);
+							if (simulator.attach(tmpChar, tmpString))
+								View::printMessage("Piloto entrou no carro.",View::SuccessTypeMessage);
+							else
+								View::printMessage("Piloto impossibilitado de entrar no carro.",View::ErrorTypeMessage);
 							
 							validCommand = true;
 						}
 					}
 				}
 
+				//TODO MESSAGES
 				
 				if(argument == "apaga")
 				{
@@ -647,7 +651,7 @@ void UI::run(const int argc, char* argv[])
 					{
 						int time = std::stoi(argument);
 
-						//DO A PRINT MESSAGE IN CASE OF FAILURE OR SUCESS
+						//DO A PRINT MESSAGE IN CASE OF FAILURE OR SUCCESS
 						timePassCommand(time);
 						
 						validCommand = true;
