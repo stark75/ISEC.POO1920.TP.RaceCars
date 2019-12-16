@@ -12,12 +12,12 @@ void View::printTitle()
 	std::cout << "_  _, _// /_/ // /__ /  __/ /___  / /_/ /_  /   _(__  )" << std::endl;
 	std::cout << "/_/ |_| \\__,_/ \\___/ \\___/\\____/  \\__,_/ /_/    /____/\n" << std::endl;
 	
-	std::cout << " _.-.___\\__         _.-.___\\__         _.-.___\\__" << std::endl;
+	std::cout << R"( _.-.___\__         _.-.___\__         _.-.___\__)" << std::endl;
 	std::cout << "|  _      _`-.     |  _      _`-.     |  _      _`-." << std::endl;
 	std::cout << "'-(_)----(_)--`    '-(_)----(_)--`    '-(_)----(_)--`" << std::endl;
 }
 
-void View::printMessage(std::string message, int type)
+void View::printMessage(const std::string& message, const int type)
 {
 	if (type == ErrorTypeMessage)
 	{

@@ -16,7 +16,7 @@ public:
 	
 	static void printTitle();
 
-	static void printMessage(std::string message = "No message.", int type = NullTypeMessage);
+	static void printMessage(const std::string& message = "No message.", int type = NullTypeMessage);
 	static void printCommandLineMessage();
 	static void helpCommand();
 	static void printModelsInfoCommand(Simulator& s);
