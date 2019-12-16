@@ -4,7 +4,6 @@
 
 DGV::DGV()
 {
-	
 }
 
 DGV::~DGV()
@@ -47,6 +46,9 @@ bool DGV::addPilot(const Pilot newPilot)
 
 bool DGV::removeCar(const char wantedID)
 {
+	
+	//TODO check if car is riding on a championship
+
 	int vectorSize = carList.size();
 
 	if (vectorSize > 0)
@@ -72,6 +74,9 @@ bool DGV::removeCar(const char wantedID)
 
 bool DGV::removePilot(std::string wantedName)
 {
+
+	//TODO check if pilot is riding on a championship
+	
 	int vectorSize = pilotList.size();
 
 	if (vectorSize > 0)

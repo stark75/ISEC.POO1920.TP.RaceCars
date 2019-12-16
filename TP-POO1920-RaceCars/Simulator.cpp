@@ -44,13 +44,16 @@ bool Simulator::detach(char carID)
 
 bool Simulator::addCar(int e, int mE, int mS, std::string b, std::string m)
 {
+	if (mE < 100 || mS < 1 || e < 0 || e > mE)
+		return false;
+	
     Car tmpCar(e,mE, mS,b,m);
 	return currentDGV.addCar(tmpCar);
 }
 
 bool Simulator::addPilot(std::string type, std::string newName)
 {
-	if (type == "generico") //remover para a pr�xima meta
+	if (type == "generico") //remover para a proxima meta
 	{
 		Pilot tmpPilot(newName);
 		return currentDGV.addPilot(tmpPilot);
@@ -79,6 +82,9 @@ bool Simulator::addPilot(std::string type, std::string newName)
 
 bool Simulator::addRacetrack(int maxCars, int length, std::string newName)
 {
+	if (maxCars < 2 || length < 1)
+		return false;
+	
 	Racetrack tmpRacetrack(maxCars, length, newName);
 	racetracks.push_back(new Racetrack(tmpRacetrack));
 	return true;
@@ -135,6 +141,12 @@ bool Simulator::removePilot(std::string wantedName)
 
 bool Simulator::removeRacetrack(std::string wantedName)
 {
+
+	/* TODO
+	 * if(racetrackIsInAChampionship())
+	 * return false;
+	 */
+	
 	int vectorSize = racetracks.size();
 
 	if (vectorSize > 0)

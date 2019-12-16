@@ -64,8 +64,9 @@ bool UI::timePassCommand(int n)
 
 void UI::raceCommand()
 {
-	//NEED TO CHECK IF IT CAN START A RACE
-	simulator.startRace();	
+	//TODO: NEED TO CHECK IF IT CAN START A RACE
+	simulator.startRace();
+	View::printMessage("Corrida Iniciada.", View::SuccessTypeMessage);
 }
 
 void UI::startChampionship(const std::string racetracks)
@@ -206,7 +207,7 @@ void UI::run(const int argc, char* argv[])
 
 		bool validCommand = false;
 			
-		if(Utils::tolower(command) == "sair" || Utils::tolower(command) == "exit")
+		if (Utils::tolower(command) == "sair" || Utils::tolower(command) == "exit")
 		{
 			View::printMessage("Exiting!", View::WarningTypeMessage);
 			return;
@@ -229,11 +230,11 @@ void UI::run(const int argc, char* argv[])
 
 			if (command == "campeonato" || command == "championship")
 			{
-				if(simulator.getChampionship()!=nullptr)
+				if (simulator.getChampionship() != nullptr)
 				{
 					switchMode();
 					View::printMessage("Modo Campeonato reativado.", View::SuccessTypeMessage);
-					validCommand=true;
+					validCommand = true;
 				}
 			}
 			
@@ -245,7 +246,7 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 			
-			if(Utils::argumentCount(command)==2)
+			if (Utils::argumentCount(command) == 2)
 			{
 				std::istringstream separator(command);
 				std::string argument;
@@ -262,9 +263,9 @@ void UI::run(const int argc, char* argv[])
 				if (argument == "carregaC")
 				{
 					separator >> argument;
-					
+
 					loadCars(argument);
-					
+
 					validCommand = true;
 				}
 
@@ -273,7 +274,7 @@ void UI::run(const int argc, char* argv[])
 					separator >> argument;
 
 					loadPilots(argument);
-					
+
 					validCommand = true;
 				}
 
@@ -296,11 +297,16 @@ void UI::run(const int argc, char* argv[])
 				if (argument == "saidocarro")
 				{
 					separator >> argument;
-					
+
 					if (argument.size() == 1)
 					{
 						char tmpChar = argument[0];
-						simulator.detach(tmpChar);
+
+						if (simulator.detach(tmpChar))
+							View::printMessage("Piloto removido.", View::SuccessTypeMessage);
+						else
+							View::printMessage("Piloto nao removido.", View::ErrorTypeMessage);
+
 						validCommand = true;
 					}
 				}
@@ -312,15 +318,15 @@ void UI::run(const int argc, char* argv[])
 					//TODO
 					validCommand = true;
 				}
-				
+
 			}
 
-			if(Utils::argumentCount(command)>=3)
+			if (Utils::argumentCount(command) >= 3)
 			{
 				std::istringstream separator(command);
 				std::string argument;
 				separator >> argument;
-				
+
 				if (argument == "entranocarro")
 				{
 					separator >> argument;
@@ -338,30 +344,30 @@ void UI::run(const int argc, char* argv[])
 							{
 								if (firstTime)
 									firstTime = false;
-								else 
+								else
 									tmpString += " ";
 
-									tmpString += argument;
-								
+								tmpString += argument;
+
 							}
 
 							if (simulator.attach(tmpChar, tmpString))
-								View::printMessage("Piloto entrou no carro.",View::SuccessTypeMessage);
+								View::printMessage("Piloto entrou no carro.", View::SuccessTypeMessage);
 							else
-								View::printMessage("Piloto impossibilitado de entrar no carro.",View::ErrorTypeMessage);
-							
+								View::printMessage("Piloto impossibilitado de entrar no carro.", View::ErrorTypeMessage);
+
 							validCommand = true;
 						}
 					}
 				}
 
 				//TODO MESSAGES
-				
-				if(argument == "apaga")
+
+				if (argument == "apaga")
 				{
 					separator >> argument;
 
-					if(argument == "a")
+					if (argument == "a")
 					{
 						std::string tmpName = "";
 						bool firstTime = true;
@@ -374,22 +380,28 @@ void UI::run(const int argc, char* argv[])
 							tmpName += argument;
 						}
 
-						simulator.removeRacetrack(tmpName);
+						if (simulator.removeRacetrack(tmpName))
+							View::printMessage("Autodromo Removido.", View::SuccessTypeMessage);
+						else
+							View::printMessage("Autodromo nao removido", View::ErrorTypeMessage);
 
 						validCommand = true;
-						
+
 					}
 
-					if(argument == "c")
+					if (argument == "c")
 					{
 						separator >> argument;
 
-						if(argument.size()==1)
+						if (argument.size() == 1)
 						{
-							simulator.removeCar(argument[0]);
+							if (simulator.removeCar(argument[0]))
+								View::printMessage("Carro Removido.", View::SuccessTypeMessage);
+							else
+								View::printMessage("Carro nao removido.", View::ErrorTypeMessage);
 							validCommand = true;
 						}
-						
+
 					}
 
 					if (argument == "p")
@@ -405,31 +417,33 @@ void UI::run(const int argc, char* argv[])
 							tmpName += argument;
 						}
 
-						simulator.removePilot(tmpName);
+						if (simulator.removePilot(tmpName))
+							View::printMessage("Piloto Removido.", View::SuccessTypeMessage);
+						else
+							View::printMessage("Piloto nao Removido.", View::ErrorTypeMessage);
 
 						validCommand = true;
-
 					}
 
 				}
 
 			}
 
-			if(Utils::argumentCount(command)>=4)
+			if (Utils::argumentCount(command) >= 4)
 			{
 				std::istringstream separator(command);
 				std::string argument;
 				separator >> argument;
 
-				if(argument == "cria")
+				if (argument == "cria")
 				{
 					separator >> argument;
 
-					if(argument == "a") //autodromo
+					if (argument == "a") //autodromo
 					{
 						separator >> argument;
 
-						if(Utils::isNumber(argument))
+						if (Utils::isNumber(argument))
 						{
 							int tmpMaxCars = std::stoi(argument);
 
@@ -439,7 +453,7 @@ void UI::run(const int argc, char* argv[])
 							{
 								int tmpLength = std::stoi(argument);
 
-								std::string tmpString="";
+								std::string tmpString = "";
 
 								bool firstTime = true;
 
@@ -455,36 +469,43 @@ void UI::run(const int argc, char* argv[])
 
 								if (tmpString[0] != '-')
 								{
-									simulator.addRacetrack(tmpMaxCars, tmpLength, tmpString);
+									if (simulator.addRacetrack(tmpMaxCars, tmpLength, tmpString))
+									{
+										View::printMessage("Autodromo gerado.", View::SuccessTypeMessage);
+									}
+									else
+									{
+										View::printMessage("Parametros do Autodromo Invalidos.", View::ErrorTypeMessage);
+									}
 									validCommand = true;
 								}
 								else
 								{
 									View::printMessage("Nome de Autodromo invalido.", View::ErrorTypeMessage);
 								}
-								
+
 							}
 						}
-						
+
 					}
 
-					if(argument == "c") //carro
+					if (argument == "c") //carro
 					{
 						separator >> argument;
 
-						if(Utils::isNumber(argument))
+						if (Utils::isNumber(argument))
 						{
-							int tmpMaxSpeed= std::stoi(argument);
-							
+							int tmpMaxSpeed = std::stoi(argument);
+
 							separator >> argument;
 
-							if(Utils::isNumber(argument))
+							if (Utils::isNumber(argument))
 							{
 								int tmpEnergy = std::stoi(argument);
 
 								separator >> argument;
 
-								
+
 								if (Utils::isNumber(argument))
 								{
 									int tmpMaxEnergy = std::stoi(argument);
@@ -510,11 +531,14 @@ void UI::run(const int argc, char* argv[])
 
 										}
 
-										simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand, tmpString);
+										if (simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand, tmpString))
+											View::printMessage("Carro gerado.", View::SuccessTypeMessage);
+										else
+											View::printMessage("Parametros Errados.", View::ErrorTypeMessage);
 									}
 									else
 									{
-										simulator.addCar(tmpEnergy,tmpMaxEnergy, tmpMaxSpeed, tmpBrand);
+										simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand);
 									}
 									validCommand = true;
 								}
@@ -522,11 +546,11 @@ void UI::run(const int argc, char* argv[])
 						}
 					}
 
-					if(argument == "p") //piloto
+					if (argument == "p") //piloto
 					{
 						separator >> argument;
 
-						if(argument == "rapido" || argument == "crazy" || argument == "surpresa" || argument == "generico"/*remover para a próxima meta*/)
+						if (argument == "rapido" || argument == "crazy" || argument == "surpresa" || argument == "generico"/*remover para a próxima meta*/)
 						{
 							std::string tmpType = argument;
 							std::string tmpString = "";
@@ -544,18 +568,20 @@ void UI::run(const int argc, char* argv[])
 
 							}
 
-							//TODO Create a new method
-							simulator.addPilot(tmpType,tmpString);
+							if (simulator.addPilot(tmpType, tmpString))
+								View::printMessage("Piloto gerado.", View::SuccessTypeMessage);
+							else
+								View::printMessage("Parametros errados.", View::ErrorTypeMessage);
 							validCommand = true;
 						}
-						
+
 					}
 
 				}
-				
+
 			}
 
-			if(Utils::argumentCount(command)>=2)
+			if (Utils::argumentCount(command) >= 2)
 			{
 				std::istringstream separator(command);
 				std::string argument;
@@ -567,7 +593,7 @@ void UI::run(const int argc, char* argv[])
 
 					bool isFirstTime = true;
 
-					while(separator >> argument)
+					while (separator >> argument)
 					{
 						if (isFirstTime)
 							isFirstTime = false;
@@ -577,7 +603,7 @@ void UI::run(const int argc, char* argv[])
 					}
 
 					startChampionship(tmpString);
-					
+
 					validCommand = true;
 				}
 			}
@@ -603,7 +629,6 @@ void UI::run(const int argc, char* argv[])
 			if (command == "corrida")
 			{
 				raceCommand();
-
 				validCommand = true;
 			}
 
@@ -613,10 +638,10 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 
-			if (command == "log") //TODO
+			if (command == "log")
 			{
+				//TODO
 				View::printMessage("log not implemented", View::WarningTypeMessage);
-
 				validCommand = true;
 			}
 
@@ -638,7 +663,8 @@ void UI::run(const int argc, char* argv[])
 
 					if (argument.size() == 1)
 					{
-						if(simulator.removeCar(argument[0]))
+						//TODO: Remove car from championship
+						if(simulator.removeCar(argument[0])) /*simulator.destroyCar(argument[0])*/
 							validCommand = true;
 					}
 				}
@@ -651,7 +677,6 @@ void UI::run(const int argc, char* argv[])
 					{
 						int time = std::stoi(argument);
 
-						//DO A PRINT MESSAGE IN CASE OF FAILURE OR SUCCESS
 						timePassCommand(time);
 						
 						validCommand = true;
@@ -688,7 +713,7 @@ void UI::run(const int argc, char* argv[])
 		}
 
 		if(!validCommand)
-			View::printMessage("Comando Invalido", View::ErrorTypeMessage);
+			View::printMessage("Comando Invalido.", View::ErrorTypeMessage);
 		
 		View::printCommandLineMessage();
 		std::getline(std::cin, command);
@@ -759,9 +784,10 @@ bool UI::loadRacetrack(const std::string filename)
 					tmpName += storedValue;
 				}
 
-				if(valid)
-					simulator.addRacetrack(maxCars, trackLength, tmpName);
-							   
+				if (valid)
+					if (!simulator.addRacetrack(maxCars, trackLength, tmpName))
+						invalidRacetracks++;
+
 			}
 		}
 
