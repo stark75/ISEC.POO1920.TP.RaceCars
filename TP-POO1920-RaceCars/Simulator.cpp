@@ -176,14 +176,17 @@ int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 	
 }
 
-void Simulator::printRacetracks()
+bool Simulator::printRacetracks()
 {
 	int vectorSize = racetracks.size();
+	if(vectorSize == 0)
+		return false;
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
 			std::cout << racetracks[i]->getAsString() << std::endl;
 	}
+	return true;
 }
 
 void Simulator::chargeAllCars()

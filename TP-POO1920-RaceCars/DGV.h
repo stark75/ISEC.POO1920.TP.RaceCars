@@ -20,8 +20,8 @@ public:
 	bool removeCar(const char wantedID);
 	bool removePilot(std::string wantedName);
 
-	void printCars();
-	void printPilots();
+	bool printCars();
+	bool printPilots();
 
 	Car* getCarById(char wantedID);
 	Pilot* getPilotByName(std::string wantedName);

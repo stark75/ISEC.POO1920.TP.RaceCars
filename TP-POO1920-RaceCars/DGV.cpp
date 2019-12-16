@@ -95,18 +95,24 @@ bool DGV::removePilot(std::string wantedName)
 	return false;
 }
 
-void DGV::printCars()
+bool DGV::printCars()
 {
 	int vectorSize = carList.size();
+	if(vectorSize == 0)
+		return false;
 	for (int i = 0; i < vectorSize; i++)
 		std::cout << *carList[i] << std::endl;
+	return true;
 }
 
-void DGV::printPilots()
+bool DGV::printPilots()
 {
 	int vectorSize = pilotList.size();
+	if(vectorSize == 0)
+		return false;
 	for (int i = 0; i < vectorSize; i++)
 		std::cout << *pilotList[i] << std::endl;
+	return true;
 }
 
 Car* DGV::getCarById(char wantedID)

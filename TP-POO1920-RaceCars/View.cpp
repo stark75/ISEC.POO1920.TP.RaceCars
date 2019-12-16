@@ -70,9 +70,37 @@ void View::helpCommand()
 
 void View::printModelsInfoCommand(Simulator& s)
 {
-	s.getDGV()->printCars();
-	s.getDGV()->printPilots();
-	s.printRacetracks();
+	Consola::setTextColor(Consola::AZUL_CLARO);
+	std::cout << "\nLista de Carros" << std::endl;
+	Consola::setTextColor(Consola::VERDE);
+	if(!s.getDGV()->printCars())
+	{
+		Consola::setTextColor(Consola::AMARELO);
+		std::cout << "Nao existem carros." << std::endl;
+		Consola::setTextColor(Consola::VERDE);
+	}
+
+	Consola::setTextColor(Consola::AZUL_CLARO);
+	std::cout << "\nLista de Pilotos" << std::endl;
+	Consola::setTextColor(Consola::VERDE);
+	if (!s.getDGV()->printPilots())
+	{
+		Consola::setTextColor(Consola::AMARELO);
+		std::cout << "Nao existem pilotos." << std::endl;
+		Consola::setTextColor(Consola::VERDE);
+	}
+
+	Consola::setTextColor(Consola::AZUL_CLARO);
+	std::cout << "\nLista de Autodromos" << std::endl;
+	Consola::setTextColor(Consola::VERDE);
+	if(!s.printRacetracks())
+	{
+		Consola::setTextColor(Consola::AMARELO);
+		std::cout << "Nao existem autodromos." << std::endl;
+		Consola::setTextColor(Consola::VERDE);
+	}
+
+	std::cout << std::endl;
 }
 
 void View::printCarsOnChampionship(Simulator& s)

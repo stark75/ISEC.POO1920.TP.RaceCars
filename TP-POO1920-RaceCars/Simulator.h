@@ -38,7 +38,7 @@ public:
 	void startRace();
 	void passOneSecond();
 
-	void printRacetracks();
+	bool printRacetracks();
 	
 	Racetrack* getRacetrackByName(std::string wantedName);
 	bool checkIfItsPossibleToStartARace();
