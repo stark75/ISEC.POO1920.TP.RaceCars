@@ -46,4 +46,6 @@ public:
 
 	bool                printCarsInGarage();
 	bool                printCarsInTrack();
+	bool checkEndOfRace();
+	bool copyGarage(std::vector<Car*> src);
 };

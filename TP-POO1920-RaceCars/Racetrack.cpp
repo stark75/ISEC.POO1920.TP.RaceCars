@@ -136,7 +136,12 @@ void Racetrack::carsMovement()
 	
 	for(int i = 0; i<trackSize;i++)
 	{
-		carsInTrack[i]->move(1);
+		if(carsInTrack[i]->getPosition() < trackLength)
+			carsInTrack[i]->move(1);
+		/*TODO
+		 * else
+		 *	resets car;
+		 */
 	}
 }
 
@@ -167,4 +172,34 @@ bool Racetrack::printCarsInTrack()
 	return true;
 }
 
+bool Racetrack::checkEndOfRace()
+{
+	int vectorSize = carsInTrack.size();
 
+	if (vectorSize == 0)
+		return true;
+
+	for (int i = 0; i < vectorSize; i++)
+	{
+		int position = carsInTrack[i]->getPosition();
+		if(position < trackLength)
+			return false;
+	}
+
+	return true;
+}
+
+bool Racetrack::copyGarage(std::vector<Car*> src)
+{
+	if (src.empty())
+		return false;
+
+	if (!carsInTrack.empty())
+		return false;
+
+	if(!carsInGarage.empty())
+		return false;
+
+	carsInGarage = src;
+	return true;
+}
