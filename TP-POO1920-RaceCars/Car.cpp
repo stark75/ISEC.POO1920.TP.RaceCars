@@ -242,7 +242,7 @@ bool Car::energyConsumption()
 
 void Car::move(int n)
 {
-	position += n;
+	position += n*.5*maxSpeed;
 }
 
 
