@@ -1,5 +1,6 @@
 #include "Car.h"
 #include <iostream>
+#include "Utils.h"
 
 char Car::nextID = 'a';
 
@@ -164,7 +165,7 @@ std::string Car::getAsString() const
 {
 	std::string tmpString;
 
-	tmpString += "[Carro ";
+	tmpString += "[";
 	tmpString += getID();
 	tmpString += " | ";
 	tmpString += getBrand();
@@ -175,11 +176,27 @@ std::string Car::getAsString() const
 	{
 		std::string tmpDriver = driver->getName();
 		tmpString += tmpDriver;
+		tmpString += " (";
+		std::string tmpDType = driver->getTypeAsString();
+		tmpString += tmpDType;
+		tmpString += ") | Vel: ";
+		tmpString += std::to_string(speed);
+		tmpString += "m/s (max: ";
+		tmpString += std::to_string(maxSpeed);
+		tmpString += "m/s) | Pos: ";
+		tmpString += std::to_string(position);
+		tmpString += "m";
+
 	}
 	else
 	{
 		tmpString += "Nenhum";
 	}
+	tmpString += " | Bat: ";
+	tmpString += Utils::doubleToStringWithPrecision(energy, 2);
+	tmpString += "mAh (max: ";
+	tmpString += Utils::doubleToStringWithPrecision(maxEnergy, 2);
+	tmpString += "mAh)";
 	tmpString += "]";
 	
 	return tmpString;
@@ -238,6 +255,20 @@ bool Car::energyConsumption()
 	energy -= speed * 0.1;
 	if (energy < 0) energy = 0;
 	return true;
+}
+
+bool Car::accident()
+{
+	if(isDamaged)
+		return false;
+	return isDamaged = true;
+}
+
+bool Car::repair()
+{
+	if(!isDamaged)
+		return false;
+	return isDamaged = false;
 }
 
 void Car::move(int n)

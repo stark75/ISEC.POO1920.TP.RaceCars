@@ -62,6 +62,8 @@ public:
 	bool         energyCharge(int n);
 	bool         energyFullCharge();
 	bool         energyConsumption();
+	bool         accident();
+	bool         repair();
 	void         move(int n);
 	//TODO: Car movement
 
