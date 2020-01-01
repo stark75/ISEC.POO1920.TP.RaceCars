@@ -213,20 +213,3 @@ int DGV::getNumberOfCarsWithPilots()
 
 	return numberOfCarsWithPilots;
 }
-
-bool DGV::sortFunc(Car *lhs, Car *rhs)
-{
-	return lhs->getPosition() > rhs->getPosition();
-}
-
-void DGV::sortCarsByPosition()
-{
-	printCars();
-	std::vector<Car*> vectorCopy = carList;
-
-	std::sort(vectorCopy.begin(),vectorCopy.end(), sortFunc);
-	View::printMessage("Vector Sorted.", View::SuccessTypeMessage);
-	
-	carList = vectorCopy;
-	printCars();
-}
