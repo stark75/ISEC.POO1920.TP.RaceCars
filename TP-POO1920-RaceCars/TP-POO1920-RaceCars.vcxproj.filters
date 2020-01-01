@@ -40,6 +40,9 @@
     <Filter Include="Model\DGV\Pilot\SurprisePilot">
       <UniqueIdentifier>{5fd14532-4d37-4867-a14b-89339d3f4171}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Standings">
+      <UniqueIdentifier>{05d56c2f-50b0-45ec-aa25-eac6c0770d62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Consola\Consola.cpp">
@@ -84,6 +87,12 @@
     <ClCompile Include="SurprisePilot.cpp">
       <Filter>Model\DGV\Pilot\SurprisePilot</Filter>
     </ClCompile>
+    <ClCompile Include="StandingsElement.cpp">
+      <Filter>Standings</Filter>
+    </ClCompile>
+    <ClCompile Include="RaceResults.cpp">
+      <Filter>Standings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Consola\Consola.h">
@@ -124,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="SurprisePilot.h">
       <Filter>Model\DGV\Pilot\SurprisePilot</Filter>
+    </ClInclude>
+    <ClInclude Include="StandingsElement.h">
+      <Filter>Standings</Filter>
+    </ClInclude>
+    <ClInclude Include="RaceResults.h">
+      <Filter>Standings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

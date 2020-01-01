@@ -132,8 +132,10 @@
     <ClCompile Include="FastPilot.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pilot.cpp" />
+    <ClCompile Include="RaceResults.cpp" />
     <ClCompile Include="Racetrack.cpp" />
     <ClCompile Include="Simulator.cpp" />
+    <ClCompile Include="StandingsElement.cpp" />
     <ClCompile Include="SurprisePilot.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -147,8 +149,10 @@
     <ClInclude Include="DGV.h" />
     <ClInclude Include="FastPilot.h" />
     <ClInclude Include="Pilot.h" />
+    <ClInclude Include="RaceResults.h" />
     <ClInclude Include="Racetrack.h" />
     <ClInclude Include="Simulator.h" />
+    <ClInclude Include="StandingsElement.h" />
     <ClInclude Include="SurprisePilot.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Utils.h" />
