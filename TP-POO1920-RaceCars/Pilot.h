@@ -22,7 +22,8 @@ public:
     std::string getName() const;
     Car*        getCurrentCar() const;
 	std::string getAsString() const;
-
+	std::string getTypeAsString() const;
+	
 	bool        attach(Car* newCar);
 	bool        detach();
 
