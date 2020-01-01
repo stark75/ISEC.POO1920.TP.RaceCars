@@ -1,5 +1,6 @@
 #include "Utils.h"
 #include <iostream>
+#include <sstream>
 
 int Utils::argumentCount(std::string str)
 {
@@ -85,6 +86,14 @@ std::string Utils::tolower(std::string str)
 	}
 
 	return tmpString;
+}
+
+std::string Utils::doubleToStringWithPrecision(const double value, const int precision)
+{
+	std::ostringstream out;
+	out.precision(precision);
+	out << std::fixed << value;
+	return out.str();
 }
 
 std::string Utils::getTimeAsString(int t)
