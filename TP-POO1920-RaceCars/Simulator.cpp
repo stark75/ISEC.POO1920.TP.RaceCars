@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Simulator.h"
 
 Simulator::Simulator(): championship(nullptr)
@@ -29,7 +30,7 @@ Championship* Simulator::getChampionship()
 
 Racetrack* Simulator::getCurrentRace()
 {
-	return championship->getCurrentRace();
+	return championship->getCurrentRacetrack();
 }
 
 bool Simulator::attach(char carID, std::string pilotName)
@@ -188,6 +189,11 @@ int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 	
 }
 
+void Simulator::clearChampionship()
+{
+	delete championship;
+}
+
 bool Simulator::printRacetracks()
 {
 	int vectorSize = racetracks.size();
@@ -209,14 +215,34 @@ void Simulator::chargeAllCars()
 	}
 }
 
-void Simulator::startRace()
+bool Simulator::startRace()
 {
-	championship->startRace();
+	return championship->startRace();
 }
 
-void Simulator::passOneSecond()
+bool Simulator::nextRace()
 {
-	championship->passOneSecond();
+	return championship->nextRace();
+}
+
+bool Simulator::passOneSecond()
+{
+	return championship->passOneSecond();
+}
+
+void Simulator::updateStandings()
+{
+	championship->updateStandings();
+}
+
+bool Simulator::checkEndOfRace()
+{
+	if(championship->checkEndOfRace())
+	{
+		updateStandings();
+		return true;
+	}
+	return false;
 }
 
 Racetrack* Simulator::getRacetrackByName(std::string wantedName)
@@ -233,5 +259,5 @@ Racetrack* Simulator::getRacetrackByName(std::string wantedName)
 
 bool Simulator::checkIfItsPossibleToStartARace()
 {
-	return championship->getAreCarsInTrack();
+	return championship->areCarsInTrack();
 }

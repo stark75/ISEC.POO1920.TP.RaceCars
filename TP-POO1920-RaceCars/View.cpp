@@ -108,6 +108,19 @@ void View::printCarsOnChampionship(Simulator& s)
 	Championship* c = s.getChampionship();
 
 	Consola::setTextColor(Consola::BRANCO);
+	std::cout << "------Tabela classificativa:--------" << std::endl;
+	Consola::setTextColor(Consola::VERDE);
+	c->printStandings();
+
+	std::cout << std::endl;
+	
+	Consola::setTextColor(Consola::CYAN);
+
+	Racetrack* r = c->getCurrentRacetrack();
+	
+	std::cout << "Corrida no" << c->getCurrentRaceNumber() + 1 << " no Autodromo " << r->getName() << std::endl;
+	
+	Consola::setTextColor(Consola::BRANCO);
 	std::cout << "--------Carros na garagem-----------" << std::endl;
 	Consola::setTextColor(Consola::VERDE);
 	if (!c->printCarsInGarage())
@@ -129,8 +142,6 @@ void View::printCarsOnChampionship(Simulator& s)
 void View::printRace(Simulator& s)
 {
 	Racetrack* r = s.getCurrentRace();
-	
-	Consola::clrscr();
 
 	int length = r->getTrackLength();
 	std::vector<Car* > raceCars = r->getCarsInTrack();
@@ -139,8 +150,14 @@ void View::printRace(Simulator& s)
 	std::string location = r->getName();
 
 	if (raceSize == 0)
+	{
+		if (r != nullptr)
+			r->printRaceResults();
 		return;
+	}
 
+	Consola::clrscr();
+	
 	//Print Track Name
 	Consola::gotoxy(4, 2);
 	Consola::setTextColor(Consola::AZUL_CLARO);
@@ -207,10 +224,19 @@ void View::printRace(Simulator& s)
 
 	std::cout << std::endl;
 	
-	Sleep(100);
+	Sleep(50);
 
 	Consola::setTextColor(Consola::VERDE);
 
+}
+
+void View::printStandings(Simulator& s)
+{
+	Championship* c = s.getChampionship();
+	Consola::setTextColor(Consola::BRANCO);
+	std::cout << "         Tabela classificativa" << std::endl;
+	Consola::setTextColor(Consola::VERDE);
+	c->printStandings();
 }
 
 void View::printInvalidRacetracks(int invalidRacetracks)

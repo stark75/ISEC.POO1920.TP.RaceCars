@@ -1,5 +1,6 @@
 #include <vector>
 #include "Racetrack.h"
+#include <algorithm>
 
 std::vector<std::string> Racetrack::raceTrackNames;
 
@@ -50,6 +51,11 @@ std::vector<Car*> Racetrack::getCarsInGarage() const
 	return carsInGarage;
 }
 
+std::vector<RaceResults> Racetrack::getRaceResults() const
+{
+	return raceResults;
+}
+
 bool Racetrack::getIsCarMax() const
 {
 	return isCarMax;
@@ -65,7 +71,7 @@ std::string Racetrack::getAsString() const
 	tmpString += std::to_string(getTrackLength());
 	tmpString += "m | ";
 	tmpString += std::to_string(getMaxCars());
-	tmpString += "]";
+	tmpString += " lugares]";
 
 	return tmpString;
 }
@@ -113,6 +119,34 @@ void Racetrack::moveCarsToGarage()
 	
 }
 
+void Racetrack::resetCarsPosition()
+{
+	int vectorSize = carsInTrack.size();
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+			carsInTrack[i]->setPosition(0);
+	}
+
+	vectorSize = carsInGarage.size();
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+			carsInGarage[i]->setPosition(0);
+	}
+	
+}
+
+void Racetrack::resetRacetrack()
+{
+	raceResults.clear();
+	carsInTrack.clear();
+	carsInGarage.clear();
+	time = 0;
+}
+
 void Racetrack::chargeAllCars()
 {
 	int vectorSize = carsInGarage.size();
@@ -128,24 +162,49 @@ void Racetrack::chargeAllCars()
 	
 }
 
-void Racetrack::carsMovement()
+bool Racetrack::carsMovement()
 {
 	int trackSize = carsInTrack.size();
 
 	++time;
-	
+
+	int carsInFinishLine = raceResults.size();
+
 	for(int i = 0; i<trackSize;i++)
 	{
-		if(carsInTrack[i]->getPosition() < trackLength)
+		if (carsInTrack[i]->getPosition() < trackLength)
+		{
 			carsInTrack[i]->move(1);
-		/*TODO
-		 * else
-		 *	resets car;
-		 */
+		}
+		if (carsInTrack[i]->getPosition() >= trackLength)
+		{
+			bool checker = false;
+			
+			for (int j = 0; j < carsInFinishLine; j++)
+			{
+				if (carsInTrack[i] == raceResults[j])
+				{
+					checker = true;
+					break;
+				}
+			}
+			
+			if (!checker)
+			{
+				raceResults.emplace_back(carsInTrack[i], time);
+			}
+		}
 	}
+
+	carsInFinishLine = raceResults.size();
+	
+	if (carsInFinishLine == trackSize)
+		return false;
+
+	return true;
 }
 
-bool Racetrack::printCarsInGarage()
+bool Racetrack::printCarsInGarage() const
 {
 	int vectorSize = carsInGarage.size();
 
@@ -158,7 +217,7 @@ bool Racetrack::printCarsInGarage()
 	return true;
 }
 
-bool Racetrack::printCarsInTrack()
+bool Racetrack::printCarsInTrack() const
 {
 	int vectorSize = carsInTrack.size();
 
@@ -170,6 +229,30 @@ bool Racetrack::printCarsInTrack()
 		std::cout << *carsInTrack[i] << std::endl;
 	}
 	return true;
+}
+
+bool Racetrack::printRaceResults()
+{
+	int vectorSize = raceResults.size();
+
+	if(vectorSize==0)
+		return false;
+
+	sortRaceResults();
+
+	for(int i = 0; i < vectorSize; i++)
+	{
+		std::cout << raceResults[i] << std::endl;
+	}
+	return true;
+}
+
+bool Racetrack::checkCarsInTrack()
+{
+	int checker = carsInTrack.size();
+	if(checker>0)
+		return true;
+	return false;
 }
 
 bool Racetrack::checkEndOfRace()
@@ -186,7 +269,11 @@ bool Racetrack::checkEndOfRace()
 			return false;
 	}
 
+	moveCarsToGarage();
+	resetCarsPosition();
+	
 	return true;
+	
 }
 
 bool Racetrack::copyGarage(std::vector<Car*> src)
@@ -202,4 +289,28 @@ bool Racetrack::copyGarage(std::vector<Car*> src)
 
 	carsInGarage = src;
 	return true;
+}
+
+bool Racetrack::sortCarMethod(Car* lhs, Car* rhs)
+{
+	return lhs->getPosition() > rhs->getPosition();
+}
+
+bool Racetrack::sortRaceMethod(RaceResults& lhs, RaceResults& rhs)
+{
+	return lhs.getFinishTime() < rhs.getFinishTime();
+}
+
+void Racetrack::sortRaceResults()
+{
+	std::vector<RaceResults> vectorCopy = raceResults;
+	std::sort(vectorCopy.begin(), vectorCopy.end(), sortRaceMethod);
+	raceResults = vectorCopy;
+}
+
+void Racetrack::sortCarsByPosition()
+{
+	std::vector<Car*> vectorCopy = carsInTrack;
+	std::sort(vectorCopy.begin(), vectorCopy.end(), sortCarMethod);
+	carsInTrack = vectorCopy;
 }

@@ -1,29 +1,40 @@
 #pragma once
 #include <vector>
 #include "Racetrack.h"
+#include "StandingsElement.h"
 
 class Championship
-{
-	std::vector<Car*>        participants;
-	std::vector<std::string> leaderBoard;
-	std::vector<Racetrack*>  raceLocations;
-	int                      race;
-	bool                     areCarsInTrack;
+{		
+	std::vector<StandingsElement> standings;
+	std::vector<Racetrack*>       raceLocations;
+	int                           currentRace;
 	
 public:
 	Championship(Racetrack* location, std::vector<Car* > newParticipants);
 	Championship(std::vector<Racetrack*> locations, std::vector<Car* > newParticipants);
-	~Championship() = default;
+	~Championship();
 
-	bool getAreCarsInTrack();
-	Racetrack* getCurrentRace();
-	
-	bool nextRace();
-	void startRace();
+	bool        areCarsInTrack()    const;
+	int         getCurrentRaceNumber() const;
+	Racetrack*  getCurrentRacetrack()  const;
 
-	void passOneSecond();
-	void chargeAllCars();
+	bool        passOneSecond();
+	bool        checkEndOfRace();
 
-	bool printCarsInGarage();
-	bool printCarsInTrack();
+	void        chargeAllCars();
+
+	bool        nextRace();  /*NEEDS REVAMP*/
+	bool        startRace(); /*NEEDS REVAMP*/
+
+	void        updateStandings();
+		
+	//View Methods
+	bool        printCarsInGarage();
+	bool        printCarsInTrack();
+	void        printStandings();
+
+	//Sort Vectors
+	void        sortCarsByPosition();
+	static bool sortFunc(StandingsElement& lhs, StandingsElement& rhs);
+	void        sortStandings();
 };

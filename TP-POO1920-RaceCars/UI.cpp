@@ -52,9 +52,28 @@ bool UI::timePassCommand(int n)
 	{
 		for (int i = 0; i < n; i++)
 		{
-			simulator.passOneSecond();
-			
+			bool checker = simulator.passOneSecond();
 			View::printRace(simulator);
+
+			if(simulator.checkEndOfRace())
+			{
+				if(!simulator.nextRace())
+				{
+					View::printStandings(simulator);
+					View::printMessage("Campeonato Terminado.", View::WarningTypeMessage);
+					simulator.clearChampionship();
+					switchMode();
+				}
+				break;
+			}
+			else
+			{
+				if (!checker)
+				{
+					View::printMessage("Corrida Inexistente.", View::WarningTypeMessage);
+					break;
+				}
+			}
 		}
 		return true;
 	}
@@ -64,9 +83,10 @@ bool UI::timePassCommand(int n)
 
 void UI::raceCommand()
 {
-	//TODO: NEED TO CHECK IF IT CAN START A RACE
-	simulator.startRace();
-	View::printMessage("Corrida Iniciada.", View::SuccessTypeMessage);
+	if (simulator.startRace())
+		View::printMessage("Corrida Iniciada.", View::SuccessTypeMessage);
+	else
+		View::printMessage("Corrida nao iniciada.", View::ErrorTypeMessage);
 }
 
 void UI::startChampionship(const std::string racetracks)
@@ -210,7 +230,7 @@ void UI::run(const int argc, char* argv[])
 		if (Utils::tolower(command) == "sair" || Utils::tolower(command) == "exit")
 		{
 			View::printMessage("Exiting!", View::WarningTypeMessage);
-			return;
+			exit(0);
 		}
 
 		if (mode == MenuMode::CONFIG)
@@ -550,7 +570,7 @@ void UI::run(const int argc, char* argv[])
 					{
 						separator >> argument;
 
-						if (argument == "rapido" || argument == "crazy" || argument == "surpresa" || argument == "generico"/*remover para a próxima meta*/)
+						if (argument == "rapido" || argument == "crazy" || argument == "surpresa" || argument == "generico"/*remover para a prï¿½xima meta*/)
 						{
 							std::string tmpType = argument;
 							std::string tmpString = "";

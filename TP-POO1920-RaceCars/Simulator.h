@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include "DGV.h"
 #include "Racetrack.h"
@@ -32,11 +31,15 @@ public:
 	bool removePilot(std::string wantedName);
 	bool removeRacetrack(std::string wantedName);
 	int  checkIfItsPossibleToStartAChampionship(std::string tmpString);
-
+	void clearChampionship();
 	
 	void chargeAllCars();
-	void startRace();
-	void passOneSecond();
+	bool startRace();
+	bool nextRace();
+	bool passOneSecond();
+	void updateStandings();
+	bool checkEndOfRace();
+	
 
 	bool printRacetracks();
 	
