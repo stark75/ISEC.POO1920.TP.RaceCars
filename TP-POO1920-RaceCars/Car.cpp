@@ -36,23 +36,10 @@ Car::Car(int e, int mE, int mS, std::string b, std::string m)
 		++nextID;
 }
 
-Car::Car(const Car& src)
-	:brand(src.brand),
-	model(src.model),
-	id(src.id),
-	maxEnergy(src.maxEnergy),
-	maxSpeed(src.maxSpeed),
-	speed(src.speed),
-	energy(src.energy),
-	movement(src.movement),
-	accelerationPedal(src.accelerationPedal),
-	brakePedal(src.brakePedal),
-	time(src.time),
-	position(src.position),
-	emergencySignal(src.emergencySignal),
-	isDamaged(src.isDamaged),
-	driver(src.driver)
+Car::~Car()
 {
+	driver->detach();
+	detach();
 }
 
 char Car::getNextID() const

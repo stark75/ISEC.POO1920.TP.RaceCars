@@ -12,15 +12,16 @@ class Pilot
     
 	//Pilot Status
 	Car* current;
+	bool stopOrder;
 
 public:
     Pilot(std::string newName);
-	Pilot(const Pilot& src);
+	Pilot(const Pilot& src) = default;
 	~Pilot();
-
 
     std::string getName() const;
     Car*        getCurrentCar() const;
+	bool        getStopOrder() const;
 	std::string getAsString() const;
 	std::string getTypeAsString() const;
 	

@@ -4,7 +4,7 @@
 std::vector<std::string> Pilot::pilotNames;
 
 Pilot::Pilot(std::string newName)
-:current(nullptr)
+:current(nullptr), stopOrder(false)
 {
 	if(pilotNames.empty())
 	{
@@ -26,14 +26,10 @@ Pilot::Pilot(std::string newName)
 	}
 }
 
-Pilot::Pilot(const Pilot& src)
-	:name(src.name),
-	current(src.current)
-{
-}
-
 Pilot::~Pilot()
 {
+	current->detach();
+	detach();
 }
 
 std::string Pilot::getName() const
@@ -44,6 +40,11 @@ std::string Pilot::getName() const
 Car* Pilot::getCurrentCar() const
 {
 	return current;
+}
+
+bool Pilot::getStopOrder() const
+{
+	return stopOrder;
 }
 
 std::string Pilot::getAsString() const

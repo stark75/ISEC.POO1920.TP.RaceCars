@@ -10,7 +10,7 @@ class Car
 	static char  nextID;
 	std::string  brand;
 	std::string  model;
-	char id;
+	char         id;
 
 	//Car Specs
 	const double maxEnergy;
@@ -30,8 +30,8 @@ class Car
 	
 public:
 	Car(int e, int mE, int mS,std::string b, std::string m = "Base");
-	Car(const Car& src);
-	~Car() = default;
+	Car(const Car& src) = default;
+	~Car();
 
 	//Getters
 	char         getNextID()            const;
@@ -71,8 +71,8 @@ public:
 
 	friend bool  operator==(Car const& lhs, Car const& rhs);
 	friend bool  operator!=(Car const& lhs, Car const& rhs);
-	bool         operator<(const Car& other) const;
-	bool         operator>(const Car& other) const;
+	bool         operator<(const Car&  other) const;
+	bool         operator>(const Car&  other) const;
 	bool         operator<=(const Car& other) const;
 	bool         operator>=(const Car& other) const;
 };
