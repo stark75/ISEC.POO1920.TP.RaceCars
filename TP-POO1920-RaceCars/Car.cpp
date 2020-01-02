@@ -261,19 +261,21 @@ bool Car::accident()
 {
 	if(isDamaged)
 		return false;
-	return isDamaged = true;
+	isDamaged = true;
+	return true;
 }
 
 bool Car::repair()
 {
 	if(!isDamaged)
 		return false;
-	return isDamaged = false;
+	isDamaged = false;
+	return true;
 }
 
 void Car::move(int n)
 {
-	position += n*.5*maxSpeed;
+	position += int(n*.5)*maxSpeed;
 }
 
 
