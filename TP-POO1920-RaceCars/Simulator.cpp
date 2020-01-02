@@ -33,6 +33,11 @@ Racetrack* Simulator::getCurrentRace()
 	return championship->getCurrentRacetrack();
 }
 
+std::vector<std::string> Simulator::getLog()
+{
+	return log;
+}
+
 bool Simulator::attach(char carID, std::string pilotName)
 {
 	return currentDGV.attach(carID, pilotName);
@@ -192,6 +197,11 @@ int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 void Simulator::clearChampionship()
 {
 	delete championship;
+}
+
+void Simulator::addMessageToLog(std::string newMessage)
+{
+	log.push_back(newMessage);
 }
 
 bool Simulator::printRacetracks()

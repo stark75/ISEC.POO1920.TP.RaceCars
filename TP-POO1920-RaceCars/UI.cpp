@@ -660,8 +660,7 @@ void UI::run(const int argc, char* argv[])
 
 			if (command == "log")
 			{
-				//TODO
-				View::printMessage("log not implemented", View::WarningTypeMessage);
+				View::printLog(simulator);
 				validCommand = true;
 			}
 

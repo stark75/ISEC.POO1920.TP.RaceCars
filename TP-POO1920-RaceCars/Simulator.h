@@ -9,6 +9,7 @@ class Simulator
 	DGV currentDGV;
 	std::vector<Racetrack*> racetracks;
 	Championship* championship;
+	std::vector<std::string> log;
 	
 public:
 
@@ -18,6 +19,7 @@ public:
 	DGV* getDGV();
 	Championship* getChampionship();
 	Racetrack* getCurrentRace();
+	std::vector<std::string> getLog();
 
 	bool attach(char carID, std::string pilotName);
 	bool detach(char carID);
@@ -32,6 +34,7 @@ public:
 	bool removeRacetrack(std::string wantedName);
 	int  checkIfItsPossibleToStartAChampionship(std::string tmpString);
 	void clearChampionship();
+	void addMessageToLog(std::string newMessage);
 	
 	void chargeAllCars();
 	bool startRace();
@@ -39,7 +42,6 @@ public:
 	bool passOneSecond();
 	void updateStandings();
 	bool checkEndOfRace();
-	
 
 	bool printRacetracks();
 	

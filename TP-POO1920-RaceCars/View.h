@@ -19,6 +19,7 @@ public:
 	static void printMessage(const std::string& message = "No message.", int type = NullTypeMessage);
 	static void printCommandLineMessage();
 	static void helpCommand();
+	static void printLog(Simulator &s);
 	static void printModelsInfoCommand(Simulator& s);
 	static void printCarsOnChampionship(Simulator& s);
 	static void printRace(Simulator& s);

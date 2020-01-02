@@ -68,6 +68,21 @@ void View::helpCommand()
 	std::cout << "sair" << std::endl;
 }
 
+void View::printLog(Simulator& s)
+{
+	std::vector<std::string> log = s.getLog();
+
+	if (log.empty())
+		printMessage("Log Vazio.", WarningTypeMessage);
+	else
+	{
+		int logSize = log.size();
+		for (int i = 0; i < logSize; i++)
+			std::cout << log[i] << std::endl;
+	}
+	
+}
+
 void View::printModelsInfoCommand(Simulator& s)
 {
 	Consola::setTextColor(Consola::AZUL_CLARO);
