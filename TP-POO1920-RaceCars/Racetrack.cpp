@@ -90,20 +90,21 @@ void Racetrack::moveCarsToTrack()
 {
 	int garageSize = carsInGarage.size();
 	carsInTrack.clear();
-	if(garageSize <= maxCars)
+	for (int i = 0; i < garageSize; i++)
 	{
-		for(int i=0; i < garageSize;i++)
-			carsInTrack.push_back(carsInGarage[i]);
-		
-		carsInGarage.clear();
-	}
-	else
-	{
-		for(int i=0; i < maxCars;i++)
+		if (carsInGarage[i]->getDriver() != nullptr)
 		{
-			carsInTrack.push_back(carsInGarage.front());
-			carsInGarage.erase(carsInGarage.begin());
+			carsInTrack.push_back(carsInGarage[i]);
+			carsInGarage.erase(carsInGarage.begin() + i);
+			garageSize = carsInGarage.size();
+			i--;
 		}
+
+		int trackSize = carsInTrack.size();
+
+		if (trackSize == maxCars)
+			break;
+		
 	}
 }
 
