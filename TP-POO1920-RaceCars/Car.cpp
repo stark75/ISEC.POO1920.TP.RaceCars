@@ -278,6 +278,16 @@ void Car::move(int n)
 	position += int(n*.5)*maxSpeed;
 }
 
+void Car::reset()
+{
+	speed = 0;
+	movement = false;
+	accelerationPedal = 0;
+	brakePedal = 0;
+	time = 0;
+	position = 0;
+}
+
 
 //Equality Operators
 

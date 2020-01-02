@@ -44,7 +44,7 @@ public:
 	void                            addCarToGarage(Car* newCar);	
 	void                            moveCarsToTrack();
 	void                            moveCarsToGarage();
-	void                            resetCarsPosition();
+	void                            resetCars();
 	void                            resetRacetrack();
 	void                            chargeAllCars();
 	bool                            carsMovement();

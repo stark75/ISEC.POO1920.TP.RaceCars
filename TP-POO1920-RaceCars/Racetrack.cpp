@@ -119,14 +119,14 @@ void Racetrack::moveCarsToGarage()
 	
 }
 
-void Racetrack::resetCarsPosition()
+void Racetrack::resetCars()
 {
 	int vectorSize = carsInTrack.size();
 
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
-			carsInTrack[i]->setPosition(0);
+			carsInTrack[i]->reset();
 	}
 
 	vectorSize = carsInGarage.size();
@@ -134,7 +134,7 @@ void Racetrack::resetCarsPosition()
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
-			carsInGarage[i]->setPosition(0);
+			carsInGarage[i]->reset();
 	}
 	
 }
@@ -270,7 +270,7 @@ bool Racetrack::checkEndOfRace()
 	}
 
 	moveCarsToGarage();
-	resetCarsPosition();
+	resetCars();
 	
 	return true;
 	

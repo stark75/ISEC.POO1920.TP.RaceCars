@@ -65,6 +65,8 @@ public:
 	bool         accident();
 	bool         repair();
 	void         move(int n);
+	void         reset();
+	
 	//TODO: Car movement
 
 	friend bool  operator==(Car const& lhs, Car const& rhs);
