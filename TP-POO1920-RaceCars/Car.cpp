@@ -36,12 +36,6 @@ Car::Car(int e, int mE, int mS, std::string b, std::string m)
 		++nextID;
 }
 
-Car::~Car()
-{
-	driver->detach();
-	detach();
-}
-
 char Car::getNextID() const
 {
 	return nextID;

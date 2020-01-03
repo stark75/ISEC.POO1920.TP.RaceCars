@@ -17,7 +17,7 @@ class Pilot
 public:
     Pilot(std::string newName);
 	Pilot(const Pilot& src) = default;
-	~Pilot();
+	~Pilot() = default;
 
     std::string getName() const;
     Car*        getCurrentCar() const;

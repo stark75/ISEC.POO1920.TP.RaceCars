@@ -31,7 +31,7 @@ class Car
 public:
 	Car(int e, int mE, int mS,std::string b, std::string m = "Base");
 	Car(const Car& src) = default;
-	~Car();
+	~Car() = default;
 
 	//Getters
 	char         getNextID()            const;

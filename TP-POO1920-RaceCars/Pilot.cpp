@@ -26,12 +26,6 @@ Pilot::Pilot(std::string newName)
 	}
 }
 
-Pilot::~Pilot()
-{
-	current->detach();
-	detach();
-}
-
 std::string Pilot::getName() const
 {
 	return name;
