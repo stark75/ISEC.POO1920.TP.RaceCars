@@ -74,13 +74,9 @@ std::string Pilot::getTypeAsString() const
 
 std::string Pilot::returnLog()
 {
-	if (tmpLog.empty())
-		return "";
-
 	std::string log = tmpLog;
-
+	
 	tmpLog.clear();
-
 	return log;
 }
 
