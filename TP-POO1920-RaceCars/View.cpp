@@ -3,6 +3,11 @@
 #include "Consola/Consola.h"
 #include "Utils.h"
 
+void View::clearScreen()
+{
+	Consola::clrscr();
+}
+
 void View::printTitle()
 {
 	Consola::setTextColor(Consola::VERDE);
@@ -133,7 +138,7 @@ void View::printCarsOnChampionship(Simulator& s)
 
 	Racetrack* r = c->getCurrentRacetrack();
 	
-	std::cout << "Corrida no" << c->getCurrentRaceNumber() + 1 << " no Autodromo " << r->getName() << std::endl;
+	std::cout << "Corrida no" << c->getCurrentRaceNumber() + 1 << " no Autodromo " << r->getName() << " (" << r->getTrackLength() << "m)" << std::endl;
 	
 	Consola::setTextColor(Consola::BRANCO);
 	std::cout << "--------Carros na garagem-----------" << std::endl;
@@ -170,8 +175,6 @@ void View::printRace(Simulator& s)
 			r->printRaceResults();
 		return;
 	}
-
-	Consola::clrscr();
 	
 	//Print Track Name
 	Consola::gotoxy(4, 2);

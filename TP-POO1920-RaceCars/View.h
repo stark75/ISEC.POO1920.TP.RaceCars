@@ -13,9 +13,9 @@ public:
 	static const int NullTypeMessage = 3;
 	
 	View() = delete;
-	
-	static void printTitle();
 
+	static void clearScreen();
+	static void printTitle();
 	static void printMessage(const std::string& message = "No message.", int type = NullTypeMessage);
 	static void printCommandLineMessage();
 	static void helpCommand();

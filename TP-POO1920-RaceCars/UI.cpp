@@ -50,6 +50,7 @@ bool UI::timePassCommand(int n)
 {
 	if (simulator.checkIfItsPossibleToStartARace())
 	{
+		View::clearScreen();
 		for (int i = 0; i < n; i++)
 		{
 			bool checker = simulator.passOneSecond();
