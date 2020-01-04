@@ -66,14 +66,6 @@ bool UI::timePassCommand(int n)
 				}
 				break;
 			}
-			else
-			{
-				if (!checker)
-				{
-					View::printMessage("Corrida Inexistente.", View::WarningTypeMessage);
-					break;
-				}
-			}
 		}
 		return true;
 	}

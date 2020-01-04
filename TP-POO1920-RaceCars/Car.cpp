@@ -254,9 +254,9 @@ bool Car::repair()
 	return true;
 }
 
-void Car::move(int n)
+void Car::move(int n /*Racetrack* actualRacetrack*/)
 {
-	position += int(n*.5)*maxSpeed;
+	position += n*round(.5*maxSpeed);
 }
 
 void Car::reset()

@@ -72,6 +72,18 @@ std::string Pilot::getTypeAsString() const
 	return "generico";
 }
 
+std::string Pilot::returnLog()
+{
+	if (tmpLog.empty())
+		return "";
+
+	std::string log = tmpLog;
+
+	tmpLog.clear();
+
+	return log;
+}
+
 bool Pilot::attach(Car* newCar)
 {
 	if(current==nullptr)

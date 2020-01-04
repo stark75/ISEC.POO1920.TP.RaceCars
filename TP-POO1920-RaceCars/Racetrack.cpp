@@ -175,7 +175,7 @@ bool Racetrack::carsMovement()
 	{
 		if (carsInTrack[i]->getPosition() < trackLength)
 		{
-			carsInTrack[i]->move(1);
+			carsInTrack[i]->move(1 /*this*/);
 		}
 		if (carsInTrack[i]->getPosition() >= trackLength)
 		{

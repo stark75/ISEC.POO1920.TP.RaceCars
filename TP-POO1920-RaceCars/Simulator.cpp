@@ -197,6 +197,7 @@ int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 void Simulator::clearChampionship()
 {
 	delete championship;
+	championship = nullptr;
 }
 
 void Simulator::addMessageToLog(std::string newMessage)
@@ -237,7 +238,9 @@ bool Simulator::nextRace()
 
 bool Simulator::passOneSecond()
 {
-	return championship->passOneSecond();
+	bool pass = championship->passOneSecond();
+	//getlog
+	return pass;
 }
 
 void Simulator::updateStandings()

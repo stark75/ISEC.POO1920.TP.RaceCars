@@ -2,3 +2,12 @@
 300 0 10000  Edison Cyberbus
 300 0 7000   Ferrero Rocher
 500 0 100000 Speedwagon BestCar
+200 0 8000 Ghoti Fish
+340 0 7200 Samsung Galaxy
+800 0 3310 Nokia 3310
+420 0 6969 Snoop Dogg
+400 0 12000 Power Bank
+240 0 4000 IPhone 11
+540 0 7000 Pentium Pro
+100 0 8000 Pentium Gold
+1000 0 10000 Fiat Uno

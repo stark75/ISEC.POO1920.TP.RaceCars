@@ -11,8 +11,9 @@ class Pilot
 	static std::vector<std::string> pilotNames;
     
 	//Pilot Status
-	Car* current;
-	bool stopOrder;
+	Car*        current;
+	bool        stopOrder;
+	std::string tmpLog;
 
 public:
     Pilot(std::string newName);
@@ -24,6 +25,8 @@ public:
 	bool        getStopOrder() const;
 	std::string getAsString() const;
 	std::string getTypeAsString() const;
+
+	std::string returnLog();
 	
 	bool        attach(Car* newCar);
 	bool        detach();
