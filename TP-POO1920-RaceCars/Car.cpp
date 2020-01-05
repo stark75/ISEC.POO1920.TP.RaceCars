@@ -14,7 +14,6 @@ Car::Car(int e, int mE, int mS, std::string b, std::string m)
 	movement(false),
 	accelerationPedal(0),
 	brakePedal(0),
-	time(0),
 	position(0),
 	emergencySignal(false),
 	isDamaged(false),
@@ -79,11 +78,6 @@ double Car::getEnergy() const
 int Car::getSpeed() const
 {
 	return speed;
-}
-
-int Car::getTime() const
-{
-	return time;
 }
 
 int Car::getPosition() const
@@ -209,16 +203,19 @@ bool Car::pressBrake(int times)
 
 bool Car::energyCharge(int n)
 {
-	if(energy < maxEnergy)
+	if (!movement)
 	{
-		energy += n;
+		if (energy < maxEnergy)
+		{
+			energy += n;
+			if (energy >= maxEnergy)
+				energy = maxEnergy;
+			return true;
+		}
+
 		if (energy >= maxEnergy)
 			energy = maxEnergy;
-		return true;
 	}
-
-	if (energy >= maxEnergy)
-		energy = maxEnergy;
 	return false;
 }
 
@@ -261,6 +258,7 @@ bool Car::repair()
 void Car::move(int n /*Racetrack* actualRacetrack*/)
 {
 	position += n*static_cast<int>(round(.5*maxSpeed));
+	energy -= round(maxSpeed*.1);
 }
 
 void Car::reset()
@@ -269,7 +267,6 @@ void Car::reset()
 	movement = false;
 	accelerationPedal = 0;
 	brakePedal = 0;
-	time = 0;
 	position = 0;
 }
 
@@ -289,7 +286,6 @@ bool operator==(Car const& lhs, Car const& rhs)
 		&& lhs.movement == rhs.movement
 		&& lhs.accelerationPedal == rhs.accelerationPedal
 		&& lhs.brakePedal == rhs.brakePedal
-		&& lhs.time == rhs.time
 		&& lhs.position == rhs.position
 		&& lhs.emergencySignal == rhs.emergencySignal
 		&& lhs.isDamaged == rhs.isDamaged
@@ -336,7 +332,6 @@ bool operator==(Car* const& lhs, Car const& rhs)
 		&& lhs->getMovement() == rhs.getMovement()
 		&& lhs->getAccelerationPedal() == rhs.getAccelerationPedal()
 		&& lhs->getBrakePedal() == rhs.getBrakePedal()
-		&& lhs->getTime() == rhs.getTime()
 		&& lhs->getPosition() == rhs.getPosition()
 		&& lhs->getEmergencySignal() == rhs.getEmergencySignal()
 		&& lhs->getDamage() == rhs.getDamage()

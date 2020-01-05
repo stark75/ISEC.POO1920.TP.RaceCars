@@ -26,6 +26,10 @@ public:
 	bool        nextRace();  /*NEEDS REVAMP*/
 	bool        startRace(); /*NEEDS REVAMP*/
 
+	bool        accident(char wantedID);
+	bool        removeCarFromChampionship(char wantedID);
+	bool        chargeCar(char wantedID, int n);
+	
 	void        updateStandings();
 		
 	//View Methods

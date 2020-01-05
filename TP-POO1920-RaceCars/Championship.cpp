@@ -114,6 +114,40 @@ bool Championship::startRace()
 	return false;
 }
 
+bool Championship::accident(char wantedID)
+{
+	return raceLocations[currentRace]->accident(wantedID);
+}
+
+bool Championship::removeCarFromChampionship(char wantedID)
+{
+	Racetrack* tmpRT = raceLocations[currentRace];
+
+	if(!tmpRT->removeCarFromTrack(wantedID))
+		return false;
+	
+	if (tmpRT->removeCarFromGarage(wantedID))
+	{
+		int vectorSize = standings.size();
+		for (int i = 0; i < vectorSize; i++)
+		{
+			Car* tmpCar = standings[i].getCompetitor();
+			if (wantedID == tmpCar->getID())
+			{
+				standings.erase(standings.begin() + i);
+				return true;
+			}
+		}
+		return false;
+	}
+	return false;
+}
+
+bool Championship::chargeCar(char wantedID, int n)
+{
+	return raceLocations[currentRace]->chargeCar(wantedID, n);
+}
+
 void Championship::updateStandings()
 {
 	raceLocations[currentRace]->sortRaceResults();

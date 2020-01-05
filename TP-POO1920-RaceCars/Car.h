@@ -22,7 +22,6 @@ class Car
 	bool         movement;
 	int          accelerationPedal;
 	int          brakePedal;
-	int          time;
 	int          position;
 	bool         emergencySignal;
 	bool         isDamaged;
@@ -43,7 +42,6 @@ public:
 	Pilot*       getDriver()            const;
 	double       getEnergy()            const;
 	int          getSpeed()             const;
-	int          getTime()              const;
 	int          getPosition()          const;
 	bool         getMovement()          const;
 	int          getAccelerationPedal() const;

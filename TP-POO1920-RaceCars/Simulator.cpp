@@ -172,6 +172,30 @@ bool Simulator::removeRacetrack(std::string wantedName)
 	return false;
 }
 
+bool Simulator::destroyCar(char wantedID)
+{
+	if (championship->removeCarFromChampionship(wantedID))
+		return removeCar(wantedID);
+	return false;
+}
+
+bool Simulator::accident(char wantedID)
+{
+	if(championship->accident(wantedID))
+	{
+		Car* tmpCar = currentDGV.getCarById(wantedID);
+		Pilot* tmpPilot = tmpCar->getDriver();
+		detach(wantedID);
+		return removePilot(tmpPilot->getName());
+	}
+	return false;
+}
+
+bool Simulator::chargeCar(char wantedID, int n)
+{
+	return championship->chargeCar(wantedID, n);
+}
+
 int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 {
 	/*
