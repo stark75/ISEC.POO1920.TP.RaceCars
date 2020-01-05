@@ -49,6 +49,9 @@ public:
 	
 	Racetrack* getRacetrackByName(std::string wantedName);
 	bool checkIfItsPossibleToStartARace();
+	bool addDGV(const std::string& cs);
+	bool deleteDGV(const std::string& cs);
+	bool loadDGV(const std::string& cs);
 };
 
 	

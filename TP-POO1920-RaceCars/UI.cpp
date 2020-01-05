@@ -291,19 +291,28 @@ void UI::run(const int argc, char* argv[])
 					validCommand = true;
 				}
 
-				if (argument == "deldgv") //TODO Meta2
+				if (argument == "deldgv")
 				{
-					//separator >> argument;
-					View::printMessage("Delete DGV not implemented", View::WarningTypeMessage);
-					//TODO
+					separator >> argument;
+
+					if (simulator.deleteDGV(argument))
+						View::printMessage("DGV apagado.", View::SuccessTypeMessage);
+					else
+						View::printMessage("DGV nao apagado.", View::ErrorTypeMessage);
+					
+					
 					validCommand = true;
 				}
 
-				if (argument == "loaddgv") //TODO Meta2
+				if (argument == "loaddgv")
 				{
-					//separator >> argument;
-					View::printMessage("Load DGV not implemented", View::WarningTypeMessage);
-					//TODO
+					separator >> argument;
+
+					if (simulator.loadDGV(argument))
+						View::printMessage("DGV Carregado.", View::SuccessTypeMessage);
+					else
+						View::printMessage("DGV nao Carregado.", View::ErrorTypeMessage);
+					
 					validCommand = true;
 				}
 
@@ -324,11 +333,15 @@ void UI::run(const int argc, char* argv[])
 					}
 				}
 
-				if (argument == "savedgv") //TODO Meta2
+				if (argument == "savedgv")
 				{
-					//separator >> argument;
-					View::printMessage("Save DGV not implemented", View::WarningTypeMessage);
-					//TODO
+					separator >> argument;
+
+					if (simulator.addDGV(argument))
+						View::printMessage("DGV guardado.", View::SuccessTypeMessage);
+					else
+						View::printMessage("Nome ja existente.", View::ErrorTypeMessage);
+					
 					validCommand = true;
 				}
 

@@ -274,3 +274,55 @@ bool Simulator::checkIfItsPossibleToStartARace()
 {
 	return championship->areCarsInTrack();
 }
+
+bool Simulator::addDGV(const std::string& cs)
+{
+	int vectorSize = dgvStorage.size();
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			if (cs == dgvStorage[i].getName())
+				return false;
+		}
+	}
+	dgvStorage.emplace_back(currentDGV, cs);
+	return true;
+}
+
+bool Simulator::deleteDGV(const std::string& cs)
+{
+	int vectorSize = dgvStorage.size();
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			if(cs == dgvStorage[i].getName())
+			{
+				dgvStorage.erase(dgvStorage.begin() + i);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool Simulator::loadDGV(const std::string& cs)
+{
+	int vectorSize = dgvStorage.size();
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			if (cs == dgvStorage[i].getName())
+			{
+				DGV tmpDGV = dgvStorage[i].getDGV();
+				currentDGV = tmpDGV;
+				return true;
+			}
+		}
+	}
+	return false;
+}
