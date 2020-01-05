@@ -187,6 +187,8 @@ bool Car::pressAccelerate(int times)
 	if(driver!=nullptr && energy>0 && brakePedal==0 && speed < maxSpeed)
 	{
 		accelerationPedal+=times;
+		if (accelerationPedal < 0)
+			accelerationPedal = 0;
 		return true;
 	}
 	return false;
@@ -197,6 +199,8 @@ bool Car::pressBrake(int times)
 	if(driver!=nullptr && accelerationPedal==0)
 	{
 		brakePedal+=times;
+		if (brakePedal < 0)
+			brakePedal = 0;
 		return true;
 	}
 	return false;
