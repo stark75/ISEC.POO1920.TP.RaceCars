@@ -7,7 +7,8 @@ class DGV
 	std::vector<Car*> carList;
 	std::vector<Pilot*> pilotList;
 public:
-	DGV();
+	DGV() = default;
+	DGV(const DGV& src);
 	~DGV();
 
 	std::vector<Car*> getCarList();
@@ -29,4 +30,6 @@ public:
 	std::vector<Car*> getCarsWithPilots();
 
 	int getNumberOfCarsWithPilots();
+
+	DGV& operator = (const DGV& src);
 };

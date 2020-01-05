@@ -2,8 +2,28 @@
 #include "View.h"
 #include <algorithm>
 
-DGV::DGV()
+DGV::DGV(const DGV& src)
 {
+	int vectorSize = src.carList.size();
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			carList.emplace_back(src.carList[i]);
+			carList[i]->detach();
+		}
+	}
+
+	vectorSize = src.pilotList.size();
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			pilotList.emplace_back(src.pilotList[i]);
+			pilotList[i]->detach();
+		}
+	}
 }
 
 DGV::~DGV()
@@ -212,4 +232,30 @@ int DGV::getNumberOfCarsWithPilots()
 	}
 
 	return numberOfCarsWithPilots;
+}
+
+DGV& DGV::operator=(const DGV& src)
+{
+	int vectorSize = src.carList.size();
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			this->carList.emplace_back(src.carList[i]);
+			this->carList[i]->detach();
+		}
+	}
+
+	vectorSize = src.pilotList.size();
+
+	if (vectorSize > 0)
+	{
+		for(int i = 0; i < vectorSize; i++)
+		{
+			this->pilotList.emplace_back(src.pilotList[i]);
+			this->pilotList[i]->detach();
+		}
+	}
+	
+	return *this;
 }
