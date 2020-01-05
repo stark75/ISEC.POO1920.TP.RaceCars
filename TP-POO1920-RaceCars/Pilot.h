@@ -18,13 +18,13 @@ class Pilot
 public:
     Pilot(std::string newName);
 	Pilot(const Pilot& src) = default;
-	~Pilot() = default;
+    virtual ~Pilot() = default;
 
-    std::string getName() const;
-    Car*        getCurrentCar() const;
-	bool        getStopOrder() const;
-	std::string getAsString() const;
-	std::string getTypeAsString() const;
+    std::string         getName()         const;
+    Car*                getCurrentCar()   const;
+	bool                getStopOrder()    const;
+	virtual std::string getAsString()     const;
+	virtual std::string getTypeAsString() const;
 
 	std::string returnLog();
 	

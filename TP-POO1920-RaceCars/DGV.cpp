@@ -1,6 +1,7 @@
 #include "DGV.h"
 #include "View.h"
 #include <algorithm>
+#include "CrazyPilot.h"
 
 DGV::DGV(const DGV& src)
 {
@@ -19,7 +20,21 @@ DGV::DGV(const DGV& src)
 	{
 		for (int i = 0; i < vectorSize; i++)
 		{
-			pilotList.push_back(new Pilot(*src.pilotList[i]));
+			std::string tmpString = src.pilotList[i]->getTypeAsString();
+			if (tmpString == "crazy")
+				pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
+			else
+			{
+				if (tmpString == "rapido")
+					pilotList.push_back(new FastPilot(*src.pilotList[i]));
+				else
+				{
+					if (tmpString == "surpresa")
+						pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
+					else
+						pilotList.push_back(new Pilot(*src.pilotList[i]));
+				}
+			}
 		}
 	}
 
@@ -58,17 +73,32 @@ bool DGV::addCar(const Car newCar)
 	return true;
 }
 
-bool DGV::addPilot(const Pilot newPilot)
+bool DGV::addPilot(const Pilot& newPilot)
 {
 	pilotList.push_back(new Pilot(newPilot));
 	return true;
 }
 
+bool DGV::addCrazyPilot(const CrazyPilot& newPilot)
+{
+	pilotList.push_back(new CrazyPilot(newPilot));
+	return true;
+}
+
+bool DGV::addFastPilot(const FastPilot& newPilot)
+{
+	pilotList.push_back(new FastPilot(newPilot));
+	return true;
+}
+
+bool DGV::addSurprisePilot(const SurprisePilot& newPilot)
+{
+	pilotList.push_back(new SurprisePilot(newPilot));
+	return true;
+}
+
 bool DGV::removeCar(const char wantedID)
 {
-	
-	//TODO check if car is riding on a championship
-
 	int vectorSize = carList.size();
 
 	if (vectorSize > 0)
@@ -93,10 +123,7 @@ bool DGV::removeCar(const char wantedID)
 }
 
 bool DGV::removePilot(std::string wantedName)
-{
-
-	//TODO check if pilot is riding on a championship
-	
+{	
 	int vectorSize = pilotList.size();
 
 	if (vectorSize > 0)
@@ -293,7 +320,21 @@ DGV& DGV::operator=(const DGV& src)
 	{
 		for(int i = 0; i < vectorSize; i++)
 		{
-			this->pilotList.push_back(new Pilot(*src.pilotList[i]));
+			std::string tmpString = src.pilotList[i]->getTypeAsString();
+			if(tmpString == "crazy")
+				this->pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
+			else
+			{
+				if (tmpString == "rapido")
+					this->pilotList.push_back(new FastPilot(*src.pilotList[i]));
+				else
+				{
+					if (tmpString == "surpresa")
+						this->pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
+					else
+						this->pilotList.push_back(new Pilot(*src.pilotList[i]));
+				}
+			}
 		}
 	}
 

@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 #include "Car.h"
+#include "CrazyPilot.h"
+#include "FastPilot.h"
+#include "SurprisePilot.h"
 
 class DGV
 {	
@@ -14,7 +17,10 @@ public:
 	std::vector<Car*> getCarList();
 
 	bool   addCar(const Car newCar);
-	bool   addPilot(const Pilot newPilot);
+	bool   addPilot(const Pilot& newPilot);
+	bool   addCrazyPilot(const CrazyPilot& newPilot);
+	bool   addFastPilot(const FastPilot& newPilot);
+	bool   addSurprisePilot(const SurprisePilot& newPilot);
 
 	bool   removeCar(const char wantedID);
 	bool   removePilot(std::string wantedName);

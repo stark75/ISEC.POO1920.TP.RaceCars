@@ -102,8 +102,7 @@ bool Pilot::detach()
 
 bool operator==(const Pilot& lhs, const Pilot& rhs)
 {
-	return lhs.name == rhs.name
-		&& lhs.current == rhs.current;
+	return lhs.name == rhs.name;
 }
 
 bool operator!=(const Pilot& lhs, const Pilot& rhs)

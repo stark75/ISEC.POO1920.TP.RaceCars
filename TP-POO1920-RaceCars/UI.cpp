@@ -575,7 +575,7 @@ void UI::run(const int argc, char* argv[])
 					{
 						separator >> argument;
 
-						if (argument == "rapido" || argument == "crazy" || argument == "surpresa" || argument == "generico"/*remover para a pr�xima meta*/)
+						if (argument == "rapido" || argument == "crazy" || argument == "surpresa")
 						{
 							std::string tmpType = argument;
 							std::string tmpString = "";
@@ -979,7 +979,7 @@ bool UI::loadPilots(const std::string filename)
 
 				std::string tmpType = storedValue;
 
-				if(storedValue == "generico")
+				if(storedValue == "crazy" || storedValue == "rapido" || storedValue == "surpresa" )
 				{
 					std::string tmpName = "";
 					bool firstTime = true;

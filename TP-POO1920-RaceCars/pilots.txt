@@ -1,12 +1,12 @@
-generico Schumacher
-generico Alonso
-generico S Vettel
-generico Hamilton
-generico Keanu Reeves
-generico Joao Joaquim
-generico Ash
-generico Harry Potter
-generico Ben Solo
-generico Batman
-generico Bernardo
-generico Stark
+rapido Schumacher
+rapido Alonso
+rapido S Vettel
+rapido Hamilton
+rapido Keanu Reeves
+crazy Joao Joaquim
+crazy Ash
+crazy Harry Potter
+surpresa Ben Solo
+rapido Batman
+surpresa Bernardo
+crazy Stark

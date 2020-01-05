@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Simulator.h"
+#include "CrazyPilot.h"
+#include "FastPilot.h"
 
 Simulator::Simulator(): championship(nullptr)
 {
@@ -58,29 +60,23 @@ bool Simulator::addCar(int e, int mE, int mS, std::string b, std::string m)
 }
 
 bool Simulator::addPilot(std::string type, std::string newName)
-{
-	if (type == "generico") //remover para a proxima meta
-	{
-		Pilot tmpPilot(newName);
-		return currentDGV.addPilot(tmpPilot);
-	}
-	
+{	
 	if (type == "crazy")
 	{
-		//TODO
-		return false;
+		CrazyPilot tmpPilot(newName);
+		return currentDGV.addCrazyPilot(tmpPilot);
 	}
 
 	if (type == "rapido")
 	{
-		//TODO
-		return false;
+		FastPilot tmpPilot(newName);
+		return currentDGV.addFastPilot(tmpPilot);
 	}
 
 	if (type == "surpresa")
 	{
-		//TODO
-		return false;
+		SurprisePilot tmpPilot(newName);
+		return currentDGV.addSurprisePilot(tmpPilot);
 	}
 
 	return false;
