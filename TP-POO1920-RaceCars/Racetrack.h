@@ -50,6 +50,8 @@ public:
 	bool                            carsMovement();
 	bool                            removeCarFromTrack(char wantedID);
 	bool                            removeCarFromGarage(char wantedID);
+	bool                            accident(char wantedID);
+	
 	bool                            printCarsInGarage() const;
 	bool                            printCarsInTrack() const;
 	bool                            printRaceResults();

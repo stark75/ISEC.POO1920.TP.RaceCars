@@ -680,8 +680,16 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "acidente") //TODO
 				{
-					View::printMessage("acidente not implemented", View::WarningTypeMessage);
-					validCommand = true;
+					separator >> argument;
+					//View::printMessage("acidente not implemented", View::WarningTypeMessage);
+					if (argument.size() == 1)
+					{
+						if (simulator.accident(argument[0]))
+							View::printMessage("Acidente Ocorrido.", View::SuccessTypeMessage);
+						else
+							View::printMessage("Acidente nao Ocorrido.", View::ErrorTypeMessage);
+						validCommand = true;
+					}
 				}
 
 				if (argument == "destroi") //TODO

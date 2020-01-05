@@ -179,6 +179,18 @@ bool Simulator::destroyCar(char wantedID)
 	return false;
 }
 
+bool Simulator::accident(char wantedID)
+{
+	if(championship->accident(wantedID))
+	{
+		Car* tmpCar = currentDGV.getCarById(wantedID);
+		Pilot* tmpPilot = tmpCar->getDriver();
+		detach(wantedID);
+		return removePilot(tmpPilot->getName());
+	}
+	return false;
+}
+
 int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 {
 	/*

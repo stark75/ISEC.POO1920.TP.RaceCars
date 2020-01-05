@@ -234,6 +234,20 @@ bool Racetrack::removeCarFromGarage(char wantedID)
 	return false;
 }
 
+bool Racetrack::accident(char wantedID)
+{
+	int vectorSize = carsInTrack.size();
+	for (int i = 0; i < vectorSize; i++)
+	{
+		if (wantedID == carsInTrack[i]->getID())
+		{
+			carsInTrack[i]->accident();
+			return removeCarFromTrack(wantedID);
+		}
+	}
+	return false;
+}
+
 bool Racetrack::printCarsInGarage() const
 {
 	int vectorSize = carsInGarage.size();

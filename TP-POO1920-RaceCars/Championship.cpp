@@ -114,6 +114,11 @@ bool Championship::startRace()
 	return false;
 }
 
+bool Championship::accident(char wantedID)
+{
+	return raceLocations[currentRace]->accident(wantedID);
+}
+
 bool Championship::removeCarFromChampionship(char wantedID)
 {
 	Racetrack* tmpRT = raceLocations[currentRace];
