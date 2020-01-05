@@ -10,7 +10,6 @@ DGV::DGV(const DGV& src)
 		for (int i = 0; i < vectorSize; i++)
 		{
 			carList.push_back(new Car(*src.carList[i]));
-			carList[i]->detach();
 		}
 	}
 
@@ -21,9 +20,10 @@ DGV::DGV(const DGV& src)
 		for (int i = 0; i < vectorSize; i++)
 		{
 			pilotList.push_back(new Pilot(*src.pilotList[i]));
-			pilotList[i]->detach();
 		}
 	}
+
+	detachAll();
 }
 
 DGV::~DGV()
@@ -205,6 +205,26 @@ bool DGV::detach(char id)
 	return false;
 }
 
+void DGV::detachAll()
+{
+	int vectorSize = carList.size();
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			carList[i]->detach();
+		}
+	}
+	vectorSize = pilotList.size();
+	if(vectorSize > 0)
+	{
+		for(int i = 0; i < vectorSize; i++)
+		{
+			pilotList[i]->detach();
+		}
+	}
+}
+
 std::vector<Car*> DGV::getCarsWithPilots()
 {
 	std::vector<Car*> newList;
@@ -236,13 +256,32 @@ int DGV::getNumberOfCarsWithPilots()
 
 DGV& DGV::operator=(const DGV& src)
 {
-	int vectorSize = src.carList.size();
+	//Cleaning the destination
+	int vectorSize = this->pilotList.size();
+
+	if (vectorSize > 0)
+		for (int i = vectorSize - 1; i >= 0; i--)
+			delete this->pilotList[i];
+
+	this->pilotList.clear();
+
+	vectorSize = this->carList.size();
+
+	if (vectorSize > 0)
+		for (int i = vectorSize - 1; i >= 0; i--)
+			delete this->carList[i];
+
+	this->carList.clear();
+
+	//Assignment
+	
+	vectorSize = src.carList.size();
+
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
 		{
-			this->carList.emplace_back(src.carList[i]);
-			this->carList[i]->detach();
+			this->carList.push_back(new Car(*src.carList[i]));
 		}
 	}
 
@@ -252,10 +291,11 @@ DGV& DGV::operator=(const DGV& src)
 	{
 		for(int i = 0; i < vectorSize; i++)
 		{
-			this->pilotList.emplace_back(src.pilotList[i]);
-			this->pilotList[i]->detach();
+			this->pilotList.push_back(new Pilot(*src.pilotList[i]));
 		}
 	}
+
+	this->detachAll();
 	
 	return *this;
 }

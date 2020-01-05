@@ -26,6 +26,7 @@ public:
 	Pilot* getPilotByName(std::string wantedName);
 	bool   attach(char id, std::string name);
 	bool   detach(char id);
+	void   detachAll();
 
 	std::vector<Car*> getCarsWithPilots();
 
