@@ -41,11 +41,11 @@ bool CrazyPilot::generateAccident()
 
 	if(num == 1 || num == 21 || num == 41 || num == 61 || num == 81)
 	{
-		tmpString += "O acidente foi gerado.";
+		tmpString += "Ocorreu um acidente.";
 		setLog(tmpString);
 		return true;
 	}
-	tmpString += "O acidente nao foi gerado";
+	tmpString += "Nao ocorreu nenhum acidente.";
 	setLog(tmpString);
 	return false;
 }
