@@ -3,6 +3,7 @@
 #include "Pilot.h"
 
 class Pilot;
+class Racetrack;
 
 class Car
 {
@@ -62,8 +63,10 @@ public:
 	bool         energyConsumption();
 	bool         accident();
 	bool         repair();
-	void         move(int n);
+	bool         move(Racetrack* racetrack);
 	void         reset();
+	void         resetPedals();
+	void         turnOnEmergencySignal();
 	
 	//TODO: Car movement
 

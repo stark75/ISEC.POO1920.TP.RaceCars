@@ -72,6 +72,16 @@ std::string Pilot::getTypeAsString() const
 	return "generico";
 }
 
+void Pilot::setLog(const std::string& newMessage)
+{
+	tmpLog = newMessage;
+}
+
+void Pilot::setStop(const bool& condition)
+{
+	stopOrder = condition;
+}
+
 std::string Pilot::returnLog()
 {
 	std::string log = tmpLog;

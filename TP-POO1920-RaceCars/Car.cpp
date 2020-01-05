@@ -1,6 +1,7 @@
-#include "Car.h"
 #include <iostream>
+#include "Car.h"
 #include "Utils.h"
+#include "Racetrack.h"
 
 char Car::nextID = 'a';
 
@@ -183,7 +184,7 @@ std::string Car::getAsString() const
 
 bool Car::pressAccelerate(int times)
 {
-	if(/*driver!=nullptr &&*/ energy>0 && brakePedal==0 && speed < maxSpeed)
+	if(driver!=nullptr && energy>0 && brakePedal==0 && speed < maxSpeed)
 	{
 		accelerationPedal+=times;
 		return true;
@@ -193,7 +194,7 @@ bool Car::pressAccelerate(int times)
 
 bool Car::pressBrake(int times)
 {
-	if(/*driver!=nullptr &&*/ accelerationPedal==0)
+	if(driver!=nullptr && accelerationPedal==0)
 	{
 		brakePedal+=times;
 		return true;
@@ -255,10 +256,38 @@ bool Car::repair()
 	return true;
 }
 
-void Car::move(int n /*Racetrack* actualRacetrack*/)
+bool Car::move(Racetrack* racetrack)
 {
-	position += n*static_cast<int>(round(.5*maxSpeed));
+	
+	position += static_cast<int>(round(.5*maxSpeed));
 	energy -= round(maxSpeed*.1);
+
+	if (driver != nullptr)
+	{
+		if (driver->movement(racetrack))
+		{
+			if (energy > 0)
+				speed += (accelerationPedal - brakePedal);
+			else
+				speed -= 1;
+
+			if (speed < 0)
+				speed = 0;
+			if (speed > maxSpeed)
+				speed = maxSpeed;
+
+			if (speed > 0)
+				movement = true;
+			if (speed == 0)
+				movement = false;
+
+			energyConsumption();
+		}
+		else
+			return false;
+		
+	}
+	return true;
 }
 
 void Car::reset()
@@ -268,6 +297,19 @@ void Car::reset()
 	accelerationPedal = 0;
 	brakePedal = 0;
 	position = 0;
+	emergencySignal = false;
+}
+
+void Car::resetPedals()
+{
+	accelerationPedal = 0;
+	brakePedal = 0;
+}
+
+void Car::turnOnEmergencySignal()
+{
+	emergencySignal = true;
+	
 }
 
 

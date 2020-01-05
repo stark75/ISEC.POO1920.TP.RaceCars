@@ -19,6 +19,7 @@ class Racetrack {
 	std::vector<Car*>               carsInGarage;
 
 	std::vector<RaceResults>        raceResults;
+	std::vector<std::string>        tmpLog;
 	
 	//Variaveis
 	bool				            isCarMax;
@@ -53,6 +54,9 @@ public:
 	bool                            removeCarFromTrack(char wantedID);
 	bool                            removeCarFromGarage(char wantedID);
 	bool                            accident(char wantedID);
+
+	void                            updateLog(std::string newMessage);
+	std::vector<std::string>        returnLog();
 	
 	bool                            printCarsInGarage() const;
 	bool                            printCarsInTrack() const;
@@ -62,8 +66,12 @@ public:
 	bool                            checkEndOfRace();
 	bool                            copyGarage(std::vector<Car*> src);
 
-	static bool                     sortCarMethod(Car* lhs, Car* rhs);
+	static bool                     sortCarByPosMethod(Car* lhs, Car* rhs);
 	static bool                     sortRaceMethod(RaceResults& lhs, RaceResults& rhs);
+	static bool                     sortCarByIDMethod(Car* lhs, Car* rhs);
 	void                            sortRaceResults();
 	void                            sortCarsByPosition();
+	void                            sortCarsByID();
+	int                             getPosition(Car* c);
+	Car*                            getCarInPosition(int pos);
 };

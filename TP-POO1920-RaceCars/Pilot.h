@@ -3,6 +3,7 @@
 #include <vector>
 
 class Car;
+class Racetrack;
 
 class Pilot
 {
@@ -26,14 +27,20 @@ public:
 	virtual std::string getAsString()     const;
 	virtual std::string getTypeAsString() const;
 
+	void                setLog(const std::string& newMessage);
+	void                setStop(const bool& condition);
+
 	std::string returnLog();
 	
-	bool        attach(Car* newCar);
-	bool        detach();
+	bool         attach(Car* newCar);
+	bool         detach();
 
-    friend bool operator==(const Pilot& lhs, const Pilot& rhs);
+	virtual bool movement(Racetrack* r) = 0;
+	virtual void reset()                = 0;
 
-    friend bool operator!=(const Pilot& lhs, const Pilot& rhs);
+    friend bool  operator==(const Pilot& lhs, const Pilot& rhs);
+
+    friend bool  operator!=(const Pilot& lhs, const Pilot& rhs);
 };
 
 std::ostream& operator<<(std::ostream& os, const Pilot& p);

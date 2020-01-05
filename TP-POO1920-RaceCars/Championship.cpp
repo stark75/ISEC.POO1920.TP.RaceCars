@@ -148,6 +148,11 @@ bool Championship::chargeCar(char wantedID, int n)
 	return raceLocations[currentRace]->chargeCar(wantedID, n);
 }
 
+std::vector<std::string> Championship::returnLog()
+{
+	return raceLocations[currentRace]->returnLog();
+}
+
 void Championship::updateStandings()
 {
 	raceLocations[currentRace]->sortRaceResults();

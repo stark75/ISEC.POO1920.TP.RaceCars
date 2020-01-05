@@ -66,7 +66,7 @@ bool Simulator::addPilot(std::string type, std::string newName)
 		CrazyPilot tmpPilot(newName);
 		return currentDGV.addCrazyPilot(tmpPilot);
 	}
-
+	/*
 	if (type == "rapido")
 	{
 		FastPilot tmpPilot(newName);
@@ -78,7 +78,7 @@ bool Simulator::addPilot(std::string type, std::string newName)
 		SurprisePilot tmpPilot(newName);
 		return currentDGV.addSurprisePilot(tmpPilot);
 	}
-
+	*/
 	return false;
 }
 
@@ -223,6 +223,12 @@ void Simulator::clearChampionship()
 void Simulator::addMessageToLog(std::string newMessage)
 {
 	log.push_back(newMessage);
+}
+
+void Simulator::addMessagesToLog()
+{
+	std::vector<std::string> newMessages = championship->returnLog();
+	log.insert(log.end(), newMessages.begin(), newMessages.end());
 }
 
 bool Simulator::printRacetracks()

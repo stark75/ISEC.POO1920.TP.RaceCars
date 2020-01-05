@@ -22,8 +22,8 @@ DGV::DGV(const DGV& src)
 		{
 			std::string tmpString = src.pilotList[i]->getTypeAsString();
 			if (tmpString == "crazy")
-				pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
-			else
+				pilotList.push_back(new CrazyPilot(*src.pilotList[i])); //TODO UNCOMMENT
+			/*else
 			{
 				if (tmpString == "rapido")
 					pilotList.push_back(new FastPilot(*src.pilotList[i]));
@@ -31,10 +31,8 @@ DGV::DGV(const DGV& src)
 				{
 					if (tmpString == "surpresa")
 						pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
-					else
-						pilotList.push_back(new Pilot(*src.pilotList[i]));
 				}
-			}
+			}*/
 		}
 	}
 
@@ -73,12 +71,6 @@ bool DGV::addCar(const Car newCar)
 	return true;
 }
 
-bool DGV::addPilot(const Pilot& newPilot)
-{
-	pilotList.push_back(new Pilot(newPilot));
-	return true;
-}
-
 bool DGV::addCrazyPilot(const CrazyPilot& newPilot)
 {
 	pilotList.push_back(new CrazyPilot(newPilot));
@@ -87,13 +79,15 @@ bool DGV::addCrazyPilot(const CrazyPilot& newPilot)
 
 bool DGV::addFastPilot(const FastPilot& newPilot)
 {
-	pilotList.push_back(new FastPilot(newPilot));
+	//TODO UNCOMMENT
+	//pilotList.push_back(new FastPilot(newPilot));
 	return true;
 }
 
 bool DGV::addSurprisePilot(const SurprisePilot& newPilot)
 {
-	pilotList.push_back(new SurprisePilot(newPilot));
+	//TODO UNCOMMENT
+	//pilotList.push_back(new SurprisePilot(newPilot));
 	return true;
 }
 
@@ -323,6 +317,7 @@ DGV& DGV::operator=(const DGV& src)
 			std::string tmpString = src.pilotList[i]->getTypeAsString();
 			if(tmpString == "crazy")
 				this->pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
+			/* TODO UNCOMMENT
 			else
 			{
 				if (tmpString == "rapido")
@@ -331,10 +326,8 @@ DGV& DGV::operator=(const DGV& src)
 				{
 					if (tmpString == "surpresa")
 						this->pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
-					else
-						this->pilotList.push_back(new Pilot(*src.pilotList[i]));
 				}
-			}
+			}*/
 		}
 	}
 

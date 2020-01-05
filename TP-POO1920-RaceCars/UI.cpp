@@ -588,9 +588,7 @@ void UI::run(const int argc, char* argv[])
 									firstTime = false;
 								else
 									tmpString += " ";
-
 								tmpString += argument;
-
 							}
 
 							if (simulator.addPilot(tmpType, tmpString))
@@ -979,7 +977,7 @@ bool UI::loadPilots(const std::string filename)
 
 				std::string tmpType = storedValue;
 
-				if(storedValue == "crazy" || storedValue == "rapido" || storedValue == "surpresa" )
+				if(storedValue == "crazy" /*|| storedValue == "rapido" || storedValue == "surpresa" */)
 				{
 					std::string tmpName = "";
 					bool firstTime = true;

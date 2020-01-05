@@ -40,6 +40,7 @@ public:
 	int  checkIfItsPossibleToStartAChampionship(std::string tmpString);
 	void clearChampionship();
 	void addMessageToLog(std::string newMessage);
+	void addMessagesToLog();
 	
 	void chargeAllCars();
 	bool startRace();

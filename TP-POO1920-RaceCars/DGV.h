@@ -17,7 +17,6 @@ public:
 	std::vector<Car*> getCarList();
 
 	bool   addCar(const Car newCar);
-	bool   addPilot(const Pilot& newPilot);
 	bool   addCrazyPilot(const CrazyPilot& newPilot);
 	bool   addFastPilot(const FastPilot& newPilot);
 	bool   addSurprisePilot(const SurprisePilot& newPilot);

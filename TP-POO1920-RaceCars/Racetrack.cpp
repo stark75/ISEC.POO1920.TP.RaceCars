@@ -204,27 +204,35 @@ bool Racetrack::carsMovement()
 
 	for(int i = 0; i<trackSize;i++)
 	{
+		bool checker = true;
 		if (carsInTrack[i]->getPosition() < trackLength)
 		{
-			carsInTrack[i]->move(1 /*this*/);
+			checker = carsInTrack[i]->move(this);
 		}
-		if (carsInTrack[i]->getPosition() >= trackLength)
+		if (checker)
 		{
-			bool checker = false;
-			
-			for (int j = 0; j < carsInFinishLine; j++)
+			if (carsInTrack[i]->getPosition() >= trackLength)
 			{
-				if (carsInTrack[i] == raceResults[j])
+				checker = false;
+
+				for (int j = 0; j < carsInFinishLine; j++)
 				{
-					checker = true;
-					break;
+					if (carsInTrack[i] == raceResults[j])
+					{
+						checker = true;
+						break;
+					}
+				}
+
+				if (!checker)
+				{
+					raceResults.emplace_back(carsInTrack[i], time);
 				}
 			}
-			
-			if (!checker)
-			{
-				raceResults.emplace_back(carsInTrack[i], time);
-			}
+		}
+		else
+		{
+			trackSize = carsInTrack.size();
 		}
 	}
 
@@ -277,6 +285,19 @@ bool Racetrack::accident(char wantedID)
 		}
 	}
 	return false;
+}
+
+void Racetrack::updateLog(std::string newMessage)
+{
+	if(!newMessage.empty())
+		tmpLog.push_back(newMessage);
+}
+
+std::vector<std::string> Racetrack::returnLog()
+{
+	std::vector<std::string> log = tmpLog;
+	tmpLog.clear();
+	return log;
 }
 
 bool Racetrack::printCarsInGarage() const
@@ -366,7 +387,7 @@ bool Racetrack::copyGarage(std::vector<Car*> src)
 	return true;
 }
 
-bool Racetrack::sortCarMethod(Car* lhs, Car* rhs)
+bool Racetrack::sortCarByPosMethod(Car* lhs, Car* rhs)
 {
 	return lhs->getPosition() > rhs->getPosition();
 }
@@ -374,6 +395,13 @@ bool Racetrack::sortCarMethod(Car* lhs, Car* rhs)
 bool Racetrack::sortRaceMethod(RaceResults& lhs, RaceResults& rhs)
 {
 	return lhs.getFinishTime() < rhs.getFinishTime();
+}
+
+bool Racetrack::sortCarByIDMethod(Car* lhs, Car* rhs)
+{
+	if(lhs->getID() == '?' || rhs->getID() == '?')
+		return lhs->getID() > rhs->getID();
+	return lhs->getID() < rhs->getID();
 }
 
 void Racetrack::sortRaceResults()
@@ -386,6 +414,48 @@ void Racetrack::sortRaceResults()
 void Racetrack::sortCarsByPosition()
 {
 	std::vector<Car*> vectorCopy = carsInTrack;
-	std::sort(vectorCopy.begin(), vectorCopy.end(), sortCarMethod);
+	std::sort(vectorCopy.begin(), vectorCopy.end(), sortCarByPosMethod);
 	carsInTrack = vectorCopy;
+}
+
+void Racetrack::sortCarsByID()
+{
+	std::vector<Car*> vectorCopy = carsInTrack;
+	std::sort(vectorCopy.begin(), vectorCopy.end(), sortCarByIDMethod);
+	carsInTrack = vectorCopy;
+}
+
+int Racetrack::getPosition(Car* c)
+{
+	int pos = 0;
+	sortCarsByPosition();
+
+	int vectorSize = carsInTrack.size();
+	for (int i = 0; i < vectorSize; i++)
+	{
+		if(c == carsInTrack[i])
+		{
+			pos = i + 1;
+			break;
+		}
+	}
+	sortCarsByID();
+	return pos;
+}
+
+Car* Racetrack::getCarInPosition(int pos)
+{
+	sortCarsByPosition();
+	int maxCars = carsInTrack.size();
+	
+	if (pos < 1)
+		return nullptr;
+	if (pos > maxCars)
+		return nullptr;
+
+	Car *c = carsInTrack[pos - 1];
+	
+	sortCarsByID();
+	
+	return c;
 }
