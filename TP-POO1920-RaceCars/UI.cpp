@@ -690,9 +690,11 @@ void UI::run(const int argc, char* argv[])
 
 					if (argument.size() == 1)
 					{
-						//TODO: Remove car from championship
-						if(simulator.removeCar(argument[0])) /*simulator.destroyCar(argument[0])*/
-							validCommand = true;
+						if (simulator.destroyCar(argument[0]))
+							View::printMessage("Carro Destruido.", View::SuccessTypeMessage);
+						else
+							View::printMessage("Carro nao Destruido.", View::ErrorTypeMessage);
+						validCommand = true;
 					}
 				}
 

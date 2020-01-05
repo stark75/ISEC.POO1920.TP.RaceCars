@@ -48,7 +48,8 @@ public:
 	void                            resetRacetrack();
 	void                            chargeAllCars();
 	bool                            carsMovement();
-	
+	bool                            removeCarFromTrack(char wantedID);
+	bool                            removeCarFromGarage(char wantedID);
 	bool                            printCarsInGarage() const;
 	bool                            printCarsInTrack() const;
 	bool                            printRaceResults();

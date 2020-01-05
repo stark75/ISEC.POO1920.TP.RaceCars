@@ -26,6 +26,9 @@ public:
 	bool        nextRace();  /*NEEDS REVAMP*/
 	bool        startRace(); /*NEEDS REVAMP*/
 
+
+	bool        removeCarFromChampionship(char wantedID);
+	
 	void        updateStandings();
 		
 	//View Methods

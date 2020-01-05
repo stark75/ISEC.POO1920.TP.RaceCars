@@ -172,6 +172,13 @@ bool Simulator::removeRacetrack(std::string wantedName)
 	return false;
 }
 
+bool Simulator::destroyCar(char wantedID)
+{
+	if (championship->removeCarFromChampionship(wantedID))
+		return removeCar(wantedID);
+	return false;
+}
+
 int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 {
 	/*

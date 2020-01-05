@@ -205,6 +205,35 @@ bool Racetrack::carsMovement()
 	return true;
 }
 
+bool Racetrack::removeCarFromTrack(char wantedID)
+{
+	int vectorSize = carsInTrack.size();
+	for (int i = 0; i < vectorSize; i++)
+	{
+		if (wantedID == carsInTrack[i]->getID())
+		{
+			carsInGarage.push_back(carsInTrack[i]);
+			carsInTrack.erase(carsInTrack.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Racetrack::removeCarFromGarage(char wantedID)
+{
+	int vectorSize = carsInGarage.size();
+	for (int i = 0; i < vectorSize; i++)
+	{
+		if (wantedID == carsInGarage[i]->getID())
+		{
+			carsInGarage.erase(carsInGarage.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+
 bool Racetrack::printCarsInGarage() const
 {
 	int vectorSize = carsInGarage.size();
