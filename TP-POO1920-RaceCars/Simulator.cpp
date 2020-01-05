@@ -191,6 +191,11 @@ bool Simulator::accident(char wantedID)
 	return false;
 }
 
+bool Simulator::chargeCar(char wantedID, int n)
+{
+	return championship->chargeCar(wantedID, n);
+}
+
 int Simulator::checkIfItsPossibleToStartAChampionship(std::string tmpString)
 {
 	/*

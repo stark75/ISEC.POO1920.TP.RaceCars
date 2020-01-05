@@ -28,6 +28,7 @@ public:
 
 	bool        accident(char wantedID);
 	bool        removeCarFromChampionship(char wantedID);
+	bool        chargeCar(char wantedID, int n);
 	
 	void        updateStandings();
 		

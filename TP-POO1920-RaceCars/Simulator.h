@@ -36,6 +36,7 @@ public:
 	bool removeRacetrack(std::string wantedName);
 	bool destroyCar(char wantedID);
 	bool accident(char wantedID);
+	bool chargeCar(char wantedID, int n);
 	int  checkIfItsPossibleToStartAChampionship(std::string tmpString);
 	void clearChampionship();
 	void addMessageToLog(std::string newMessage);

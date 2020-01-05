@@ -143,6 +143,11 @@ bool Championship::removeCarFromChampionship(char wantedID)
 	return false;
 }
 
+bool Championship::chargeCar(char wantedID, int n)
+{
+	return raceLocations[currentRace]->chargeCar(wantedID, n);
+}
+
 void Championship::updateStandings()
 {
 	raceLocations[currentRace]->sortRaceResults();

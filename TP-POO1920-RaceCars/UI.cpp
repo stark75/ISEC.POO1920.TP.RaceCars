@@ -388,8 +388,6 @@ void UI::run(const int argc, char* argv[])
 					}
 				}
 
-				//TODO MESSAGES
-
 				if (argument == "apaga")
 				{
 					separator >> argument;
@@ -681,7 +679,6 @@ void UI::run(const int argc, char* argv[])
 				if (argument == "acidente") //TODO
 				{
 					separator >> argument;
-					//View::printMessage("acidente not implemented", View::WarningTypeMessage);
 					if (argument.size() == 1)
 					{
 						if (simulator.accident(argument[0]))
@@ -728,10 +725,31 @@ void UI::run(const int argc, char* argv[])
 				std::string argument;
 				separator >> argument;
 
-				if (argument == "carregabat") //TODO
+				if (argument == "carregabat")
 				{
-					View::printMessage("carregabat not implemented", View::WarningTypeMessage);
-					validCommand = true;
+					separator >> argument;
+
+					if(argument.size() == 1)
+					{
+						if(Utils::isAlpha(argument[0]))
+						{
+							char tmpChar = argument[0];
+
+							separator >> argument;
+
+							if(Utils::isNumber(argument))
+							{
+								int tmpInt = std::stoi(argument);
+
+								if (simulator.chargeCar(tmpChar, tmpInt))
+									View::printMessage("Carro carregado.", View::SuccessTypeMessage);
+								else
+									View::printMessage("Carro nao carregado.", View::ErrorTypeMessage);
+
+								validCommand = true;
+							}
+						}
+					}
 				}
 			}
 
