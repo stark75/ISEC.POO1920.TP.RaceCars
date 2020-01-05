@@ -9,7 +9,7 @@ DGV::DGV(const DGV& src)
 	{
 		for (int i = 0; i < vectorSize; i++)
 		{
-			carList.emplace_back(src.carList[i]);
+			carList.push_back(new Car(*src.carList[i]));
 			carList[i]->detach();
 		}
 	}
@@ -20,7 +20,7 @@ DGV::DGV(const DGV& src)
 	{
 		for (int i = 0; i < vectorSize; i++)
 		{
-			pilotList.emplace_back(src.pilotList[i]);
+			pilotList.push_back(new Pilot(*src.pilotList[i]));
 			pilotList[i]->detach();
 		}
 	}
