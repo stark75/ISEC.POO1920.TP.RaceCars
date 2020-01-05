@@ -241,6 +241,7 @@ void UI::run(const int argc, char* argv[])
 				validCommand = true;
 			}
 
+			//TODO: APAGAR ANTES DA ENTREGA
 			if (command == "campeonato" || command == "championship")
 			{
 				if (simulator.getChampionship() != nullptr)
@@ -637,6 +638,7 @@ void UI::run(const int argc, char* argv[])
 
 		if (mode == MenuMode::CHAMPIONSHIP)
 		{
+			//TODO: APAGAR ANTES DA ENTREGA
 			if (command == "voltar")
 			{
 				View::printMessage("Menu mode switched to Config Mode", View::SuccessTypeMessage);
