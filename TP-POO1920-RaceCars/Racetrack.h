@@ -38,14 +38,16 @@ public:
 	std::vector<Car*>               getCarsInGarage() const;
 	std::vector<RaceResults>        getRaceResults() const;
 	bool                            getIsCarMax() const;
-	std::string                     getAsString() const;
 	int                             getTime() const;
+	std::string                     getAsString() const;
+	Car*                            getCarById(char wantedID);
 
 	void                            addCarToGarage(Car* newCar);	
 	void                            moveCarsToTrack();
 	void                            moveCarsToGarage();
 	void                            resetCars();
 	void                            resetRacetrack();
+	bool                            chargeCar(char wantedID, int n);
 	void                            chargeAllCars();
 	bool                            carsMovement();
 	bool                            removeCarFromTrack(char wantedID);

@@ -61,6 +61,11 @@ bool Racetrack::getIsCarMax() const
 	return isCarMax;
 }
 
+int Racetrack::getTime() const
+{
+	return time;
+}
+
 std::string Racetrack::getAsString() const
 {
 	std::string tmpString;
@@ -76,9 +81,25 @@ std::string Racetrack::getAsString() const
 	return tmpString;
 }
 
-int Racetrack::getTime() const
+Car* Racetrack::getCarById(char wantedID)
 {
-	return time;
+	int vectorSize = carsInTrack.size();
+	for (int i = 0; i < vectorSize; i++)
+	{
+		char tmpChar = carsInTrack[i]->getID();
+		if (tmpChar == wantedID)
+			return carsInTrack[i];
+	}
+
+	vectorSize = carsInGarage.size();
+	for (int i = 0; i < vectorSize; i++)
+	{
+		char tmpChar = carsInGarage[i]->getID();
+		if (tmpChar == wantedID)
+			return carsInGarage[i];
+	}
+	
+	return nullptr;
 }
 
 void Racetrack::addCarToGarage(Car* newCar)
@@ -146,6 +167,16 @@ void Racetrack::resetRacetrack()
 	carsInTrack.clear();
 	carsInGarage.clear();
 	time = 0;
+}
+
+bool Racetrack::chargeCar(char wantedID, int n)
+{
+	Car* tmpCar = getCarById(wantedID);
+
+	if (tmpCar != nullptr)
+		return tmpCar->energyCharge(n);
+
+	return false;
 }
 
 void Racetrack::chargeAllCars()
