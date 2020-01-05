@@ -281,6 +281,13 @@ bool Car::move(Racetrack* racetrack)
 			if (speed == 0)
 				movement = false;
 
+			position += speed;
+
+			int trackLength = racetrack->getTrackLength();
+			
+			if (position > trackLength)
+				position = trackLength;
+			
 			energyConsumption();
 		}
 		else
