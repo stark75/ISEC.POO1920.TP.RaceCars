@@ -265,7 +265,7 @@ bool Simulator::nextRace()
 bool Simulator::passOneSecond()
 {
 	bool pass = championship->passOneSecond();
-	//getlog
+	addMessagesToLog();
 	return pass;
 }
 
