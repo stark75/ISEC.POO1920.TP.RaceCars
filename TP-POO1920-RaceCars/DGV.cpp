@@ -171,6 +171,8 @@ bool DGV::attach(char id, std::string name)
 
 	if(tmpCar!=nullptr && tmpPilot!=nullptr)
 	{
+		if (tmpCar->getDamage())
+			return false;
 		if (tmpCar->getDriver() != nullptr)
 			return false;
 		if (tmpPilot->getCurrentCar() != nullptr)
