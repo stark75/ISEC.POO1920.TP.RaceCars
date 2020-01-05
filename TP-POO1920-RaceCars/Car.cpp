@@ -178,6 +178,10 @@ std::string Car::getAsString() const
 	tmpString += "mAh (max: ";
 	tmpString += Utils::doubleToStringWithPrecision(maxEnergy, 2);
 	tmpString += "mAh)";
+	if(getDamage())
+	{
+		tmpString += " | AVARIADO";
+	}
 	tmpString += "]";
 	
 	return tmpString;
