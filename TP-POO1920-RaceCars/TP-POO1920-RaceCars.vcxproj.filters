@@ -93,6 +93,9 @@
     <ClCompile Include="RaceResults.cpp">
       <Filter>Standings</Filter>
     </ClCompile>
+    <ClCompile Include="StoredDGV.cpp">
+      <Filter>Model\DGV</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Consola\Consola.h">
@@ -139,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="RaceResults.h">
       <Filter>Standings</Filter>
+    </ClInclude>
+    <ClInclude Include="StoredDGV.h">
+      <Filter>Model\DGV</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

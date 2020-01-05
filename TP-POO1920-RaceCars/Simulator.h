@@ -3,6 +3,7 @@
 #include "DGV.h"
 #include "Racetrack.h"
 #include "Championship.h"
+#include "StoredDGV.h"
 
 class Simulator
 {
@@ -10,6 +11,7 @@ class Simulator
 	std::vector<Racetrack*> racetracks;
 	Championship* championship;
 	std::vector<std::string> log;
+	std::vector<StoredDGV> dgvStorage;
 	
 public:
 

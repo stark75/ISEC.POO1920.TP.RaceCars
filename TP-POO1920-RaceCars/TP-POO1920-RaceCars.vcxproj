@@ -136,6 +136,7 @@
     <ClCompile Include="Racetrack.cpp" />
     <ClCompile Include="Simulator.cpp" />
     <ClCompile Include="StandingsElement.cpp" />
+    <ClCompile Include="StoredDGV.cpp" />
     <ClCompile Include="SurprisePilot.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Racetrack.h" />
     <ClInclude Include="Simulator.h" />
     <ClInclude Include="StandingsElement.h" />
+    <ClInclude Include="StoredDGV.h" />
     <ClInclude Include="SurprisePilot.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="Utils.h" />
