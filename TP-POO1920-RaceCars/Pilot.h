@@ -30,7 +30,7 @@ public:
 	void                setLog(const std::string& newMessage);
 	void                setStop(const bool& condition);
 
-	std::string returnLog();
+	std::string  returnLog();
 	
 	bool         attach(Car* newCar);
 	bool         detach();
