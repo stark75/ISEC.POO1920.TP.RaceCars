@@ -563,7 +563,10 @@ void UI::run(const int argc, char* argv[])
 									}
 									else
 									{
-										simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand);
+										if (simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand))
+											View::printMessage("Carro gerado.", View::SuccessTypeMessage);
+										else
+											View::printMessage("Parametros Errados.", View::ErrorTypeMessage);
 									}
 									validCommand = true;
 								}
