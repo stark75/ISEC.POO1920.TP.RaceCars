@@ -262,10 +262,6 @@ bool Car::repair()
 
 bool Car::move(Racetrack* racetrack)
 {
-	
-	position += static_cast<int>(round(.5*maxSpeed));
-	energy -= round(maxSpeed*.1);
-
 	if (driver != nullptr)
 	{
 		if (driver->movement(racetrack))
