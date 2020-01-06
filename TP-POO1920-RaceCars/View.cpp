@@ -241,7 +241,7 @@ void View::printRace(Simulator& s)
 		}
 	}
 
-	std::cout << std::endl;
+	std::cout << std::endl << std::endl << std::endl << std::endl;
 	
 	Sleep(50);
 
