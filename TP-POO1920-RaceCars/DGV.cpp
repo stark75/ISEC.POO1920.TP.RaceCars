@@ -1,7 +1,6 @@
 #include "DGV.h"
 #include "View.h"
 #include <algorithm>
-#include "CrazyPilot.h"
 
 DGV::DGV(const DGV& src)
 {
@@ -27,11 +26,11 @@ DGV::DGV(const DGV& src)
 			{
 				if (tmpString == "rapido")
 					pilotList.push_back(new FastPilot(*src.pilotList[i]));
-				/*else
+				else
 				{
 					if (tmpString == "surpresa")
 						pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
-				}*/
+				}
 			}
 		}
 	}
@@ -56,8 +55,6 @@ DGV::~DGV()
 			delete carList[i];
 
 	carList.clear();
-	
-	
 }
 
 std::vector<Car*> DGV::getCarList()
@@ -85,8 +82,7 @@ bool DGV::addFastPilot(const FastPilot& newPilot)
 
 bool DGV::addSurprisePilot(const SurprisePilot& newPilot)
 {
-	//TODO UNCOMMENT
-	//pilotList.push_back(new SurprisePilot(newPilot));
+	pilotList.push_back(new SurprisePilot(newPilot));
 	return true;
 }
 
@@ -320,11 +316,11 @@ DGV& DGV::operator=(const DGV& src)
 			{
 				if (tmpString == "rapido")
 					this->pilotList.push_back(new FastPilot(*src.pilotList[i]));
-				/*else
+				else
 				{
 					if (tmpString == "surpresa")
 						this->pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
-				}*/
+				}
 			}
 		}
 	}

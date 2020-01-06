@@ -53,7 +53,7 @@ bool UI::timePassCommand(int n)
 		View::clearScreen();
 		for (int i = 0; i < n; i++)
 		{
-			bool checker = simulator.passOneSecond();
+			simulator.passOneSecond();
 			View::printRace(simulator);
 
 			if(simulator.checkEndOfRace())
@@ -977,7 +977,7 @@ bool UI::loadPilots(const std::string filename)
 
 				std::string tmpType = storedValue;
 
-				if(storedValue == "crazy" || storedValue == "rapido" /*|| storedValue == "surpresa" */)
+				if(storedValue == "crazy" || storedValue == "rapido" || storedValue == "surpresa")
 				{
 					std::string tmpName = "";
 					bool firstTime = true;

@@ -72,13 +72,11 @@ bool Simulator::addPilot(std::string type, std::string newName)
 		return currentDGV.addFastPilot(tmpPilot);
 	}
 	
-	/*
 	if (type == "surpresa")
 	{
 		SurprisePilot tmpPilot(newName);
 		return currentDGV.addSurprisePilot(tmpPilot);
 	}
-	*/
 	return false;
 }
 
