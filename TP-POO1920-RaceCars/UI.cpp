@@ -240,17 +240,6 @@ void UI::run(const int argc, char* argv[])
 				View::helpCommand();
 				validCommand = true;
 			}
-
-			//TODO: APAGAR ANTES DA ENTREGA
-			if (command == "campeonato" || command == "championship")
-			{
-				if (simulator.getChampionship() != nullptr)
-				{
-					switchMode();
-					View::printMessage("Modo Campeonato reativado.", View::SuccessTypeMessage);
-					validCommand = true;
-				}
-			}
 			
 			if (command == "loadACP") //DEBUG COMMAND
 			{
@@ -637,15 +626,6 @@ void UI::run(const int argc, char* argv[])
 
 		if (mode == MenuMode::CHAMPIONSHIP)
 		{
-			//TODO: APAGAR ANTES DA ENTREGA
-			if (command == "voltar")
-			{
-				View::printMessage("Menu mode switched to Config Mode", View::SuccessTypeMessage);
-				switchMode();
-
-				validCommand = true;
-			}
-
 			if (command == "carregatudo")
 			{
 				simulator.chargeAllCars();
