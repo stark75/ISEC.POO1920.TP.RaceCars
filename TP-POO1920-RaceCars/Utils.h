@@ -19,6 +19,6 @@ public:
 	static std::string doubleToStringWithPrecision(const double value, const int precision = 2);
 	static std::string getTimeAsString(int t);
 
-	static int rng(int max);
+	static int rng(int limit);
 	
 };

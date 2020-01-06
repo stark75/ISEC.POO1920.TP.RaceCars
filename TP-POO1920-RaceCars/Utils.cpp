@@ -1,8 +1,7 @@
 #include "Utils.h"
 #include <iostream>
 #include <sstream>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 
 int Utils::argumentCount(std::string str)
 {
@@ -177,11 +176,12 @@ std::string Utils::getTimeAsString(int t)
 	return time;
 }
 
-int Utils::rng(int max)
+int Utils::rng(int limit)
 {
-	std::srand((unsigned)time(nullptr));
+	std::random_device rd;
 
-	int num = (rand() % max) + 1;
+	std::mt19937 gen(rd());
 
-	return num;
+	std::uniform_int_distribution<> dis(1, limit);
+	return dis(gen);
 }
