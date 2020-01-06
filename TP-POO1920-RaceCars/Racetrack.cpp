@@ -236,6 +236,9 @@ bool Racetrack::carsMovement()
 		}
 	}
 
+	removeStalledCars();
+	trackSize = carsInTrack.size();
+	
 	carsInFinishLine = raceResults.size();
 	
 	if (carsInFinishLine == trackSize)
@@ -271,6 +274,44 @@ bool Racetrack::removeCarFromGarage(char wantedID)
 		}
 	}
 	return false;
+}
+
+void Racetrack::removeStalledCars()
+{
+	int vectorSize = carsInTrack.size();
+	if(vectorSize > 0)
+	{
+		for(int i = 0; i < vectorSize; i++)
+		{
+			Car* tmpCar = carsInTrack[i];
+			Pilot* tmpPilot = tmpCar->getDriver();
+
+			if(tmpPilot->getStopOrder())
+			{
+				if (tmpCar->getSpeed() == 0)
+					removeCarFromTrack(tmpCar->getID());
+			}
+			else
+			{
+				if (tmpCar->getEmergencySignal())
+				{
+					removeCarFromTrack(tmpCar->getID());
+					detach(tmpCar->getID());
+				}
+				else
+				{
+					if(tmpPilot->getTypeAsString() == "crazy")
+					{
+						if(time > 5)
+						{
+							if (tmpCar->getSpeed() == 0 && tmpCar->getEnergy() > 0)
+								removeCarFromTrack(tmpCar->getID());
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 bool Racetrack::detach(char wantedID)

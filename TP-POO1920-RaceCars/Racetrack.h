@@ -54,6 +54,7 @@ public:
 	bool                            carsMovement();
 	bool                            removeCarFromTrack(char wantedID);
 	bool                            removeCarFromGarage(char wantedID);
+	void                            removeStalledCars();
 	bool                            detach(char wantedID);
 	bool                            accident(char wantedID);
 
