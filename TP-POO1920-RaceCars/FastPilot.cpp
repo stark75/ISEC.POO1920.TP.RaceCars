@@ -12,17 +12,19 @@ FastPilot::FastPilot(const Pilot& src) : Pilot(src)
 {
 }
 
-bool FastPilot::generatePanicAttack()
+bool FastPilot::generatePanicAttack(int raceTime)
 {
 	std::srand(static_cast<unsigned>(time(0)));
 
 	int num = (rand() % 10) + 1;
 
-	std::string tmpString = "O piloto rapido ";
+	std::string tmpString = "No segundo ";
+	tmpString += std::to_string(raceTime);
+	tmpString += ", o piloto rapido ";
 	tmpString += getName();
 	tmpString += " gerou o numero ";
 	tmpString += std::to_string(num);
-	tmpString += "para gerar um ataque de panico. ";
+	tmpString += " para gerar um ataque de panico. ";
 	if(num == 7)
 	{
 		tmpString += "O piloto teve um ataque de panico.";
@@ -110,7 +112,7 @@ bool FastPilot::movement(Racetrack* r)
 
 	if (tmpTime % 10 == 0)
 	{
-		if (generatePanicAttack())
+		if (generatePanicAttack(tmpTime))
 		{
 			r->updateLog(returnLog());
 			c->turnOnEmergencySignal();

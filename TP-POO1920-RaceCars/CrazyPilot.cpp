@@ -12,13 +12,15 @@ CrazyPilot::CrazyPilot(const Pilot& src) : Pilot(src), secondToStart(0), tmpPos(
 {
 }
 
-void CrazyPilot::generateSecondToStart()
+void CrazyPilot::generateSecondToStart(int raceTime)
 {
 	std::srand(static_cast<unsigned>(time(0)));
 
 	secondToStart = (rand() % 5) + 1;
 
-	std::string tmpString = "O piloto crazy ";
+	std::string tmpString = "No segundo ";
+	tmpString += std::to_string(raceTime);
+	tmpString += ", o piloto crazy ";
 	tmpString += getName();
 	tmpString += " gerou o numero ";
 	tmpString += std::to_string(secondToStart);
@@ -27,13 +29,15 @@ void CrazyPilot::generateSecondToStart()
 	setLog(tmpString);
 }
 
-bool CrazyPilot::generateAccident()
+bool CrazyPilot::generateAccident(int raceTime)
 {
 	std::srand(static_cast<unsigned>(time(0)));
 
 	int num = (rand() % 100) + 1;
 
-	std::string tmpString = "O piloto crazy ";
+	std::string tmpString = "No segundo ";
+	tmpString += std::to_string(raceTime);
+	tmpString += ", o piloto crazy ";
 	tmpString += getName();
 	tmpString += " gerou o numero ";
 	tmpString += std::to_string(num);
@@ -89,7 +93,7 @@ bool CrazyPilot::movement(Racetrack* r)
 	int tmpTime = r->getTime();
 	if (tmpTime == 1)
 	{
-		generateSecondToStart();
+		generateSecondToStart(tmpTime);
 		r->updateLog(returnLog());
 	}
 		
@@ -148,7 +152,7 @@ bool CrazyPilot::movement(Racetrack* r)
 			c->turnOnEmergencySignal();
 		}
 
-		if(generateAccident())
+		if(generateAccident(tmpTime))
 		{
 			r->updateLog(returnLog());
 			if(pos < maxCars)
