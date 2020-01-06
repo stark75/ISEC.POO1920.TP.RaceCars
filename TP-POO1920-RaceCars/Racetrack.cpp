@@ -349,6 +349,25 @@ bool Racetrack::accident(char wantedID)
 	return false;
 }
 
+bool Racetrack::stop(std::string wantedName)
+{
+	int vectorSize = carsInTrack.size();
+
+	if(vectorSize > 0)
+	{
+		for(int i=0;i<vectorSize;i++)
+		{
+			Pilot* p = carsInTrack[i]->getDriver();
+			if(wantedName == p->getName())
+			{
+				p->setStop(true);
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 void Racetrack::updateLog(std::string newMessage)
 {
 	if(!newMessage.empty())

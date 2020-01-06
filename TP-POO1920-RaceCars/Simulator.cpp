@@ -160,6 +160,11 @@ bool Simulator::removeRacetrack(std::string wantedName)
 	return false;
 }
 
+bool Simulator::stopPilot(std::string wantedName)
+{
+	return championship->stop(wantedName);
+}
+
 bool Simulator::destroyCar(char wantedID)
 {
 	if (championship->removeCarFromChampionship(wantedID))

@@ -674,7 +674,7 @@ void UI::run(const int argc, char* argv[])
 				std::string argument;
 				separator >> argument;
 
-				if (argument == "acidente") //TODO
+				if (argument == "acidente")
 				{
 					separator >> argument;
 					if (argument.size() == 1)
@@ -687,7 +687,7 @@ void UI::run(const int argc, char* argv[])
 					}
 				}
 
-				if (argument == "destroi") //TODO
+				if (argument == "destroi")
 				{
 					separator >> argument;
 
@@ -751,7 +751,7 @@ void UI::run(const int argc, char* argv[])
 				}
 			}
 
-			if(Utils::argumentCount(command)>=2) //TODO
+			if(Utils::argumentCount(command)>=2)
 			{
 				std::istringstream separator(command);
 				std::string argument;
@@ -759,7 +759,21 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "stop")
 				{
-					View::printMessage("stop not implemented", View::WarningTypeMessage);
+					std::string tmpString = "";
+
+					bool isFirstTime = true;
+
+					while (separator >> argument)
+					{
+						if (isFirstTime)
+							isFirstTime = false;
+						else
+							tmpString += " ";
+						tmpString += argument;
+					}
+
+					simulator.stopPilot(tmpString);
+					
 					validCommand = true;
 				}
 			}

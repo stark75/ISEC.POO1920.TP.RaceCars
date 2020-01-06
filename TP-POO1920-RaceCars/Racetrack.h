@@ -57,6 +57,7 @@ public:
 	void                            removeStalledCars();
 	bool                            detach(char wantedID);
 	bool                            accident(char wantedID);
+	bool                            stop(std::string wantedName);
 
 	void                            updateLog(std::string newMessage);
 	std::vector<std::string>        returnLog();
