@@ -205,19 +205,21 @@ bool Racetrack::carsMovement()
 	for(int i = 0; i<trackSize;i++)
 	{
 		bool checker = true;
-		if (carsInTrack[i]->getPosition() < trackLength)
+		Car* currentCar = carsInTrack[i];
+		if (currentCar->getPosition() < trackLength)
 		{
-			checker = carsInTrack[i]->move(this);
+			checker = currentCar->move(this);
+			trackSize = carsInTrack.size();
 		}
 		if (checker)
 		{
-			if (carsInTrack[i]->getPosition() >= trackLength)
+			if (currentCar->getPosition() >= trackLength)
 			{
 				checker = false;
 
 				for (int j = 0; j < carsInFinishLine; j++)
 				{
-					if (carsInTrack[i] == raceResults[j])
+					if (currentCar == raceResults[j])
 					{
 						checker = true;
 						break;
@@ -226,13 +228,9 @@ bool Racetrack::carsMovement()
 
 				if (!checker)
 				{
-					raceResults.emplace_back(carsInTrack[i], time);
+					raceResults.emplace_back(currentCar, time);
 				}
 			}
-		}
-		else
-		{
-			trackSize = carsInTrack.size();
 		}
 	}
 
@@ -310,6 +308,7 @@ void Racetrack::removeStalledCars()
 					}
 				}
 			}
+			vectorSize = carsInTrack.size();
 		}
 	}
 }
