@@ -1,4 +1,4 @@
-10 3000 Estoril
-30 7000 Monaco
-20 5000 London
-20 5000 Manhattan
+10 30000 Estoril
+30 70000 Monaco
+20 50000 London
+20 50000 Manhattan
