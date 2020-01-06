@@ -772,7 +772,10 @@ void UI::run(const int argc, char* argv[])
 						tmpString += argument;
 					}
 
-					simulator.stopPilot(tmpString);
+					if (simulator.stopPilot(tmpString))
+						View::printMessage("O Piloto recebeu a ordem de parar.", View::SuccessTypeMessage);
+					else
+						View::printMessage("Nao houve ordem para parar.", View::ErrorTypeMessage);
 					
 					validCommand = true;
 				}
