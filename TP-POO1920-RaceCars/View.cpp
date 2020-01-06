@@ -168,6 +168,7 @@ void View::printRace(Simulator& s)
 	int raceSize = raceCars.size();
 	int raceTime = r->getTime();
 	std::string location = r->getName();
+	int trackLength = r->getTrackLength();
 
 	if (raceSize == 0)
 	{
@@ -181,7 +182,7 @@ void View::printRace(Simulator& s)
 	Consola::setTextColor(Consola::AZUL_CLARO);
 	std::cout << "Track: ";
 	Consola::setTextColor(Consola::BRANCO);
-	std::cout << location << std::endl;
+	std::cout << location << " (" << trackLength << "m)" << std::endl;
 
 
 	//Print Time Elapsed
