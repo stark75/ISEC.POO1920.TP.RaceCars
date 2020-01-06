@@ -41,6 +41,7 @@ public:
 	void clearChampionship();
 	void addMessageToLog(std::string newMessage);
 	void addMessagesToLog();
+	void clearKillList();
 	
 	void chargeAllCars();
 	bool startRace();

@@ -169,14 +169,11 @@ bool Simulator::destroyCar(char wantedID)
 
 bool Simulator::accident(char wantedID)
 {
-	if(championship->accident(wantedID))
-	{
-		Car* tmpCar = currentDGV.getCarById(wantedID);
-		Pilot* tmpPilot = tmpCar->getDriver();
-		detach(wantedID);
-		return removePilot(tmpPilot->getName());
-	}
-	return false;
+	bool checker = championship->accident(wantedID);
+
+	clearKillList();
+	
+	return checker;
 }
 
 bool Simulator::chargeCar(char wantedID, int n)
@@ -223,6 +220,25 @@ void Simulator::addMessagesToLog()
 	log.insert(log.end(), newMessages.begin(), newMessages.end());
 }
 
+void Simulator::clearKillList()
+{
+	Racetrack* r = championship->getCurrentRacetrack();
+	if (r == nullptr)
+		return;
+	std::vector<std::string> killList = r->returnKillList();
+
+	int vectorSize = killList.size();
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			removePilot(killList[i]);
+		}
+	}
+	
+}
+
 bool Simulator::printRacetracks()
 {
 	int vectorSize = racetracks.size();
@@ -257,6 +273,7 @@ bool Simulator::nextRace()
 bool Simulator::passOneSecond()
 {
 	bool pass = championship->passOneSecond();
+	clearKillList();
 	addMessagesToLog();
 	return pass;
 }

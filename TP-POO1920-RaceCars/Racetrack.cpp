@@ -273,6 +273,24 @@ bool Racetrack::removeCarFromGarage(char wantedID)
 	return false;
 }
 
+bool Racetrack::detach(char wantedID)
+{
+	Car* tmpCar = getCarById(wantedID);
+
+	if (tmpCar != nullptr)
+	{
+		Pilot* tmpPilot = tmpCar->getDriver();
+		if (tmpPilot != nullptr)
+		{
+			if (tmpPilot->detach())
+			{
+				return tmpCar->detach();
+			}
+		}
+	}
+	return false;
+}
+
 bool Racetrack::accident(char wantedID)
 {
 	int vectorSize = carsInTrack.size();
@@ -281,6 +299,9 @@ bool Racetrack::accident(char wantedID)
 		if (wantedID == carsInTrack[i]->getID())
 		{
 			carsInTrack[i]->accident();
+			Pilot* tmpPilot = carsInTrack[i]->getDriver();
+			killList.push_back(tmpPilot->getName());
+			detach(wantedID);
 			return removeCarFromTrack(wantedID);
 		}
 	}
@@ -298,6 +319,13 @@ std::vector<std::string> Racetrack::returnLog()
 	std::vector<std::string> log = tmpLog;
 	tmpLog.clear();
 	return log;
+}
+
+std::vector<std::string> Racetrack::returnKillList()
+{
+	std::vector<std::string> kList = killList;
+	killList.clear();
+	return kList;
 }
 
 bool Racetrack::printCarsInGarage() const
