@@ -105,6 +105,7 @@ bool Pilot::detach()
 	if(current!=nullptr)
 	{
 		current = nullptr;
+		reset();
 		return true;
 	}
 	return false;

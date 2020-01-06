@@ -309,6 +309,8 @@ void Car::reset()
 	brakePedal = 0;
 	position = 0;
 	emergencySignal = false;
+	if (driver != nullptr)
+		driver->reset();
 }
 
 void Car::resetPedals()
