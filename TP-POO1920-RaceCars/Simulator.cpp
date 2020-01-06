@@ -66,13 +66,13 @@ bool Simulator::addPilot(std::string type, std::string newName)
 		CrazyPilot tmpPilot(newName);
 		return currentDGV.addCrazyPilot(tmpPilot);
 	}
-	/*
 	if (type == "rapido")
 	{
 		FastPilot tmpPilot(newName);
 		return currentDGV.addFastPilot(tmpPilot);
 	}
-
+	
+	/*
 	if (type == "surpresa")
 	{
 		SurprisePilot tmpPilot(newName);
@@ -142,13 +142,7 @@ bool Simulator::removePilot(std::string wantedName)
 }
 
 bool Simulator::removeRacetrack(std::string wantedName)
-{
-
-	/* TODO
-	 * if(racetrackIsInAChampionship())
-	 * return false;
-	 */
-	
+{	
 	int vectorSize = racetracks.size();
 
 	if (vectorSize > 0)
