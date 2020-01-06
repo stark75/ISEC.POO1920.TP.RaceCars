@@ -131,7 +131,7 @@ void UI::startChampionship(const std::string racetracks)
 			return;
 		}
 
-		int vectorSize = racetracksNameList.size();
+		int vectorSize = static_cast<int>(racetracksNameList.size());
 
 		for(int i=0; i<vectorSize;i++)
 		{
@@ -321,7 +321,7 @@ void UI::run(const int argc, char* argv[])
 				{
 					separator >> argument;
 
-					if (argument.size() == 1)
+					if (static_cast<int>(argument.size()) == 1)
 					{
 						char tmpChar = argument[0];
 
@@ -360,7 +360,7 @@ void UI::run(const int argc, char* argv[])
 
 					if (!Utils::isNumber(argument))
 					{
-						if (argument.size() == 1)
+						if (static_cast<int>(argument.size()) == 1)
 						{
 							char tmpChar = argument[0];
 							std::string tmpString = "";
@@ -418,7 +418,7 @@ void UI::run(const int argc, char* argv[])
 					{
 						separator >> argument;
 
-						if (argument.size() == 1)
+						if (static_cast<int>(argument.size()) == 1)
 						{
 							if (simulator.removeCar(argument[0]))
 								View::printMessage("Carro Removido.", View::SuccessTypeMessage);
@@ -680,7 +680,7 @@ void UI::run(const int argc, char* argv[])
 				if (argument == "acidente")
 				{
 					separator >> argument;
-					if (argument.size() == 1)
+					if (static_cast<int>(argument.size()) == 1)
 					{
 						if (simulator.accident(argument[0]))
 							View::printMessage("Acidente Ocorrido.", View::SuccessTypeMessage);
@@ -694,7 +694,7 @@ void UI::run(const int argc, char* argv[])
 				{
 					separator >> argument;
 
-					if (argument.size() == 1)
+					if (static_cast<int>(argument.size()) == 1)
 					{
 						if (simulator.destroyCar(argument[0]))
 							View::printMessage("Carro Destruido.", View::SuccessTypeMessage);
@@ -730,7 +730,7 @@ void UI::run(const int argc, char* argv[])
 				{
 					separator >> argument;
 
-					if(argument.size() == 1)
+					if(static_cast<int>(argument.size()) == 1)
 					{
 						if(Utils::isAlpha(argument[0]))
 						{

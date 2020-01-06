@@ -6,7 +6,7 @@ Championship::Championship(Racetrack* location, std::vector<Car*> newParticipant
 {
 	location->resetRacetrack();
 	
-	int vectorSize = newParticipants.size();
+	int vectorSize = static_cast<int>(newParticipants.size());
 	
 	for (int i = 0; i < vectorSize; i++)
 	{
@@ -15,13 +15,15 @@ Championship::Championship(Racetrack* location, std::vector<Car*> newParticipant
 	}
 
 	raceLocations.push_back(location);
+
+	chargeAllCars();
 	
 }
 
 Championship::Championship(std::vector<Racetrack*> locations, std::vector<Car*> newParticipants)
 	:currentRace(0)
 {
-	int lVectorSize = locations.size();
+	int lVectorSize = static_cast<int>(locations.size());
 
 	for(int i=0; i < lVectorSize; i++)
 	{
@@ -29,7 +31,7 @@ Championship::Championship(std::vector<Racetrack*> locations, std::vector<Car*> 
 		raceLocations.push_back(locations[i]);
 	}
 
-	int pVectorSize = newParticipants.size();
+	int pVectorSize = static_cast<int>(newParticipants.size());
 
 	for (int i = 0; i < pVectorSize; i++)
 	{
@@ -37,11 +39,13 @@ Championship::Championship(std::vector<Racetrack*> locations, std::vector<Car*> 
 		raceLocations[0]->addCarToGarage(newParticipants[i]);
 	}
 
+	chargeAllCars();
+	
 }
 
 Championship::~Championship()
 {
-	int vectorSize = raceLocations.size();
+	int vectorSize = static_cast<int>(raceLocations.size());
 
 	if (vectorSize > 0)
 	{
@@ -84,7 +88,7 @@ void Championship::chargeAllCars()
 
 bool Championship::nextRace()
 {	
-	int maxRaces = raceLocations.size();
+	int maxRaces = static_cast<int>(raceLocations.size());
 
 	std::vector<Car*> tmpGarage = raceLocations[currentRace]->getCarsInGarage();
 
@@ -108,7 +112,6 @@ bool Championship::startRace()
 	if(!areCarsInTrack())
 	{
 		raceLocations[currentRace]->moveCarsToTrack();
-		chargeAllCars();
 		return true;
 	}
 	return false;
@@ -128,7 +131,7 @@ bool Championship::removeCarFromChampionship(char wantedID)
 	
 	if (tmpRT->removeCarFromGarage(wantedID))
 	{
-		int vectorSize = standings.size();
+		int vectorSize = static_cast<int>(standings.size());
 		for (int i = 0; i < vectorSize; i++)
 		{
 			Car* tmpCar = standings[i].getCompetitor();
@@ -165,7 +168,7 @@ void Championship::updateStandings()
 
 	if(tmpRR.empty()) return;
 
-	int rrVectorSize = tmpRR.size();
+	int rrVectorSize = static_cast<int>(tmpRR.size());
 
 	if(rrVectorSize>0)
 	{
@@ -199,8 +202,8 @@ void Championship::updateStandings()
 		bool pointsTo2ndPlace = true;
 		bool pointsTo3rdPlace = true;
 
-		int fstP = firstPlace.size();
-		int sVSize = standings.size();
+		int fstP = static_cast<int>(firstPlace.size());
+		int sVSize = static_cast<int>(standings.size());
 		
 		if(fstP == 1)
 		{
@@ -251,7 +254,7 @@ void Championship::updateStandings()
 
 		if(pointsTo2ndPlace)
 		{
-			int sndP = secondPlace.size();
+			int sndP = static_cast<int>(secondPlace.size());
 			if(sndP == 1)
 			{
 				for (int i = 0; i < sVSize; i++)
@@ -291,7 +294,7 @@ void Championship::updateStandings()
 
 		if(pointsTo3rdPlace)
 		{
-			int trdP = thirdPlace.size();
+			int trdP = static_cast<int>(thirdPlace.size());
 
 			if(trdP == 1)
 			{
@@ -338,7 +341,7 @@ bool Championship::printCarsInTrack()
 void Championship::printStandings()
 {
 	sortStandings();
-	int vectorSize = standings.size();
+	int vectorSize = static_cast<int>(standings.size());
 
 	if (vectorSize > 0)
 	{

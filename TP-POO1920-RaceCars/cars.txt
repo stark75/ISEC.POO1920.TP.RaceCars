@@ -5,7 +5,6 @@
 200 0 8000 Ghoti Fish
 340 0 7200 Samsung Galaxy
 800 0 33100 Nokia 3310
-420 0 6969 Snoop Dogg
 400 0 12000 Power Bank
 240 0 4000 IPhone 11
 540 0 7000 Pentium Pro

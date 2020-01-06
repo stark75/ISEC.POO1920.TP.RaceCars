@@ -81,7 +81,7 @@ void View::printLog(Simulator& s)
 		printMessage("Log Vazio.", WarningTypeMessage);
 	else
 	{
-		int logSize = log.size();
+		int logSize = static_cast<int>(log.size());
 		for (int i = 0; i < logSize; i++)
 			std::cout << log[i] << std::endl;
 	}
@@ -165,7 +165,7 @@ void View::printRace(Simulator& s)
 
 	int length = r->getTrackLength();
 	std::vector<Car* > raceCars = r->getCarsInTrack();
-	int raceSize = raceCars.size();
+	int raceSize = static_cast<int>(raceCars.size());
 	int raceTime = r->getTime();
 	std::string location = r->getName();
 	int trackLength = r->getTrackLength();

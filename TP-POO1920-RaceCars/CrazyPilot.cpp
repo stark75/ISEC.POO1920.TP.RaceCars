@@ -98,7 +98,7 @@ bool CrazyPilot::movement(Racetrack* r)
 		int pos = r->getPosition(c);
 		bool lostPosition = false;
 		
-		int maxCars = r->getCarsInTrack().size();
+		int maxCars = static_cast<int>(r->getCarsInTrack().size());
 
 		if (pos > maxCars)
 			pos = maxCars;

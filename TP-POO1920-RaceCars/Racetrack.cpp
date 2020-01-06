@@ -83,7 +83,7 @@ std::string Racetrack::getAsString() const
 
 Car* Racetrack::getCarById(char wantedID)
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		char tmpChar = carsInTrack[i]->getID();
@@ -91,7 +91,7 @@ Car* Racetrack::getCarById(char wantedID)
 			return carsInTrack[i];
 	}
 
-	vectorSize = carsInGarage.size();
+	vectorSize = static_cast<int>(carsInGarage.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		char tmpChar = carsInGarage[i]->getID();
@@ -109,7 +109,7 @@ void Racetrack::addCarToGarage(Car* newCar)
 
 void Racetrack::moveCarsToTrack()
 {
-	int garageSize = carsInGarage.size();
+	int garageSize = static_cast<int>(carsInGarage.size());
 	carsInTrack.clear();
 	for (int i = 0; i < garageSize; i++)
 	{
@@ -117,11 +117,11 @@ void Racetrack::moveCarsToTrack()
 		{
 			carsInTrack.push_back(carsInGarage[i]);
 			carsInGarage.erase(carsInGarage.begin() + i);
-			garageSize = carsInGarage.size();
+			garageSize = static_cast<int>(carsInGarage.size());
 			i--;
 		}
 
-		int trackSize = carsInTrack.size();
+		int trackSize = static_cast<int>(carsInTrack.size());
 
 		if (trackSize == maxCars)
 			break;
@@ -131,7 +131,7 @@ void Racetrack::moveCarsToTrack()
 
 void Racetrack::moveCarsToGarage()
 {
-	int trackSize = carsInTrack.size();
+	int trackSize = static_cast<int>(carsInTrack.size());
 
 	for(int i=0; i<trackSize;i++)
 	{
@@ -143,7 +143,7 @@ void Racetrack::moveCarsToGarage()
 
 void Racetrack::resetCars()
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 
 	if (vectorSize > 0)
 	{
@@ -151,7 +151,7 @@ void Racetrack::resetCars()
 			carsInTrack[i]->reset();
 	}
 
-	vectorSize = carsInGarage.size();
+	vectorSize = static_cast<int>(carsInGarage.size());
 
 	if (vectorSize > 0)
 	{
@@ -181,13 +181,13 @@ bool Racetrack::chargeCar(char wantedID, int n)
 
 void Racetrack::chargeAllCars()
 {
-	int vectorSize = carsInGarage.size();
+	int vectorSize = static_cast<int>(carsInGarage.size());
 
 	if (vectorSize > 0)
 		for(int i=0;i<vectorSize;i++)
 			carsInGarage[i]->energyFullCharge();
 
-	vectorSize = carsInTrack.size();
+	vectorSize = static_cast<int>(carsInTrack.size());
 	if (vectorSize > 0)
 		for(int i=0;i<vectorSize;i++)
 			carsInTrack[i]->energyFullCharge();
@@ -196,11 +196,11 @@ void Racetrack::chargeAllCars()
 
 bool Racetrack::carsMovement()
 {
-	int trackSize = carsInTrack.size();
+	int trackSize = static_cast<int>(carsInTrack.size());
 
 	++time;
 
-	int carsInFinishLine = raceResults.size();
+	int carsInFinishLine = static_cast<int>(raceResults.size());
 
 	for(int i = 0; i<trackSize;i++)
 	{
@@ -209,7 +209,7 @@ bool Racetrack::carsMovement()
 		if (currentCar->getPosition() < trackLength)
 		{
 			checker = currentCar->move(this);
-			trackSize = carsInTrack.size();
+			trackSize = static_cast<int>(carsInTrack.size());
 		}
 		if (checker)
 		{
@@ -235,9 +235,9 @@ bool Racetrack::carsMovement()
 	}
 
 	removeStalledCars();
-	trackSize = carsInTrack.size();
+	trackSize = static_cast<int>(carsInTrack.size());
 	
-	carsInFinishLine = raceResults.size();
+	carsInFinishLine = static_cast<int>(raceResults.size());
 	
 	if (carsInFinishLine == trackSize)
 		return false;
@@ -247,7 +247,7 @@ bool Racetrack::carsMovement()
 
 bool Racetrack::removeCarFromTrack(char wantedID)
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		if (wantedID == carsInTrack[i]->getID())
@@ -262,7 +262,7 @@ bool Racetrack::removeCarFromTrack(char wantedID)
 
 bool Racetrack::removeCarFromGarage(char wantedID)
 {
-	int vectorSize = carsInGarage.size();
+	int vectorSize = static_cast<int>(carsInGarage.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		if (wantedID == carsInGarage[i]->getID())
@@ -276,7 +276,7 @@ bool Racetrack::removeCarFromGarage(char wantedID)
 
 void Racetrack::removeStalledCars()
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 	if(vectorSize > 0)
 	{
 		for(int i = 0; i < vectorSize; i++)
@@ -308,7 +308,7 @@ void Racetrack::removeStalledCars()
 					}
 				}
 			}
-			vectorSize = carsInTrack.size();
+			vectorSize = static_cast<int>(carsInTrack.size());
 		}
 	}
 }
@@ -333,7 +333,7 @@ bool Racetrack::detach(char wantedID)
 
 bool Racetrack::accident(char wantedID)
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		if (wantedID == carsInTrack[i]->getID())
@@ -350,7 +350,7 @@ bool Racetrack::accident(char wantedID)
 
 bool Racetrack::stop(std::string wantedName)
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 
 	if(vectorSize > 0)
 	{
@@ -389,7 +389,7 @@ std::vector<std::string> Racetrack::returnKillList()
 
 bool Racetrack::printCarsInGarage() const
 {
-	int vectorSize = carsInGarage.size();
+	int vectorSize = static_cast<int>(carsInGarage.size());
 
 	if (vectorSize == 0)
 		return false;
@@ -402,7 +402,7 @@ bool Racetrack::printCarsInGarage() const
 
 bool Racetrack::printCarsInTrack() const
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 
 	if(vectorSize == 0)
 		return false;
@@ -416,7 +416,7 @@ bool Racetrack::printCarsInTrack() const
 
 bool Racetrack::printRaceResults()
 {
-	int vectorSize = raceResults.size();
+	int vectorSize = static_cast<int>(raceResults.size());
 
 	if(vectorSize==0)
 		return false;
@@ -432,7 +432,7 @@ bool Racetrack::printRaceResults()
 
 bool Racetrack::checkCarsInTrack()
 {
-	int checker = carsInTrack.size();
+	int checker = static_cast<int>(carsInTrack.size());
 	if(checker>0)
 		return true;
 	return false;
@@ -440,7 +440,7 @@ bool Racetrack::checkCarsInTrack()
 
 bool Racetrack::checkEndOfRace()
 {
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 
 	if (vectorSize == 0)
 		return true;
@@ -517,7 +517,7 @@ int Racetrack::getPosition(Car* c)
 	int pos = 0;
 	sortCarsByPosition();
 
-	int vectorSize = carsInTrack.size();
+	int vectorSize = static_cast<int>(carsInTrack.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		if(c == carsInTrack[i])
@@ -533,7 +533,7 @@ int Racetrack::getPosition(Car* c)
 Car* Racetrack::getCarInPosition(int pos)
 {
 	sortCarsByPosition();
-	int maxCars = carsInTrack.size();
+	int maxCars = static_cast<int>(carsInTrack.size());
 	
 	if (pos < 1)
 		return nullptr;

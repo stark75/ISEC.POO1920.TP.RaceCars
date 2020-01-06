@@ -9,7 +9,7 @@ Simulator::Simulator(): championship(nullptr)
 
 Simulator::~Simulator()
 {
-	int vectorSize = racetracks.size();
+	int vectorSize = static_cast<int>(racetracks.size());
 
 	if (vectorSize > 0)
 		for (int i = vectorSize - 1; i >= 0; i--)
@@ -115,7 +115,7 @@ bool Simulator::addChampionship(std::vector<std::string> racetrackList)
 
 	if(championship == nullptr)
 	{
-		int vectorSize = racetrackList.size();
+		int vectorSize = static_cast<int>(racetrackList.size());
 		std::vector<Racetrack*> championshipRacetracks;
 		
 		for(int i=0;i<vectorSize;i++)
@@ -141,7 +141,7 @@ bool Simulator::removePilot(std::string wantedName)
 
 bool Simulator::removeRacetrack(std::string wantedName)
 {	
-	int vectorSize = racetracks.size();
+	int vectorSize = static_cast<int>(racetracks.size());
 
 	if (vectorSize > 0)
 	{
@@ -232,7 +232,7 @@ void Simulator::clearKillList()
 		return;
 	std::vector<std::string> killList = r->returnKillList();
 
-	int vectorSize = killList.size();
+	int vectorSize = static_cast<int>(killList.size());
 
 	if (vectorSize > 0)
 	{
@@ -246,7 +246,7 @@ void Simulator::clearKillList()
 
 bool Simulator::printRacetracks()
 {
-	int vectorSize = racetracks.size();
+	int vectorSize = static_cast<int>(racetracks.size());
 	if(vectorSize == 0)
 		return false;
 	if (vectorSize > 0)
@@ -300,7 +300,7 @@ bool Simulator::checkEndOfRace()
 
 Racetrack* Simulator::getRacetrackByName(std::string wantedName)
 {
-	int vectorSize = racetracks.size();
+	int vectorSize = static_cast<int>(racetracks.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		std::string tmpString = racetracks[i]->getName();
@@ -317,7 +317,7 @@ bool Simulator::checkIfItsPossibleToStartARace()
 
 bool Simulator::addDGV(const std::string& cs)
 {
-	int vectorSize = dgvStorage.size();
+	int vectorSize = static_cast<int>(dgvStorage.size());
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
@@ -332,7 +332,7 @@ bool Simulator::addDGV(const std::string& cs)
 
 bool Simulator::deleteDGV(const std::string& cs)
 {
-	int vectorSize = dgvStorage.size();
+	int vectorSize = static_cast<int>(dgvStorage.size());
 
 	if (vectorSize > 0)
 	{
@@ -350,7 +350,7 @@ bool Simulator::deleteDGV(const std::string& cs)
 
 bool Simulator::loadDGV(const std::string& cs)
 {
-	int vectorSize = dgvStorage.size();
+	int vectorSize = static_cast<int>(dgvStorage.size());
 
 	if (vectorSize > 0)
 	{

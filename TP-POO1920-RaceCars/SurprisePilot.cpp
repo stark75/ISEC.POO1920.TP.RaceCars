@@ -49,7 +49,7 @@ bool SurprisePilot::movement(Racetrack* r)
 	Car* c = getCurrentCar();
 
 	int pos = r->getPosition(c);
-	int maxCars = r->getCarsInTrack().size();
+	int maxCars = static_cast<int>(r->getCarsInTrack().size());
 
 	double trackLength = r->getTrackLength();
 	double distanceElapsed = c->getPosition();
