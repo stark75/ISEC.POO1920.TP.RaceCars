@@ -60,9 +60,9 @@ bool SurprisePilot::movement(Racetrack* r)
 
 	if(!getStopOrder())
 	{
-		if (pos == 1 && ratioDistance >= 0.7 && ratioDistance < 0.9)
+		if (pos == 1 && maxCars > 1 && ratioDistance >= 0.7 && ratioDistance < 0.9)
 		{
-			if(c->getAccelerationPedal()>0)
+			if (c->getAccelerationPedal() > 0)
 				c->resetPedals();
 			c->pressBrake(100);
 		}
