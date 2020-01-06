@@ -87,7 +87,7 @@ std::string CrazyPilot::getTypeAsString() const
 bool CrazyPilot::movement(Racetrack* r)
 {
 	int tmpTime = r->getTime();
-	if (tmpTime == 0)
+	if (tmpTime == 1)
 	{
 		generateSecondToStart();
 		r->updateLog(returnLog());
@@ -150,6 +150,7 @@ bool CrazyPilot::movement(Racetrack* r)
 
 		if(generateAccident())
 		{
+			r->updateLog(returnLog());
 			if(pos < maxCars)
 			{
 				Car* other = r->getCarInPosition(pos+1);
@@ -158,6 +159,7 @@ bool CrazyPilot::movement(Racetrack* r)
 			r->accident(c->getID());
 			return false;
 		}
+		r->updateLog(returnLog());
 		
 	}
 	

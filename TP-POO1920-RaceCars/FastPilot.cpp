@@ -112,8 +112,10 @@ bool FastPilot::movement(Racetrack* r)
 	{
 		if (generatePanicAttack())
 		{
+			r->updateLog(returnLog());
 			c->turnOnEmergencySignal();
 		}
+		r->updateLog(returnLog());
 	}
 	
 	return true;
