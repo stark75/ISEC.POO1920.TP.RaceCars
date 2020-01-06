@@ -1,6 +1,8 @@
 #include "Utils.h"
 #include <iostream>
 #include <sstream>
+#include <cstdlib>
+#include <ctime>
 
 int Utils::argumentCount(std::string str)
 {
@@ -173,4 +175,13 @@ std::string Utils::getTimeAsString(int t)
 	}
 
 	return time;
+}
+
+int Utils::rng(int max)
+{
+	std::srand((unsigned)time(nullptr));
+
+	int num = (rand() % max) + 1;
+
+	return num;
 }

@@ -1,8 +1,7 @@
 #include "FastPilot.h"
 #include "Car.h"
 #include "Racetrack.h"
-#include <cstdlib>
-#include <ctime>
+#include "Utils.h"
 
 FastPilot::FastPilot(const std::string& newName) : Pilot(newName)
 {
@@ -14,9 +13,7 @@ FastPilot::FastPilot(const Pilot& src) : Pilot(src)
 
 bool FastPilot::generatePanicAttack(int raceTime)
 {
-	std::srand(static_cast<unsigned>(time(0)));
-
-	int num = (rand() % 10) + 1;
+	int num = Utils::rng(10);
 
 	std::string tmpString = "No segundo ";
 	tmpString += std::to_string(raceTime);

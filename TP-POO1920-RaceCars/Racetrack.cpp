@@ -300,7 +300,7 @@ void Racetrack::removeStalledCars()
 				{
 					if(tmpPilot->getTypeAsString() == "crazy")
 					{
-						if(time > 5)
+						if(time > 10)
 						{
 							if (tmpCar->getSpeed() == 0 && tmpCar->getEnergy() > 0)
 								removeCarFromTrack(tmpCar->getID());

@@ -64,13 +64,13 @@ bool SurprisePilot::movement(Racetrack* r)
 		{
 			if(c->getAccelerationPedal()>0)
 				c->resetPedals();
-			c->pressBrake(-10);
+			c->pressBrake(-100);
 		}
 		else
 		{
 			if(c->getBrakePedal()>0)
 				c->resetPedals();
-			c->pressAccelerate(4);
+			c->pressAccelerate(3);
 		}
 	}
 	else

@@ -1,8 +1,7 @@
 #include "CrazyPilot.h"
 #include "Car.h"
 #include "Racetrack.h"
-#include <cstdlib>
-#include <ctime>
+#include "Utils.h"
 
 CrazyPilot::CrazyPilot(const std::string& newName) : Pilot(newName), secondToStart(0), tmpPos(0)
 {
@@ -14,9 +13,7 @@ CrazyPilot::CrazyPilot(const Pilot& src) : Pilot(src), secondToStart(0), tmpPos(
 
 void CrazyPilot::generateSecondToStart(int raceTime)
 {
-	std::srand(static_cast<unsigned>(time(0)));
-
-	secondToStart = (rand() % 5) + 1;
+	secondToStart = Utils::rng(5);
 
 	std::string tmpString = "No segundo ";
 	tmpString += std::to_string(raceTime);
@@ -31,9 +28,7 @@ void CrazyPilot::generateSecondToStart(int raceTime)
 
 bool CrazyPilot::generateAccident(int raceTime)
 {
-	std::srand(static_cast<unsigned>(time(0)));
-
-	int num = (rand() % 100) + 1;
+	int num = Utils::rng(100);
 
 	std::string tmpString = "No segundo ";
 	tmpString += std::to_string(raceTime);
