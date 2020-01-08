@@ -67,8 +67,6 @@ public:
 	void         reset();
 	void         resetPedals();
 	void         turnOnEmergencySignal();
-	
-	//TODO: Car movement
 
 	friend bool  operator==(Car const& lhs, Car const& rhs);
 	friend bool  operator!=(Car const& lhs, Car const& rhs);

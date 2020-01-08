@@ -1,5 +1,4 @@
 #include "StoredDGV.h"
-#include <utility>
 
 StoredDGV::StoredDGV(DGV dgvToStore, std::string newName): storedDGV(dgvToStore), name(newName){}
 

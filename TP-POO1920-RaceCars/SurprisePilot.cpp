@@ -1,5 +1,6 @@
 #include "SurprisePilot.h"
 #include "Car.h"
+#include "Racetrack.h"
 
 SurprisePilot::SurprisePilot(const std::string& newName) : Pilot(newName)
 {
@@ -41,4 +42,48 @@ std::string SurprisePilot::getAsString() const
 std::string SurprisePilot::getTypeAsString() const
 {
 	return "surpresa";
+}
+
+bool SurprisePilot::movement(Racetrack* r)
+{
+	Car* c = getCurrentCar();
+
+	int pos = r->getPosition(c);
+	int maxCars = static_cast<int>(r->getCarsInTrack().size());
+
+	double trackLength = r->getTrackLength();
+	double distanceElapsed = c->getPosition();
+	double ratioDistance = distanceElapsed / trackLength;
+	
+	if (pos > maxCars)
+		pos = maxCars;
+
+	if(!getStopOrder())
+	{
+		if (pos == 1 && maxCars > 1 && ratioDistance >= 0.7 && ratioDistance < 0.9)
+		{
+			if (c->getAccelerationPedal() > 0)
+				c->resetPedals();
+			c->pressBrake(100);
+		}
+		else
+		{
+			if(c->getBrakePedal()>0)
+				c->resetPedals();
+			c->pressAccelerate(3);
+		}
+	}
+	else
+	{
+		c->resetPedals();
+		if (c->getSpeed() > 0)
+			c->pressBrake();
+	}
+	return true;
+}
+
+void SurprisePilot::reset()
+{
+	setStop(false);
+	setLog("");
 }

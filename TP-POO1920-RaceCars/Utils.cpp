@@ -1,6 +1,7 @@
 #include "Utils.h"
 #include <iostream>
 #include <sstream>
+#include <random>
 
 int Utils::argumentCount(std::string str)
 {
@@ -109,12 +110,12 @@ std::string Utils::getTimeAsString(int t)
 	if(t >= 60)
 	{
 		int integer = t;
-		int seconds = 0;
-		int minutes = 0;
+		int seconds;
+		int minutes;
 		int hours = 0;
 		int days = 0;
 		
-		for (minutes; integer > 59; minutes++)
+		for (minutes = 0; integer > 59; minutes++)
 		{
 			integer -= 60;
 		}
@@ -173,4 +174,14 @@ std::string Utils::getTimeAsString(int t)
 	}
 
 	return time;
+}
+
+int Utils::rng(int limit)
+{
+	std::random_device rd;
+
+	std::mt19937 gen(rd());
+
+	std::uniform_int_distribution<> dis(1, limit);
+	return dis(gen);
 }

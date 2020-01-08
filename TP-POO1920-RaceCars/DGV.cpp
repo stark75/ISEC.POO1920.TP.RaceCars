@@ -1,11 +1,10 @@
 #include "DGV.h"
 #include "View.h"
 #include <algorithm>
-#include "CrazyPilot.h"
 
 DGV::DGV(const DGV& src)
 {
-	int vectorSize = src.carList.size();
+	int vectorSize = static_cast<int>(src.carList.size());
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
@@ -14,7 +13,7 @@ DGV::DGV(const DGV& src)
 		}
 	}
 
-	vectorSize = src.pilotList.size();
+	vectorSize = static_cast<int>(src.pilotList.size());
 
 	if (vectorSize > 0)
 	{
@@ -22,8 +21,8 @@ DGV::DGV(const DGV& src)
 		{
 			std::string tmpString = src.pilotList[i]->getTypeAsString();
 			if (tmpString == "crazy")
-				pilotList.push_back(new CrazyPilot(*src.pilotList[i])); //TODO UNCOMMENT
-			/*else
+				pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
+			else
 			{
 				if (tmpString == "rapido")
 					pilotList.push_back(new FastPilot(*src.pilotList[i]));
@@ -32,7 +31,7 @@ DGV::DGV(const DGV& src)
 					if (tmpString == "surpresa")
 						pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
 				}
-			}*/
+			}
 		}
 	}
 
@@ -41,7 +40,7 @@ DGV::DGV(const DGV& src)
 
 DGV::~DGV()
 {
-	int pilotVectorSize = pilotList.size();
+	int pilotVectorSize = static_cast<int>(pilotList.size());
 
 	if (pilotVectorSize > 0)
 		for (int i = pilotVectorSize - 1; i >= 0; i--)
@@ -49,15 +48,13 @@ DGV::~DGV()
 
 	pilotList.clear();
 
-	int carVectorSize = carList.size();
+	int carVectorSize = static_cast<int>(carList.size());
 
 	if (carVectorSize > 0)
 		for(int i = carVectorSize - 1; i >= 0; i--)
 			delete carList[i];
 
 	carList.clear();
-	
-	
 }
 
 std::vector<Car*> DGV::getCarList()
@@ -79,21 +76,19 @@ bool DGV::addCrazyPilot(const CrazyPilot& newPilot)
 
 bool DGV::addFastPilot(const FastPilot& newPilot)
 {
-	//TODO UNCOMMENT
-	//pilotList.push_back(new FastPilot(newPilot));
+	pilotList.push_back(new FastPilot(newPilot));
 	return true;
 }
 
 bool DGV::addSurprisePilot(const SurprisePilot& newPilot)
 {
-	//TODO UNCOMMENT
-	//pilotList.push_back(new SurprisePilot(newPilot));
+	pilotList.push_back(new SurprisePilot(newPilot));
 	return true;
 }
 
 bool DGV::removeCar(const char wantedID)
 {
-	int vectorSize = carList.size();
+	int vectorSize = static_cast<int>(carList.size());
 
 	if (vectorSize > 0)
 	{
@@ -118,7 +113,7 @@ bool DGV::removeCar(const char wantedID)
 
 bool DGV::removePilot(std::string wantedName)
 {	
-	int vectorSize = pilotList.size();
+	int vectorSize = static_cast<int>(pilotList.size());
 
 	if (vectorSize > 0)
 	{
@@ -143,7 +138,7 @@ bool DGV::removePilot(std::string wantedName)
 
 bool DGV::printCars()
 {
-	int vectorSize = carList.size();
+	int vectorSize = static_cast<int>(carList.size());
 	if(vectorSize == 0)
 		return false;
 	for (int i = 0; i < vectorSize; i++)
@@ -153,7 +148,7 @@ bool DGV::printCars()
 
 bool DGV::printPilots()
 {
-	int vectorSize = pilotList.size();
+	int vectorSize = static_cast<int>(pilotList.size());
 	if(vectorSize == 0)
 		return false;
 	for (int i = 0; i < vectorSize; i++)
@@ -163,7 +158,7 @@ bool DGV::printPilots()
 
 Car* DGV::getCarById(char wantedID)
 {
-	int vectorSize = carList.size();
+	int vectorSize = static_cast<int>(carList.size());
 	for(int i = 0; i < vectorSize; i++)
 	{
 		char tmpChar=carList[i]->getID();
@@ -175,7 +170,7 @@ Car* DGV::getCarById(char wantedID)
 
 Pilot* DGV::getPilotByName(std::string wantedName)
 {
-	int vectorSize = pilotList.size();
+	int vectorSize = static_cast<int>(pilotList.size());
 	for(int i = 0; i < vectorSize; i++)
 	{
 		std::string tmpString = pilotList[i]->getName();
@@ -230,7 +225,7 @@ bool DGV::detach(char id)
 
 void DGV::detachAll()
 {
-	int vectorSize = carList.size();
+	int vectorSize = static_cast<int>(carList.size());
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
@@ -238,7 +233,7 @@ void DGV::detachAll()
 			carList[i]->detach();
 		}
 	}
-	vectorSize = pilotList.size();
+	vectorSize = static_cast<int>(pilotList.size());
 	if(vectorSize > 0)
 	{
 		for(int i = 0; i < vectorSize; i++)
@@ -251,7 +246,7 @@ void DGV::detachAll()
 std::vector<Car*> DGV::getCarsWithPilots()
 {
 	std::vector<Car*> newList;
-	int vectorSize = carList.size();
+	int vectorSize = static_cast<int>(carList.size());
 
 	for(int i = 0; i < vectorSize; i++)
 	{
@@ -266,7 +261,7 @@ int DGV::getNumberOfCarsWithPilots()
 {
 	int numberOfCarsWithPilots = 0;
 
-	int vectorSize = carList.size();
+	int vectorSize = static_cast<int>(carList.size());
 	
 	for(int i = 0; i < vectorSize;i++)
 	{
@@ -280,7 +275,7 @@ int DGV::getNumberOfCarsWithPilots()
 DGV& DGV::operator=(const DGV& src)
 {
 	//Cleaning the destination
-	int vectorSize = this->pilotList.size();
+	int vectorSize = static_cast<int>(this->pilotList.size());
 
 	if (vectorSize > 0)
 		for (int i = vectorSize - 1; i >= 0; i--)
@@ -288,7 +283,7 @@ DGV& DGV::operator=(const DGV& src)
 
 	this->pilotList.clear();
 
-	vectorSize = this->carList.size();
+	vectorSize = static_cast<int>(this->carList.size());
 
 	if (vectorSize > 0)
 		for (int i = vectorSize - 1; i >= 0; i--)
@@ -298,7 +293,7 @@ DGV& DGV::operator=(const DGV& src)
 
 	//Assignment
 	
-	vectorSize = src.carList.size();
+	vectorSize = static_cast<int>(src.carList.size());
 
 	if (vectorSize > 0)
 	{
@@ -308,7 +303,7 @@ DGV& DGV::operator=(const DGV& src)
 		}
 	}
 
-	vectorSize = src.pilotList.size();
+	vectorSize = static_cast<int>(src.pilotList.size());
 
 	if (vectorSize > 0)
 	{
@@ -317,7 +312,6 @@ DGV& DGV::operator=(const DGV& src)
 			std::string tmpString = src.pilotList[i]->getTypeAsString();
 			if(tmpString == "crazy")
 				this->pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
-			/* TODO UNCOMMENT
 			else
 			{
 				if (tmpString == "rapido")
@@ -327,7 +321,7 @@ DGV& DGV::operator=(const DGV& src)
 					if (tmpString == "surpresa")
 						this->pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
 				}
-			}*/
+			}
 		}
 	}
 

@@ -10,5 +10,8 @@ public:
 
 	std::string getAsString() const override;
 	std::string getTypeAsString() const override;
+
+	bool movement(Racetrack* r) override;
+	void reset() override;
 };
 

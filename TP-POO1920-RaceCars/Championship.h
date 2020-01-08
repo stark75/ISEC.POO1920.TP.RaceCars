@@ -29,6 +29,7 @@ public:
 	bool        accident(char wantedID);
 	bool        removeCarFromChampionship(char wantedID);
 	bool        chargeCar(char wantedID, int n);
+	bool        stop(std::string wantedName);
 
 	std::vector<std::string> returnLog();
 	

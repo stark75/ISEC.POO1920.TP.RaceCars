@@ -53,7 +53,7 @@ bool UI::timePassCommand(int n)
 		View::clearScreen();
 		for (int i = 0; i < n; i++)
 		{
-			bool checker = simulator.passOneSecond();
+			simulator.passOneSecond();
 			View::printRace(simulator);
 
 			if(simulator.checkEndOfRace())
@@ -131,7 +131,7 @@ void UI::startChampionship(const std::string racetracks)
 			return;
 		}
 
-		int vectorSize = racetracksNameList.size();
+		int vectorSize = static_cast<int>(racetracksNameList.size());
 
 		for(int i=0; i<vectorSize;i++)
 		{
@@ -240,17 +240,6 @@ void UI::run(const int argc, char* argv[])
 				View::helpCommand();
 				validCommand = true;
 			}
-
-			//TODO: APAGAR ANTES DA ENTREGA
-			if (command == "campeonato" || command == "championship")
-			{
-				if (simulator.getChampionship() != nullptr)
-				{
-					switchMode();
-					View::printMessage("Modo Campeonato reativado.", View::SuccessTypeMessage);
-					validCommand = true;
-				}
-			}
 			
 			if (command == "loadACP") //DEBUG COMMAND
 			{
@@ -321,7 +310,7 @@ void UI::run(const int argc, char* argv[])
 				{
 					separator >> argument;
 
-					if (argument.size() == 1)
+					if (static_cast<int>(argument.size()) == 1)
 					{
 						char tmpChar = argument[0];
 
@@ -360,7 +349,7 @@ void UI::run(const int argc, char* argv[])
 
 					if (!Utils::isNumber(argument))
 					{
-						if (argument.size() == 1)
+						if (static_cast<int>(argument.size()) == 1)
 						{
 							char tmpChar = argument[0];
 							std::string tmpString = "";
@@ -418,7 +407,7 @@ void UI::run(const int argc, char* argv[])
 					{
 						separator >> argument;
 
-						if (argument.size() == 1)
+						if (static_cast<int>(argument.size()) == 1)
 						{
 							if (simulator.removeCar(argument[0]))
 								View::printMessage("Carro Removido.", View::SuccessTypeMessage);
@@ -563,7 +552,10 @@ void UI::run(const int argc, char* argv[])
 									}
 									else
 									{
-										simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand);
+										if (simulator.addCar(tmpEnergy, tmpMaxEnergy, tmpMaxSpeed, tmpBrand))
+											View::printMessage("Carro gerado.", View::SuccessTypeMessage);
+										else
+											View::printMessage("Parametros Errados.", View::ErrorTypeMessage);
 									}
 									validCommand = true;
 								}
@@ -634,15 +626,6 @@ void UI::run(const int argc, char* argv[])
 
 		if (mode == MenuMode::CHAMPIONSHIP)
 		{
-			//TODO: APAGAR ANTES DA ENTREGA
-			if (command == "voltar")
-			{
-				View::printMessage("Menu mode switched to Config Mode", View::SuccessTypeMessage);
-				switchMode();
-
-				validCommand = true;
-			}
-
 			if (command == "carregatudo")
 			{
 				simulator.chargeAllCars();
@@ -674,10 +657,10 @@ void UI::run(const int argc, char* argv[])
 				std::string argument;
 				separator >> argument;
 
-				if (argument == "acidente") //TODO
+				if (argument == "acidente")
 				{
 					separator >> argument;
-					if (argument.size() == 1)
+					if (static_cast<int>(argument.size()) == 1)
 					{
 						if (simulator.accident(argument[0]))
 							View::printMessage("Acidente Ocorrido.", View::SuccessTypeMessage);
@@ -687,11 +670,11 @@ void UI::run(const int argc, char* argv[])
 					}
 				}
 
-				if (argument == "destroi") //TODO
+				if (argument == "destroi")
 				{
 					separator >> argument;
 
-					if (argument.size() == 1)
+					if (static_cast<int>(argument.size()) == 1)
 					{
 						if (simulator.destroyCar(argument[0]))
 							View::printMessage("Carro Destruido.", View::SuccessTypeMessage);
@@ -727,7 +710,7 @@ void UI::run(const int argc, char* argv[])
 				{
 					separator >> argument;
 
-					if(argument.size() == 1)
+					if(static_cast<int>(argument.size()) == 1)
 					{
 						if(Utils::isAlpha(argument[0]))
 						{
@@ -751,7 +734,7 @@ void UI::run(const int argc, char* argv[])
 				}
 			}
 
-			if(Utils::argumentCount(command)>=2) //TODO
+			if(Utils::argumentCount(command)>=2)
 			{
 				std::istringstream separator(command);
 				std::string argument;
@@ -759,7 +742,24 @@ void UI::run(const int argc, char* argv[])
 
 				if (argument == "stop")
 				{
-					View::printMessage("stop not implemented", View::WarningTypeMessage);
+					std::string tmpString = "";
+
+					bool isFirstTime = true;
+
+					while (separator >> argument)
+					{
+						if (isFirstTime)
+							isFirstTime = false;
+						else
+							tmpString += " ";
+						tmpString += argument;
+					}
+
+					if (simulator.stopPilot(tmpString))
+						View::printMessage("O Piloto recebeu a ordem de parar.", View::SuccessTypeMessage);
+					else
+						View::printMessage("Nao houve ordem para parar.", View::ErrorTypeMessage);
+					
 					validCommand = true;
 				}
 			}
@@ -977,7 +977,7 @@ bool UI::loadPilots(const std::string filename)
 
 				std::string tmpType = storedValue;
 
-				if(storedValue == "crazy" /*|| storedValue == "rapido" || storedValue == "surpresa" */)
+				if(storedValue == "crazy" || storedValue == "rapido" || storedValue == "surpresa")
 				{
 					std::string tmpName = "";
 					bool firstTime = true;

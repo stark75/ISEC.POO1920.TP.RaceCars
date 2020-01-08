@@ -34,6 +34,7 @@ public:
 	bool removeCar(char wantedID);
 	bool removePilot(std::string wantedName);
 	bool removeRacetrack(std::string wantedName);
+	bool stopPilot(std::string wantedName);
 	bool destroyCar(char wantedID);
 	bool accident(char wantedID);
 	bool chargeCar(char wantedID, int n);
@@ -41,6 +42,7 @@ public:
 	void clearChampionship();
 	void addMessageToLog(std::string newMessage);
 	void addMessagesToLog();
+	void clearKillList();
 	
 	void chargeAllCars();
 	bool startRace();

@@ -19,6 +19,7 @@ class Racetrack {
 	std::vector<Car*>               carsInGarage;
 
 	std::vector<RaceResults>        raceResults;
+	std::vector<std::string>        killList;
 	std::vector<std::string>        tmpLog;
 	
 	//Variaveis
@@ -53,10 +54,14 @@ public:
 	bool                            carsMovement();
 	bool                            removeCarFromTrack(char wantedID);
 	bool                            removeCarFromGarage(char wantedID);
+	void                            removeStalledCars();
+	bool                            detach(char wantedID);
 	bool                            accident(char wantedID);
+	bool                            stop(std::string wantedName);
 
 	void                            updateLog(std::string newMessage);
 	std::vector<std::string>        returnLog();
+	std::vector<std::string>        returnKillList();
 	
 	bool                            printCarsInGarage() const;
 	bool                            printCarsInTrack() const;

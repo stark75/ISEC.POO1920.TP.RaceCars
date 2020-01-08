@@ -9,7 +9,7 @@ Simulator::Simulator(): championship(nullptr)
 
 Simulator::~Simulator()
 {
-	int vectorSize = racetracks.size();
+	int vectorSize = static_cast<int>(racetracks.size());
 
 	if (vectorSize > 0)
 		for (int i = vectorSize - 1; i >= 0; i--)
@@ -66,19 +66,17 @@ bool Simulator::addPilot(std::string type, std::string newName)
 		CrazyPilot tmpPilot(newName);
 		return currentDGV.addCrazyPilot(tmpPilot);
 	}
-	/*
 	if (type == "rapido")
 	{
 		FastPilot tmpPilot(newName);
 		return currentDGV.addFastPilot(tmpPilot);
 	}
-
+	
 	if (type == "surpresa")
 	{
 		SurprisePilot tmpPilot(newName);
 		return currentDGV.addSurprisePilot(tmpPilot);
 	}
-	*/
 	return false;
 }
 
@@ -117,7 +115,7 @@ bool Simulator::addChampionship(std::vector<std::string> racetrackList)
 
 	if(championship == nullptr)
 	{
-		int vectorSize = racetrackList.size();
+		int vectorSize = static_cast<int>(racetrackList.size());
 		std::vector<Racetrack*> championshipRacetracks;
 		
 		for(int i=0;i<vectorSize;i++)
@@ -142,14 +140,8 @@ bool Simulator::removePilot(std::string wantedName)
 }
 
 bool Simulator::removeRacetrack(std::string wantedName)
-{
-
-	/* TODO
-	 * if(racetrackIsInAChampionship())
-	 * return false;
-	 */
-	
-	int vectorSize = racetracks.size();
+{	
+	int vectorSize = static_cast<int>(racetracks.size());
 
 	if (vectorSize > 0)
 	{
@@ -168,6 +160,11 @@ bool Simulator::removeRacetrack(std::string wantedName)
 	return false;
 }
 
+bool Simulator::stopPilot(std::string wantedName)
+{
+	return championship->stop(wantedName);
+}
+
 bool Simulator::destroyCar(char wantedID)
 {
 	if (championship->removeCarFromChampionship(wantedID))
@@ -177,14 +174,11 @@ bool Simulator::destroyCar(char wantedID)
 
 bool Simulator::accident(char wantedID)
 {
-	if(championship->accident(wantedID))
-	{
-		Car* tmpCar = currentDGV.getCarById(wantedID);
-		Pilot* tmpPilot = tmpCar->getDriver();
-		detach(wantedID);
-		return removePilot(tmpPilot->getName());
-	}
-	return false;
+	bool checker = championship->accident(wantedID);
+
+	clearKillList();
+	
+	return checker;
 }
 
 bool Simulator::chargeCar(char wantedID, int n)
@@ -231,9 +225,28 @@ void Simulator::addMessagesToLog()
 	log.insert(log.end(), newMessages.begin(), newMessages.end());
 }
 
+void Simulator::clearKillList()
+{
+	Racetrack* r = championship->getCurrentRacetrack();
+	if (r == nullptr)
+		return;
+	std::vector<std::string> killList = r->returnKillList();
+
+	int vectorSize = static_cast<int>(killList.size());
+
+	if (vectorSize > 0)
+	{
+		for (int i = 0; i < vectorSize; i++)
+		{
+			removePilot(killList[i]);
+		}
+	}
+	
+}
+
 bool Simulator::printRacetracks()
 {
-	int vectorSize = racetracks.size();
+	int vectorSize = static_cast<int>(racetracks.size());
 	if(vectorSize == 0)
 		return false;
 	if (vectorSize > 0)
@@ -265,6 +278,7 @@ bool Simulator::nextRace()
 bool Simulator::passOneSecond()
 {
 	bool pass = championship->passOneSecond();
+	clearKillList();
 	addMessagesToLog();
 	return pass;
 }
@@ -286,7 +300,7 @@ bool Simulator::checkEndOfRace()
 
 Racetrack* Simulator::getRacetrackByName(std::string wantedName)
 {
-	int vectorSize = racetracks.size();
+	int vectorSize = static_cast<int>(racetracks.size());
 	for (int i = 0; i < vectorSize; i++)
 	{
 		std::string tmpString = racetracks[i]->getName();
@@ -303,7 +317,7 @@ bool Simulator::checkIfItsPossibleToStartARace()
 
 bool Simulator::addDGV(const std::string& cs)
 {
-	int vectorSize = dgvStorage.size();
+	int vectorSize = static_cast<int>(dgvStorage.size());
 	if (vectorSize > 0)
 	{
 		for (int i = 0; i < vectorSize; i++)
@@ -318,7 +332,7 @@ bool Simulator::addDGV(const std::string& cs)
 
 bool Simulator::deleteDGV(const std::string& cs)
 {
-	int vectorSize = dgvStorage.size();
+	int vectorSize = static_cast<int>(dgvStorage.size());
 
 	if (vectorSize > 0)
 	{
@@ -336,7 +350,7 @@ bool Simulator::deleteDGV(const std::string& cs)
 
 bool Simulator::loadDGV(const std::string& cs)
 {
-	int vectorSize = dgvStorage.size();
+	int vectorSize = static_cast<int>(dgvStorage.size());
 
 	if (vectorSize > 0)
 	{

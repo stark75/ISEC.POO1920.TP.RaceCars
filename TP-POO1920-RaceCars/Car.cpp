@@ -187,6 +187,8 @@ bool Car::pressAccelerate(int times)
 	if(driver!=nullptr && energy>0 && brakePedal==0 && speed < maxSpeed)
 	{
 		accelerationPedal+=times;
+		if (accelerationPedal < 0)
+			accelerationPedal = 0;
 		return true;
 	}
 	return false;
@@ -197,6 +199,8 @@ bool Car::pressBrake(int times)
 	if(driver!=nullptr && accelerationPedal==0)
 	{
 		brakePedal+=times;
+		if (brakePedal < 0)
+			brakePedal = 0;
 		return true;
 	}
 	return false;
@@ -258,10 +262,6 @@ bool Car::repair()
 
 bool Car::move(Racetrack* racetrack)
 {
-	
-	position += static_cast<int>(round(.5*maxSpeed));
-	energy -= round(maxSpeed*.1);
-
 	if (driver != nullptr)
 	{
 		if (driver->movement(racetrack))
@@ -281,6 +281,13 @@ bool Car::move(Racetrack* racetrack)
 			if (speed == 0)
 				movement = false;
 
+			position += speed;
+
+			int trackLength = racetrack->getTrackLength();
+			
+			if (position > trackLength)
+				position = trackLength;
+			
 			energyConsumption();
 		}
 		else
@@ -298,6 +305,8 @@ void Car::reset()
 	brakePedal = 0;
 	position = 0;
 	emergencySignal = false;
+	if (driver != nullptr)
+		driver->reset();
 }
 
 void Car::resetPedals()
