@@ -5,12 +5,12 @@ RaceCars is a racing car simulator developed for Object-Oriented Programming cla
 ## Contents
 -   [Background](#background)
 -   [Dependencies](#dependencies)
-    - [Consola library](<#consola library>)
-        - [Consola prerequisites](<#consola prerequisites>)
+    - [Consola library](#consola-library)
+        - [Consola prerequisites](<#consola-prerequisites>)
 -   [Usage](#usage)
     - [Commands](#commands)
-        - [Mode 1 - Configuration](<#mode 1 - configuration>)
-        - [Mode 2 - Championship](<#mode 2 - championship>)
+        - [Mode 1 - Configuration](#mode-1---configuration)
+        - [Mode 2 - Championship](#mode-2---championship)
 
 
 
