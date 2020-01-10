@@ -19,19 +19,7 @@ DGV::DGV(const DGV& src)
 	{
 		for (int i = 0; i < vectorSize; i++)
 		{
-			std::string tmpString = src.pilotList[i]->getTypeAsString();
-			if (tmpString == "crazy")
-				pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
-			else
-			{
-				if (tmpString == "rapido")
-					pilotList.push_back(new FastPilot(*src.pilotList[i]));
-				else
-				{
-					if (tmpString == "surpresa")
-						pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
-				}
-			}
+			pilotList.push_back(src.pilotList[i]->duplicate());
 		}
 	}
 
@@ -309,19 +297,7 @@ DGV& DGV::operator=(const DGV& src)
 	{
 		for(int i = 0; i < vectorSize; i++)
 		{
-			std::string tmpString = src.pilotList[i]->getTypeAsString();
-			if(tmpString == "crazy")
-				this->pilotList.push_back(new CrazyPilot(*src.pilotList[i]));
-			else
-			{
-				if (tmpString == "rapido")
-					this->pilotList.push_back(new FastPilot(*src.pilotList[i]));
-				else
-				{
-					if (tmpString == "surpresa")
-						this->pilotList.push_back(new SurprisePilot(*src.pilotList[i]));
-				}
-			}
+			this->pilotList.push_back(src.pilotList[i]->duplicate());
 		}
 	}
 

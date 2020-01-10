@@ -20,6 +20,7 @@ public:
     Pilot(std::string newName);
 	Pilot(const Pilot& src) = default;
     virtual ~Pilot() = default;
+	virtual Pilot* duplicate() const = 0;
 
     std::string         getName()         const;
     Car*                getCurrentCar()   const;

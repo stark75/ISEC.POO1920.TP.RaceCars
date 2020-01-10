@@ -7,8 +7,9 @@ FastPilot::FastPilot(const std::string& newName) : Pilot(newName)
 {
 }
 
-FastPilot::FastPilot(const Pilot& src) : Pilot(src)
+Pilot* FastPilot::duplicate() const
 {
+	return new FastPilot(*this);
 }
 
 bool FastPilot::generatePanicAttack(int raceTime)

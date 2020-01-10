@@ -10,6 +10,7 @@ public:
 	CrazyPilot(const std::string& newName);
 	CrazyPilot(const CrazyPilot& src) = default;
 	CrazyPilot(const Pilot& src);
+	Pilot* duplicate() const override;
 
 	void generateSecondToStart(int raceTime);
 	bool generateAccident(int raceTime);

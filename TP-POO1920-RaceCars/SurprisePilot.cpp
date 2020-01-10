@@ -10,6 +10,11 @@ SurprisePilot::SurprisePilot(const Pilot& src) : Pilot(src)
 {
 }
 
+Pilot* SurprisePilot::duplicate() const
+{
+	return new SurprisePilot(*this);
+}
+
 std::string SurprisePilot::getAsString() const
 {
 	std::string tmpString;

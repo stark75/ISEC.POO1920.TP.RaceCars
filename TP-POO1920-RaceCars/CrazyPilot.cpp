@@ -11,6 +11,11 @@ CrazyPilot::CrazyPilot(const Pilot& src) : Pilot(src), secondToStart(0), tmpPos(
 {
 }
 
+Pilot* CrazyPilot::duplicate() const
+{
+	return new CrazyPilot(*this);
+}
+
 void CrazyPilot::generateSecondToStart(int raceTime)
 {
 	secondToStart = Utils::rng(5);

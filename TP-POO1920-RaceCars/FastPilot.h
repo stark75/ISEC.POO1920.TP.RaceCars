@@ -7,7 +7,7 @@ class FastPilot :
 public:
 	FastPilot(const std::string& newName);
 	FastPilot(const FastPilot& src) = default;
-	FastPilot(const Pilot& src);
+	Pilot* duplicate() const override;
 	bool generatePanicAttack(int raceTime);
 
 	std::string getAsString()     const override;
