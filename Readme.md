@@ -20,7 +20,7 @@ To test our skills and our knowledge about the subject content, we were asked to
 ## Dependencies
 
 ### Consola library
-In order to help us develop the Visual UI, we were given a *Consola* library to control the console, which is included inside the [project](../TP-POO1920-RaceCars/Consola "Consola Library").
+In order to help us develop the Visual UI, we were given a *Consola* library to control the console, which is included inside the [project](https://github.com/stark75/TP-POO1920-RaceCars/tree/master/TP-POO1920-RaceCars/Consola "Consola Library").
 
 #### Consola prerequisites
 
