@@ -223,7 +223,7 @@ void UI::run(const int argc, char* argv[])
 		if (Utils::tolower(command) == "sair" || Utils::tolower(command) == "exit")
 		{
 			View::printMessage("Exiting!", View::WarningTypeMessage);
-			exit(0);
+			return;
 		}
 
 		if (mode == MenuMode::CONFIG)

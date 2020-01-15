@@ -31,18 +31,14 @@ DGV::~DGV()
 	int pilotVectorSize = static_cast<int>(pilotList.size());
 
 	if (pilotVectorSize > 0)
-		for (int i = pilotVectorSize - 1; i >= 0; i--)
+		for (int i = 0; i < pilotVectorSize; i++)
 			delete pilotList[i];
-
-	pilotList.clear();
 
 	int carVectorSize = static_cast<int>(carList.size());
 
 	if (carVectorSize > 0)
-		for(int i = carVectorSize - 1; i >= 0; i--)
+		for (int i = 0; i < carVectorSize; i++)
 			delete carList[i];
-
-	carList.clear();
 }
 
 std::vector<Car*> DGV::getCarList()
